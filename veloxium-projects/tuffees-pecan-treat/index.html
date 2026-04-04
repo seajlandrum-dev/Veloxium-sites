@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tuffee's Pecan Treats - A Taste of Southern Tradition</title>
-    <meta name="description" content="Artisanal pecan pies, pralines, and treats baked fresh in the Southern tradition. Order online for nationwide delivery, find gift bundles, or subscribe and save.">
+    <title>Tuffee's Pecan Treats - Southern Inspired Homemade Goodness</title>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Karla:wght@400;700&display=swap');
 
-        /* --- CSS Variables --- */
         :root {
-            --primary: #A8784C;
-            --secondary: #E3D5C5;
+            --primary: #A8785D;
+            --secondary: #E3D5CA;
             --accent: #D4A373;
-            --background: #F8F5F1;
+            --background: #F8F4F0;
             --surface: #FFFFFF;
-            --text-primary: #332C27;
-            --text-secondary: #71655B;
-
+            --text-primary: #332D29;
+            --text-secondary: #70645A;
             --font-heading: 'Playfair Display', serif;
-            --font-body: 'Roboto', sans-serif;
-            
-            --shadow: 0 4px 12px rgba(0,0,0,0.08);
-            --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+            --font-body: 'Karla', sans-serif;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
         }
 
-        /* --- Base & Reset --- */
+        /* CSS Reset and Global Styles */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -34,33 +31,34 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px; /* Offset for sticky nav */
         }
 
         body {
             font-family: var(--font-body);
             font-size: 16px;
             line-height: 1.7;
-            background-color: var(--background);
             color: var(--text-primary);
+            background-color: var(--background);
         }
 
-        /* --- Typography --- */
-        h1, h2, h3, h4 {
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-heading);
             color: var(--text-primary);
             line-height: 1.2;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
-        h1 { font-size: 3rem; }
-        h2 { font-size: 2.5rem; }
-        h3 { font-size: 1.75rem; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
         p { margin-bottom: 1rem; color: var(--text-secondary); }
-        a { color: var(--primary); text-decoration: none; transition: color 0.3s ease; }
-        a:hover { color: var(--accent); }
 
-        /* --- Layout --- */
         .container {
             width: 90%;
             max-width: 1200px;
@@ -68,65 +66,169 @@
         }
 
         section {
-            padding: 5rem 0;
-            opacity: 1; /* CRITICAL: Content visible on load */
+            padding: 6rem 0;
+            opacity: 1; /* CRITICAL: Must be visible on load */
+            transform: none; /* CRITICAL: Must be visible on load */
+        }
+        section:nth-of-type(even) { background-color: var(--surface); }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: var(--font-body);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
-        section:nth-of-type(odd) {
-            background-color: var(--surface);
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--surface);
         }
 
-        /* --- Animations (Starts from opacity:1) --- */
-        @keyframes fadeIn {
-            from { transform: translateY(20px); opacity: 1;}
-            to { transform: translateY(0); opacity: 1;}
+        .btn-primary:hover {
+            background-color: #8a604a;
+            transform: translateY(-3px);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--surface);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c58f5a;
+            transform: translateY(-3px);
         }
 
-        .animate-on-load {
-            opacity: 1;
-            animation: fadeIn 0.8s ease-out forwards;
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            margin-bottom: 0.5rem;
+        }
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* --- Header & Navigation --- */
+        /* Header and Navigation */
         .main-header {
             position: sticky;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: var(--surface);
-            box-shadow: var(--shadow);
+            background-color: rgba(248, 244, 240, 0.9);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
-            transition: background-color 0.3s ease;
+            box-shadow: var(--shadow);
         }
 
-        .navbar {
+        .nav-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .nav-logo {
+        .logo a {
             font-family: var(--font-heading);
             font-size: 1.8rem;
-            color: var(--text-primary);
-            font-weight: 700;
+            text-decoration: none;
+            color: var(--primary);
         }
 
-        .nav-links {
+        .main-nav {
+            display: none;
+        }
+        
+        .nav-toggle {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        
+        .nav-toggle .hamburger {
+            width: 28px;
+            height: 2px;
+            background-color: var(--text-primary);
+            display: block;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-toggle .hamburger::before,
+        .nav-toggle .hamburger::after {
+            content: '';
+            width: 28px;
+            height: 2px;
+            background-color: var(--text-primary);
+            display: block;
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-toggle .hamburger::before {
+            top: -8px;
+        }
+        
+        .nav-toggle .hamburger::after {
+            bottom: -8px;
+        }
+        
+        .nav-open .main-nav {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--background);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .nav-open .main-nav a {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .nav-open .nav-toggle .hamburger {
+             background-color: transparent;
+        }
+        
+        .nav-open .nav-toggle .hamburger::before {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .nav-open .nav-toggle .hamburger::after {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .main-nav ul {
             list-style: none;
             display: flex;
             gap: 2rem;
+            flex-direction: column;
         }
 
-        .nav-links a {
-            font-weight: 500;
-            font-size: 1rem;
-            padding: 0.5rem 0;
+        .main-nav ul li a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 700;
             position: relative;
+            padding-bottom: 5px;
         }
-        
-        .nav-links a::after {
+
+        .main-nav ul li a::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -136,906 +238,853 @@
             background-color: var(--primary);
             transition: width 0.3s ease;
         }
-
-        .nav-links a:hover::after, .nav-links a.active::after {
+        
+        .main-nav ul li a:hover::after, .main-nav ul li a.active::after {
             width: 100%;
         }
 
-        .nav-toggle {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
+        @media (min-width: 768px) {
+            .nav-toggle { display: none; }
+            .main-nav { display: block; }
+            .main-nav ul { flex-direction: row; }
+            body.nav-open .main-nav { /* Reset mobile open styles */
+                display: block; position: static; box-shadow: none; background: transparent; padding: 0; width: auto;
+            }
         }
 
-        .hamburger {
-            width: 30px;
-            height: 3px;
-            background-color: var(--text-primary);
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-        .hamburger::before, .hamburger::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 3px;
-            background-color: var(--text-primary);
-            left: 0;
-            transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
-        }
-        .hamburger::before { top: -8px; }
-        .hamburger::after { bottom: -8px; }
-
-
-        /* --- Buttons --- */
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-weight: 500;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+        /* Animations */
+        @keyframes slideInUp {
+            from { opacity: 1; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--surface);
-        }
-
-        .btn-primary:hover {
-            background-color: #92653a;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--primary);
-            color: var(--surface);
+        .animated-element {
+            opacity: 1;
         }
         
-        /* --- Hero Section --- */
+        .animate-on-scroll {
+            animation: slideInUp 1s ease-out forwards;
+            animation-play-state: paused;
+        }
+
+        .is-visible {
+            animation-play-state: running;
+        }
+
+        /* ---- Section Styles ---- */
+
+        /* Home Section */
+        #home {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        /* Hero */
         .hero {
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1605384631313-524671a5b6e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: var(--surface);
-            height: 90vh;
             display: flex;
             align-items: center;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-content h1 {
+            justify-content: center;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1603566113192-fc3729354174?q=80&w=2670&auto=format&fit=crop') no-repeat center center/cover;
             color: var(--surface);
-            font-size: 3.5rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-            margin-bottom: 0.5rem;
+            text-align: center;
+            position: relative;
+            padding: 2rem;
         }
-        
-        .hero-content p {
+        .hero::after {
+            content:'';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        .hero h1 {
+            color: var(--surface);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero p {
             color: var(--secondary);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
         }
-
-        /* --- Section Titles --- */
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        .section-title h2 {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 1rem;
-        }
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent);
-        }
-        .section-title p {
-            max-width: 600px;
-            margin: 1rem auto 0;
-        }
-
-        /* --- Featured Products --- */
+        
+        /* Featured Products */
+        .featured-products { padding: 6rem 0; }
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            grid-template-columns: 1fr;
         }
-        
+        @media (min-width: 768px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
         .product-card {
             background-color: var(--surface);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            overflow: hidden;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 1; /* CRITICAL: Visible on load */
+            padding: 2rem;
+            transition: transform 0.3s ease;
         }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .product-card-img {
-            width: 100%;
-            height: 220px;
+        .product-card:hover { transform: translateY(-10px); }
+        .product-card img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
             object-fit: cover;
+            margin: 0 auto 1.5rem auto;
+            border: 4px solid var(--secondary);
         }
-
-        .product-card-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card-content h3 {
-            font-size: 1.5rem;
-        }
-
-        .product-card-content .price {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--primary);
-            margin: 0.5rem 0 1rem;
-        }
+        .product-card h3 { font-size: 1.4rem; }
         
-        .product-card-content .btn {
-            margin-top: auto;
-        }
-        .ai-pairing {
-            font-size: 0.8rem;
-            font-style: italic;
-            color: var(--text-secondary);
+        /* Storytelling Preview */
+        .storytelling-preview {
             background-color: var(--secondary);
-            padding: 5px 10px;
-            border-radius: 4px;
-            margin-top: 1rem;
-            display: inline-block;
-        }
-
-        /* --- Storytelling Section --- */
-        .story-section {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-        }
-        .story-image {
-            flex-basis: 50%;
-        }
-        .story-image img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
+            padding: 6rem 0;
         }
         .story-content {
-            flex-basis: 50%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
         }
-
-        /* --- Testimonials --- */
+        @media (min-width: 992px) { .story-content { grid-template-columns: 1fr 1fr; } }
+        .story-image img { border-radius: var(--border-radius); box-shadow: var(--shadow); }
+        .story-text h2 { color: var(--primary); }
+        .story-text .subtitle {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Testimonials */
+        .testimonials { padding: 6rem 0; }
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            grid-template-columns: 1fr;
         }
+        @media (min-width: 768px) { .testimonial-grid { grid-template-columns: repeat(3, 1fr); } }
         .testimonial-card {
-            background-color: var(--surface);
+            background: var(--surface);
             padding: 2rem;
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             border-left: 5px solid var(--accent);
             box-shadow: var(--shadow);
         }
-        .testimonial-card p {
+        .testimonial-card p:first-of-type {
             font-style: italic;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
+            margin-bottom: 1.5rem;
         }
         .testimonial-author {
-            font-weight: 500;
-            color: var(--primary);
+            font-weight: 700;
+            color: var(--text-primary);
         }
-
-        /* --- CTA Section --- */
-        .cta-section {
-            background-color: var(--secondary);
-            text-align: center;
-            border-radius: 12px;
-            padding: 4rem 2rem;
-        }
-
-        /* --- Timer Section --- */
+        
+        /* Countdown Timer Section */
         .timer-section {
-            background-color: var(--primary);
+            background: var(--primary);
             color: var(--surface);
+            padding: 4rem 0;
             text-align: center;
         }
-        .timer-section h2 {
-            color: var(--surface);
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
-        }
+        .timer-section h3 { color: var(--surface); }
+        .timer-section p { color: var(--secondary); }
         #countdown-timer {
-            font-family: var(--font-heading);
-            font-size: 3rem;
-            letter-spacing: 0.1em;
-        }
-
-        /* --- About Section --- */
-        #about .container {
-            max-width: 900px;
-        }
-        #about p {
-            font-size: 1.1rem;
-            text-align: justify;
-        }
-
-        /* --- Flavor Quiz Section --- */
-        #flavor-quiz{
-            background-color: var(--surface);
-        }
-        .quiz-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--secondary);
-            padding: 3rem;
-            border-radius: 12px;
-            text-align: center;
-        }
-        .quiz-question {
-            margin-bottom: 2rem;
-        }
-        .quiz-question h4 {
-            margin-bottom: 1rem;
-        }
-        .quiz-options {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            flex-wrap: wrap;
+            margin-top: 1.5rem;
         }
-        .quiz-options .btn {
-            background-color: var(--surface);
-            color: var(--text-primary);
-            border: 2px solid var(--accent);
+        .timer-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
         }
-        .quiz-options .btn:hover {
-            background-color: var(--accent);
-            color: var(--surface);
+        .timer-box div:first-child {
+            font-size: 2.5rem;
+            font-weight: 700;
         }
-        .quiz-result {
-            display: none;
-            margin-top: 2rem;
-            padding: 2rem;
-            background-color: var(--surface);
-            border-radius: 8px;
+        .timer-box div:last-child {
+            font-size: 0.8rem;
+            text-transform: uppercase;
         }
 
-        /* --- Subscription Banner --- */
-        .subscription-banner {
-            background-color: var(--primary);
-            color: var(--surface);
+        /* Products Section */
+        .product-detail-layout {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: 1fr;
+            align-items: flex-start;
+        }
+        @media (min-width: 992px) { .product-detail-layout { grid-template-columns: 1fr 1fr; } }
+        
+        .product-images {
+            display: grid;
+            gap: 1rem;
+        }
+        .main-product-image img { border-radius: var(--border-radius); box-shadow: var(--shadow);}
+        .product-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .product-thumbnails img {
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+        .product-thumbnails img:hover, .product-thumbnails img.active {
+            border-color: var(--primary);
+        }
+
+        .product-info h1 { font-size: 2.5rem; }
+        .product-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .add-to-cart-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            background: var(--background);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+        }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .quantity-selector label { font-weight: 700; }
+        .quantity-input {
+            width: 60px;
             text-align: center;
-            padding: 1rem;
+            padding: 0.5rem;
+            border: 1px solid var(--secondary);
+            border-radius: 5px;
+        }
+
+        .reviews, .recommendations {
+            margin-top: 4rem;
+            border-top: 1px solid var(--secondary);
+            padding-top: 3rem;
+        }
+        
+        .review {
+            border-bottom: 1px solid var(--secondary);
+            padding: 1.5rem 0;
+        }
+        .review:last-child { border-bottom: none; }
+        .review-rating { color: var(--accent); }
+
+        /* About Section */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        @media (min-width: 992px) { .about-layout { grid-template-columns: 2fr 3fr; } }
+        .about-image-stack img {
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+        }
+        .about-image-stack img:first-child {
+            margin-bottom: -15%;
+            margin-left: 10%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .core-values {
             margin-top: 2rem;
-            border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
         }
-        .subscription-banner p {
-            color: var(--surface);
-            margin: 0;
-            font-weight: 500;
+        .value-item h4 { color: var(--primary); }
+
+        /* Subscription Section */
+        .subscription-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            align-items: stretch;
+        }
+        @media (min-width: 768px) { .subscription-grid { grid-template-columns: repeat(3, 1fr); }}
+        .subscription-tier {
+            border: 1px solid var(--secondary);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .subscription-tier.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: var(--shadow);
+        }
+        .tier-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+        .tier-price {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        .tier-price span {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+        .tier-benefits {
+            list-style: none;
+            margin: 1.5rem 0;
+            flex-grow: 1;
+        }
+        .tier-benefits li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--background);
+        }
+        
+        /* Contact Section */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+        @media (min-width: 992px) { .contact-layout { grid-template-columns: 2fr 1fr; } }
+        
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--secondary);
+            border-radius: 5px;
+            font-family: var(--font-body);
+            background-color: var(--surface);
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .contact-info-item svg {
+            width: 30px;
+            height: 30px;
+            color: var(--primary);
         }
 
-
-        /* --- Footer --- */
+        /* Footer */
         .main-footer {
             background-color: var(--text-primary);
-            color: var(--secondary);
-            padding: 4rem 0 2rem;
+            color: var(--background);
+            padding: 4rem 0 2rem 0;
         }
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        .footer-col h4 {
-            color: var(--surface);
-            margin-bottom: 1.5rem;
-        }
-        .footer-col a, .footer-col p {
-            color: var(--secondary);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        .footer-col a:hover {
-            color: var(--accent);
-        }
-        .footer-col form input, .footer-col form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 1rem;
-            border-radius: 4px;
-            border: 1px solid var(--text-secondary);
-            background-color: #4a3f37;
-            color: var(--surface);
-        }
-        .footer-col form .btn-primary { width: 100%; }
-
-        .footer-bottom {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
             text-align: center;
-            border-top: 1px solid var(--text-secondary);
-            padding-top: 2rem;
         }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            h1 { font-size: 2.5rem; }
-            .hero-content h1 { font-size: 3rem; }
-            h2 { font-size: 2rem; }
-            
-            .story-section {
-                flex-direction: column;
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+                text-align: left;
             }
         }
         
-        @media (max-width: 768px) {
-            html { scroll-padding-top: 70px; }
-            
-            .nav-toggle {
-                display: block;
-                z-index: 1001; /* Above mobile menu background */
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 70%;
-                height: 100vh;
-                background-color: var(--surface);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transform: translateX(100%);
-                transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                transform: translateX(0);
-            }
-            
-            .nav-logo { font-size: 1.5rem; }
-
-            .main-header.nav-open .hamburger {
-                transform: rotate(45deg);
-            }
-            .main-header.nav-open .hamburger::before {
-                top: 0;
-                transform: rotate(90deg);
-            }
-            .main-header.nav-open .hamburger::after {
-                bottom: 0;
-                transform: rotate(90deg);
-            }
-            
-            .hero { height: 70vh; }
-            section { padding: 3rem 0; }
+        .footer-column h4 { color: var(--accent); }
+        .footer-column ul { list-style: none; }
+        .footer-column ul li a {
+            color: var(--secondary);
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s;
         }
+        .footer-column ul li a:hover { color: var(--surface); }
+        
+        .social-icons a {
+            color: var(--secondary);
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--text-secondary);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
     </style>
 </head>
 <body>
-
-    <!-- ======================= Header ======================= -->
-    <header class="main-header" id="main-header">
-        <nav class="navbar container">
-            <a href="#home" class="nav-logo">Tuffee's Treats</a>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#pecan-pies">Pecan Pies</a></li>
-                <li><a href="#pralines">Pralines</a></li>
-                <li><a href="#chocolate-pecans">Chocolate Pecans</a></li>
-                <li><a href="#roasted-pecans">Roasted Pecans</a></li>
-                <li><a href="#about">Our Story</a></li>
-            </ul>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu">
-                <div class="hamburger"></div>
+    <header class="main-header">
+        <div class="container nav-wrapper">
+            <h1 class="logo"><a href="#home">Tuffee's</a></h1>
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
             </button>
-        </nav>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Our Treats</a></li>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#subscription">Pecan Club</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
 
-        <!-- ======================= Home Section ======================= -->
-        <section id="home" class="hero">
-            <div class="hero-content animate-on-load">
-                <h1>A Taste of Southern Tradition</h1>
-                <p>Handcrafted pecan treats baked with generations of love, right from our family kitchen to yours.</p>
-                <a href="#featured-products" class="btn btn-primary">Shop Our Treats</a>
-            </div>
-        </section>
+        <!-- HOME SECTION -->
+        <div id="home">
+            <section class="hero">
+                <div class="hero-content animated-element">
+                    <h1>Taste the Southern Tradition</h1>
+                    <p>Hand-roasted, small-batch pecan treats made with love, inspired by generations of family recipes.</p>
+                    <a href="#products" class="btn btn-accent">Shop Our Treats</a>
+                </div>
+            </section>
+            
+            <section class="featured-products">
+                <div class="container">
+                    <div class="section-title animated-element">
+                        <h2>Our Southern Favorites</h2>
+                        <p>Crafted from the finest Georgia pecans, each batch is a taste of home. Explore the treats our customers love the most.</p>
+                    </div>
+                    <div class="product-grid">
+                        <div class="product-card animated-element animate-on-scroll">
+                            <img src="https://images.unsplash.com/photo-1542478330-9b8a0a8e1694?q=80&w=2574&auto=format&fit=crop" alt="Classic Buttered Pecans">
+                            <h3>Classic Buttered Pecans</h3>
+                            <p>Slow-roasted to perfection with real creamery butter and a hint of sea salt. Simply irresistible.</p>
+                            <a href="#products" class="btn btn-primary">Learn More</a>
+                        </div>
+                        <div class="product-card animated-element animate-on-scroll" style="animation-delay: 0.2s;">
+                            <img src="https://images.unsplash.com/photo-1621323382769-d7583f60b09a?q=80&w=2670&auto=format&fit=crop" alt="Chocolate Dipped Pecans">
+                            <h3>Dark Chocolate Pecans</h3>
+                            <p>Our crisp, savory pecans enrobed in rich, decadent dark chocolate. A match made in heaven.</p>
+                             <a href="#products" class="btn btn-primary">Learn More</a>
+                        </div>
+                        <div class="product-card animated-element animate-on-scroll" style="animation-delay: 0.4s;">
+                            <img src="https://images.unsplash.com/photo-1599578703264-f6555157140b?q=80&w=2574&auto=format&fit=crop" alt="Spiced Pecan Brittle">
+                            <h3>Cinnamon Sugar Brittle</h3>
+                            <p>A crunchy, buttery brittle loaded with toasted pecans and a warm cinnamon-sugar spice blend.</p>
+                             <a href="#products" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <!-- ======================= Fresh Batch Timer ======================= -->
-        <section class="timer-section">
-            <div class="container animate-on-load" style="animation-delay: 0.2s;">
-                <h2 style="margin-bottom: 0.5rem;">Hot and Fresh!</h2>
-                <p style="color: var(--secondary); margin-bottom: 1rem;">Next batch of classic pralines comes out of the oven in:</p>
-                <div id="countdown-timer">01:45:22</div>
-            </div>
-        </section>
+            <section class="storytelling-preview">
+                <div class="container">
+                    <div class="story-content">
+                        <div class="story-image animated-element animate-on-scroll">
+                            <img src="https://images.unsplash.com/photo-1558238127-1f061b58296a?q=80&w=2576&auto=format&fit=crop" alt="Family farm pecan grove">
+                        </div>
+                        <div class="story-text animated-element animate-on-scroll" style="animation-delay: 0.2s;">
+                            <p class="subtitle">From Our Grove to Your Home</p>
+                            <h2>A Legacy of Goodness</h2>
+                            <p>Our story began in Grandma Tuffee’s kitchen, where the scent of roasting pecans was the heart of our home. She believed that good food, made with care, could bring people together. Today, we carry on her legacy, using pecans from our own family grove in Georgia to craft the same wholesome treats she made.</p>
+                            <a href="#about" class="btn btn-primary">Read Our Full Story</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <!-- ======================= Featured Products Section ======================= -->
-        <section id="featured-products">
+             <section class="testimonials">
+                <div class="container">
+                     <div class="section-title animated-element animate-on-scroll">
+                        <h2>Straight From the Porch Swing</h2>
+                        <p>Don't just take our word for it. Here's what our customers have to say about their Tuffee's experience.</p>
+                    </div>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card animated-element animate-on-scroll">
+                            <p>"These are, without a doubt, the best pecans I've ever had. They taste just like the ones my grandmother used to make. The buttered pecans are a must-try!"</p>
+                            <div class="testimonial-author">- Sarah L., Charleston, SC</div>
+                        </div>
+                         <div class="testimonial-card animated-element animate-on-scroll" style="animation-delay: 0.2s;">
+                            <p>"I sent a gift box to my parents and they were absolutely thrilled. The packaging was beautiful and the treats were gone in a day. Tuffee's is my new go-to for gifts."</p>
+                            <div class="testimonial-author">- David M., Atlanta, GA</div>
+                        </div>
+                        <div class="testimonial-card animated-element animate-on-scroll" style="animation-delay: 0.4s;">
+                            <p>"I joined the subscription club and it's the best decision I've made! A little box of happiness arrives every month. The quality is consistently amazing."</p>
+                            <div class="testimonial-author">- Emily R., Nashville, TN</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="timer-section">
+                <div class="container">
+                    <h3>Limited Time Offer: Free Shipping!</h3>
+                    <p>Enjoy free standard shipping on all orders over $50. Time is ticking on this sweet deal!</p>
+                    <div id="countdown-timer">
+                        <div class="timer-box"><div id="days">00</div><div>Days</div></div>
+                        <div class="timer-box"><div id="hours">00</div><div>Hours</div></div>
+                        <div class="timer-box"><div id="minutes">00</div><div>Minutes</div></div>
+                        <div class="timer-box"><div id="seconds">00</div><div>Seconds</div></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- PRODUCTS SECTION -->
+        <section id="products">
             <div class="container">
-                <div class="section-title animate-on-load">
-                    <h2>Our Most-Loved Treats</h2>
-                    <p>These are the family favorites that keep our customers coming back for more. A perfect place to start your Tuffee's journey.</p>
+                <div class="section-title animated-element animate-on-scroll">
+                    <h2>Our Signature Treat</h2>
+                    <p>Dive into the details of our most beloved classic: the perfect buttery, salty, crunchy pecan.</p>
                 </div>
-                <div class="product-grid">
-                    <!-- Featured Product 1 -->
-                    <div class="product-card animate-on-load" style="animation-delay: 0.1s;">
-                        <img src="https://images.unsplash.com/photo-1572383672419-ab35444a6914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Classic Southern Pecan Pie" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Classic Southern Pecan Pie</h3>
-                            <p class="price">$32.99</p>
-                            <p>The original recipe that started it all. A perfectly flaky crust filled with rich, gooey caramel and toasted Georgia pecans.</p>
-                            <a href="#pecan-pies" class="btn btn-secondary">View Details</a>
+                <div class="product-detail-layout animated-element">
+                    <div class="product-images">
+                        <div class="main-product-image">
+                            <img id="mainImg" src="https://images.unsplash.com/photo-1542478330-9b8a0a8e1694?q=80&w=2574&auto=format&fit=crop" alt="A bowl of Classic Buttered Pecans">
+                        </div>
+                        <div class="product-thumbnails">
+                            <img src="https://images.unsplash.com/photo-1542478330-9b8a0a8e1694?q=80&w=2574&auto=format&fit=crop" alt="Thumbnail 1" class="active">
+                            <img src="https://images.unsplash.com/photo-1605335198084-25a815a5141b?q=80&w=2670&auto=format&fit=crop" alt="Thumbnail 2">
+                            <img src="https://images.unsplash.com/photo-1589136930064-001a700a91f5?q=80&w=2670&auto=format&fit=crop" alt="Thumbnail 3">
+                            <img src="https://images.unsplash.com/photo-1599578703264-f6555157140b?q=80&w=2574&auto=format&fit=crop" alt="Thumbnail 4">
                         </div>
                     </div>
-                    <!-- Featured Product 2 -->
-                    <div class="product-card animate-on-load" style="animation-delay: 0.2s;">
-                        <img src="https://images.unsplash.com/photo-1623832104526-042c1613523f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Savannah Creamy Pralines" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Savannah Creamy Pralines</h3>
-                            <p class="price">$24.99 / dozen</p>
-                            <p>Melt-in-your-mouth pralines, bursting with fresh pecans and a hint of vanilla. A true taste of the coastal South.</p>
-                            <a href="#pralines" class="btn btn-secondary">View Details</a>
+                    <div class="product-description">
+                        <h1>Classic Buttered Pecans</h1>
+                        <div class="product-price">$18.95</div>
+                        <p>This is where it all started. We take the finest Mammoth pecan halves from our Georgia grove, slow-roast them in small batches, and toss them in real creamery butter and a delicate dusting of sea salt while they're still warm. The result is a simple, perfect snack that's rich, savory, and incredibly moreish.</p>
+                        <ul>
+                            <li><strong>Ingredients:</strong> Georgia Pecans, Butter (Cream, Salt), Sea Salt.</li>
+                            <li><strong>Source:</strong> Sourced directly from Calloway Farms, Jasper County, GA.</li>
+                            <li><strong>Process:</strong> Hand-roasted in copper kettles.</li>
+                            <li><strong>Size:</strong> 8 oz. resealable bag to maintain freshness.</li>
+                        </ul>
+                        <div class="add-to-cart-form">
+                            <div class="quantity-selector">
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" class="quantity-input" value="1" min="1">
+                            </div>
+                            <button class="btn btn-accent" onclick="alert('Classic Buttered Pecans added to your cart!')">Add to Cart</button>
                         </div>
                     </div>
-                    <!-- Featured Product 3 -->
-                    <div class="product-card animate-on-load" style="animation-delay: 0.3s;">
-                        <img src="https://images.unsplash.com/photo-1621939527732-2a2542c3d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80" alt="Dark Chocolate Sea Salt Pecans" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Dark Chocolate Sea Salt Pecans</h3>
-                            <p class="price">$18.99 / bag</p>
-                            <p>Perfectly roasted pecans tumbled in rich 70% dark chocolate and finished with a sprinkle of flaky sea salt.</p>
-                            <a href="#chocolate-pecans" class="btn btn-secondary">View Details</a>
-                        </div>
+                </div>
+
+                <div class="reviews animated-element animate-on-scroll">
+                    <h3>What Folks Are Saying</h3>
+                    <div class="review">
+                        <div class="review-rating">★★★★★</div>
+                        <p>"Absolutely divine. They have the perfect crunch and the salt level is just right. I can't stop eating them!"</p>
+                        <div class="review-author">- Barbara P.</div>
                     </div>
-                     <!-- Featured Product 4 / Gift Bundle -->
-                    <div class="product-card animate-on-load" style="animation-delay: 0.4s;">
-                        <img src="https://images.unsplash.com/photo-1563822299824-2c73c4a1793a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="The Southern Welcome Gift Box" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Southern Welcome Gift Box</h3>
-                            <p class="price">$65.00</p>
-                            <p>Share the love! This bundle includes a mini pecan pie, a half-dozen pralines, and a bag of our honey-roasted pecans.</p>
-                            <a href="#" class="btn btn-secondary">Gift Now</a>
+                    <div class="review">
+                        <div class="review-rating">★★★★★</div>
+                        <p>"I bought these on a whim and now I'm hooked for life. They are so fresh and buttery, nothing like the pecans you get in a grocery store."</p>
+                        <div class="review-author">- Thomas K.</div>
+                    </div>
+                </div>
+
+                <div class="recommendations animated-element animate-on-scroll">
+                    <h3>You Might Also Love...</h3>
+                    <div class="product-grid">
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1621323382769-d7583f60b09a?q=80&w=2670&auto=format&fit=crop" alt="Chocolate Dipped Pecans">
+                            <h3>Dark Chocolate Pecans</h3>
+                            <p>For those who need a little extra decadence.</p>
+                        </div>
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1599578703264-f6555157140b?q=80&w=2574&auto=format&fit=crop" alt="Spiced Pecan Brittle">
+                            <h3>Cinnamon Sugar Brittle</h3>
+                            <p>A sugary, crunchy delight for a classic treat.</p>
+                        </div>
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1599021469123-53dd4b6a88a9?q=80&w=2574&auto=format&fit=crop" alt="Pecan Pie">
+                            <h3>Take & Bake Pecan Pie</h3>
+                            <p>Bring the smell of Tuffee's kitchen into your own home.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ======================= Storytelling Section ======================= -->
-        <section id="storytelling">
-            <div class="container story-section">
-                <div class="story-image animate-on-load">
-                    <img src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Tuffee's family kitchen">
-                </div>
-                <div class="story-content animate-on-load" style="animation-delay: 0.2s;">
-                    <div class="section-title" style="text-align: left; margin-bottom: 2rem;">
-                         <h2 style="padding-bottom: 1rem;">From Our Kitchen to Yours</h2>
-                    </div>
-                    <p>It all started with Grandma Elouise, or 'Tuffee' as we called her. Her pecan pie wasn't just a dessert; it was the centerpiece of every family gathering, a symbol of warmth and togetherness. She used pecans from the trees right in her backyard in rural Georgia.</p>
-                    <p>In 2018, we decided her legacy of love was too good not to share. Tuffee's Pecan Treats was born from a desire to bring that same homemade quality and Southern hospitality to families everywhere. We still use the same time-honored recipes and the finest local ingredients. Every treat is a connection to our roots and an invitation to make new memories.</p>
-                    <a href="#about" class="btn btn-primary">Read Our Full Story</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======================= Pecan Pies Section ======================= -->
-        <section id="pecan-pies">
-            <div class="container">
-                <div class="section-title animate-on-load">
-                    <h2>Our Famous Pecan Pies</h2>
-                    <p>The cornerstone of Tuffee's. Each 9-inch deep-dish pie is handcrafted with a buttery, flaky crust and over a pound of fresh Georgia pecans.</p>
-                </div>
-                <div class="product-grid">
-                    <div class="product-card animate-on-load">
-                        <img src="https://images.unsplash.com/photo-1637929023157-a16d86a457a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" alt="Classic Southern Pecan Pie" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Classic Southern Pecan Pie</h3>
-                            <p class="price">$32.99</p>
-                            <p>Grandma Tuffee's original, award-winning recipe. Pure, simple, and unforgettable.</p>
-                            <span class="ai-pairing">AI Suggestion: Pairs with black coffee or a scoop of vanilla ice cream.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card animate-on-load" style="animation-delay: 0.1s;">
-                        <img src="https://images.unsplash.com/photo-1605384631313-524671a5b6e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Bourbon Chocolate Chip Pecan Pie" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Bourbon Chocolate Chip Pecan Pie</h3>
-                            <p class="price">$36.99</p>
-                            <p>A decadent twist with a splash of small-batch Kentucky bourbon and semi-sweet chocolate chips.</p>
-                             <span class="ai-pairing">AI Suggestion: Pairs with an Old Fashioned or a neat pour of whiskey.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card animate-on-load" style="animation-delay: 0.2s;">
-                        <img src="https://images.unsplash.com/photo-1542598389-b369f6476d05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Mini Pecan Tarts" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Mini Pecan Tarts (6-Pack)</h3>
-                            <p class="price">$28.99</p>
-                            <p>All the flavor of our classic pie in a perfect, personal-sized tart. Ideal for parties or a light indulgence.</p>
-                             <span class="ai-pairing">AI Suggestion: Excellent with afternoon tea or a cappuccino.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="subscription-banner animate-on-load" style="animation-delay: 0.3s;">
-                    <p>Love our pies? Never run out! Subscribe & Save 15% on recurring orders.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======================= Pralines Section ======================= -->
-        <section id="pralines">
-            <div class="container">
-                <div class="section-title animate-on-load">
-                    <h2>Hand-Poured Pralines</h2>
-                    <p>Sweet, creamy, and loaded with pecans. Our pralines are cooked in small batches in a copper kettle and hand-scooped for that authentic, rustic texture.</p>
-                </div>
-                <div class="product-grid">
-                    <div class="product-card animate-on-load">
-                        <img src="https://images.unsplash.com/photo-1623832104526-042c1613523f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Savannah Creamy Pralines" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Savannah Creamy Pralines</h3>
-                            <p class="price">$24.99 / dozen</p>
-                            <p>The classic melt-in-your-mouth praline with a rich, buttery flavor and a soft, creamy texture.</p>
-                            <span class="ai-pairing">AI Suggestion: A perfect sweet finish after a savory meal.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card animate-on-load" style="animation-delay: 0.1s;">
-                        <img src="https://placehold.co/600x400/A8784C/FFFFFF?text=Coffee+Pralines" alt="Coffee-Infused Pralines" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Coffee-Infused Pralines</h3>
-                            <p class="price">$26.99 / dozen</p>
-                            <p>Our creamy praline infused with freshly ground espresso for a bold, aromatic kick.</p>
-                            <span class="ai-pairing">AI Suggestion: A delightful morning treat with a latte.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card animate-on-load" style="animation-delay: 0.2s;">
-                        <img src="https://placehold.co/600x400/D4A373/332C27?text=Spiced+Pralines" alt="Holiday Spiced Pralines" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Holiday Spiced Pralines</h3>
-                            <p class="price">$26.99 / dozen</p>
-                            <p>A seasonal favorite with warming notes of cinnamon, nutmeg, and a hint of ginger.</p>
-                            <span class="ai-pairing">AI Suggestion: Wonderful with warm apple cider or mulled wine.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======================= Chocolate Pecans Section ======================= -->
-        <section id="chocolate-pecans">
-            <div class="container">
-                <div class="section-title animate-on-load">
-                    <h2>Chocolate Covered Pecans</h2>
-                    <p>An irresistible combination. We lightly roast our jumbo pecan halves to bring out their nutty flavor before tumbling them in luxurious, high-quality chocolate.</p>
-                </div>
-                <div class="product-grid">
-                    <div class="product-card animate-on-load">
-                        <img src="https://images.unsplash.com/photo-1621939527732-2a2542c3d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80" alt="Dark Chocolate Sea Salt Pecans" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Dark Chocolate Sea Salt Pecans</h3>
-                            <p class="price">$18.99 / bag</p>
-                            <p>A sophisticated treat. 70% cacao dark chocolate balances the pecan's sweetness, with a finish of flaky sea salt.</p>
-                            <span class="ai-pairing">AI Suggestion: Fantastic with a glass of bold red wine like Cabernet Sauvignon.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card animate-on-load" style="animation-delay: 0.1s;">
-                        <img src="https://placehold.co/600x400/E3D5C5/332C27?text=Milk+Chocolate+Toffee" alt="Milk Chocolate Toffee Pecans" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Milk Chocolate Toffee Pecans</h3>
-                            <p class="price">$18.99 / bag</p>
-                            <p>Creamy milk chocolate and crunchy bits of buttery toffee coat our roasted pecans. A sweet tooth's dream.</p>
-                             <span class="ai-pairing">AI Suggestion: Crumble over ice cream for an incredible topping.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card animate-on-load" style="animation-delay: 0.2s;">
-                        <img src="https://placehold.co/600x400/FFFFFF/A8784C?text=White+Chocolate+Cinnamon" alt="White Chocolate Cinnamon Pecans" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>White Chocolate Cinnamon Pecans</h3>
-                            <p class="price">$18.99 / bag</p>
-                            <p>Sweet white chocolate and a dusting of warm cinnamon sugar. Tastes like a cozy hug.</p>
-                             <span class="ai-pairing">AI Suggestion: Delicious with a chai latte or herbal tea.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- ======================= Roasted Pecans Section ======================= -->
-        <section id="roasted-pecans">
-            <div class="container">
-                <div class="section-title animate-on-load">
-                    <h2>Savory & Sweet Roasted Pecans</h2>
-                    <p>For the purists and the snackers. Our pecans are roasted to perfection in small batches to ensure a crisp, satisfying crunch in every handful.</p>
-                </div>
-                <div class="product-grid">
-                    <div class="product-card animate-on-load">
-                        <img src="https://images.unsplash.com/photo-1596702334114-53982e02df35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Honey Roasted Pecans" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Honey Roasted Pecans</h3>
-                            <p class="price">$16.99 / bag</p>
-                            <p>A classic for a reason. Coated in pure Southern honey for a delicate sweetness and a beautiful glaze.</p>
-                            <span class="ai-pairing">AI Suggestion: A great addition to cheese boards and salads.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card animate-on-load" style="animation-delay: 0.1s;">
-                        <img src="https://images.unsplash.com/photo-1615486518149-c1b734893766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Sea Salt & Cracked Pepper Pecans" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Sea Salt & Cracked Pepper Pecans</h3>
-                            <p class="price">$16.99 / bag</p>
-                            <p>A savory, addictive snack. Perfectly roasted with coarse sea salt and freshly cracked black pepper.</p>
-                            <span class="ai-pairing">AI Suggestion: The perfect partner for a cold beer or craft ale.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card animate-on-load" style="animation-delay: 0.2s;">
-                        <img src="https://placehold.co/600x400/A8784C/FFFFFF?text=Cajun+Spice" alt="Cajun Spiced Pecans" class="product-card-img">
-                        <div class="product-card-content">
-                            <h3>Cajun Spiced Pecans</h3>
-                            <p class="price">$16.99 / bag</p>
-                            <p>A zesty blend of paprika, cayenne, garlic, and onion gives these pecans a delightful Louisiana kick.</p>
-                            <span class="ai-pairing">AI Suggestion: Crush and use as a crust for chicken or fish.</span>
-                            <button class="btn btn-secondary">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======================= Flavor Quiz ======================= -->
-        <section id="flavor-quiz">
-            <div class="container">
-                <div class="quiz-container animate-on-load">
-                    <h3>Can't Decide?</h3>
-                    <h2>Find Your Perfect Pecan Treat</h2>
-                    <p>Answer a few quick questions and we'll recommend the perfect treat for your taste buds.</p>
-                    
-                    <div class="quiz-question">
-                        <h4>First, do you prefer sweet or savory?</h4>
-                        <div class="quiz-options">
-                            <button class="btn">Sweet</button>
-                            <button class="btn">Savory</button>
-                            <button class="btn">A Bit of Both</button>
-                        </div>
-                    </div>
-                    
-                    <div class="quiz-question">
-                        <h4>Next, are you a traditionalist or an adventurer?</h4>
-                        <div class="quiz-options">
-                            <button class="btn">Classic Flavors</button>
-                            <button class="btn">Something New</button>
-                        </div>
-                    </div>
-
-                    <button class="btn btn-primary" id="quiz-submit">Find My Treat!</button>
-
-                    <div class="quiz-result" id="quiz-result">
-                        <h4>We Recommend:</h4>
-                        <h3>Bourbon Chocolate Chip Pecan Pie</h3>
-                        <p>You love classic flavors but aren't afraid of a little adventure! This pie combines the tradition of pecan pie with the decadent kick of bourbon and chocolate. It's the best of both worlds.</p>
-                        <a href="#pecan-pies" class="btn btn-secondary">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======================= Testimonials Section ======================= -->
-        <section id="testimonials">
-            <div class="container">
-                <div class="section-title animate-on-load">
-                    <h2>Straight From Our Customers</h2>
-                    <p>Don't just take our word for it. Here's what folks are saying about their Tuffee's experience.</p>
-                </div>
-                <div class="testimonial-grid">
-                    <div class="testimonial-card animate-on-load">
-                        <p>"This is, without a doubt, the best pecan pie I have ever had. It tastes exactly like the one my grandmother used to make. It brought back so many wonderful memories. I'll be a customer for life."</p>
-                        <strong class="testimonial-author">- Sarah L., Nashville, TN</strong>
-                    </div>
-                    <div class="testimonial-card animate-on-load" style="animation-delay: 0.1s;">
-                        <p>"I ordered the Southern Welcome Box as a closing gift for a real estate client, and they were blown away. The packaging was beautiful, and they said everything was absolutely delicious. Tuffee's is my new go-to for gifts!"</p>
-                        <strong class="testimonial-author">- Michael B., Atlanta, GA</strong>
-                    </div>
-                    <div class="testimonial-card animate-on-load" style="animation-delay: 0.2s;">
-                        <p>"The Dark Chocolate Sea Salt Pecans are dangerously addictive! The quality of the chocolate and the freshness of the pecans is just unmatched. My subscription box is the highlight of my month."</p>
-                        <strong class="testimonial-author">- Jessica R., Charleston, SC</strong>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======================= About Section ======================= -->
+        <!-- ABOUT SECTION -->
         <section id="about">
             <div class="container">
-                <div class="section-title animate-on-load">
-                    <h2>Our Story, Our Promise</h2>
+                <div class="section-title animated-element animate-on-scroll">
+                    <h2>Our Story Is a Family Story</h2>
+                    <p>It all started with a tough-as-nails grandmother and her prized pecan trees.</p>
                 </div>
-                <p class="animate-on-load">
-                    Tuffee's Pecan Treats is more than just a business; it's the continuation of a family legacy. Our story begins in the warm, fragrant kitchen of our Grandma Elouise—affectionately nicknamed 'Tuffee' for her spirited and resilient nature. For decades, her pecan pie, made from nuts harvested from the old-growth trees on her Georgia property, was the stuff of legend within our family. It was a dessert reserved for holidays, birthdays, and Sunday dinners, a sweet reward that always tasted of home.
-                </p>
-                <p class="animate-on-load" style="animation-delay: 0.1s;">
-                    As we grew up and moved away, we'd always crave that taste of home. We realized that what we were missing wasn't just the pie, but the feeling it evoked: comfort, nostalgia, and unconditional love. In 2018, grandson David and his wife, Maria, decided to honor Tuffee by sharing her culinary gift with the world. They spent a year perfecting the recipes, ensuring every treat maintained the integrity and homemade quality of the original.
-                </p>
-                <h3 class="animate-on-load" style="animation-delay: 0.2s; margin-top: 2rem;">Our Values</h3>
-                <p class="animate-on-load" style="animation-delay: 0.2s;">
-                    <strong>Quality Above All:</strong> We source only the finest, freshest ingredients, starting with Mammoth pecan halves from generational farms in the heart of Georgia. We never use corn syrup in our pies, opting for a custom blend of natural sweeteners that creates a richer, more complex flavor.
-                    <br><strong>Handcrafted with Care:</strong> We are not a factory. Every pie crust is hand-crimped, every praline is hand-poured. We believe the human touch is an essential ingredient.
-                    <br><strong>Southern Hospitality:</strong> From the moment you visit our site to the first bite of your treat, we want you to feel welcome. Our customer service is an extension of our family, and we're committed to making your experience a happy one.
-                </p>
-                <p class="animate-on-load" style="animation-delay: 0.3s;">
-                    We are honored to continue Grandma Tuffee's tradition. Thank you for letting us share a piece of our family with yours.
-                </p>
+                <div class="about-layout">
+                    <div class="about-image-stack animated-element animate-on-scroll">
+                        <img src="https://images.unsplash.com/photo-1517404215738-15263e9f9178?q=80&w=2670&auto=format&fit=crop" alt="Old black and white photo of a family on a farm">
+                        <img src="https://images.unsplash.com/photo-1500642733924-a7b372671542?q=80&w=2574&auto=format&fit=crop" alt="Owner of Tuffee's Pecan Treats">
+                    </div>
+                    <div class="about-content animated-element animate-on-scroll" style="animation-delay: 0.2s;">
+                        <h3>From Tuffee's Kitchen to Yours</h3>
+                        <p>Our great-grandmother, Elouise Calloway, earned the nickname "Tuffee" for her unwavering spirit and her refusal to sell the family's pecan grove during hard times. For her, the trees were more than a crop; they were a legacy. Her kitchen was the heart of our family, where she transformed the yearly harvest into treats that marked every celebration and soothed every sorrow.</p>
+                        <p>We founded Tuffee's Pecan Treats to honor her memory and share that same sense of warmth and tradition. We still harvest from those same trees, using her time-honored recipes as our guide. Every bag we ship is a piece of our history and a continuation of her love.</p>
+                        <div class="core-values">
+                            <div class="value-item">
+                                <h4>Heritage</h4>
+                                <p>We are stewards of a family tradition, committed to preserving the authentic flavors of the South.</p>
+                            </div>
+                            <div class="value-item">
+                                <h4>Quality</h4>
+                                <p>From the tree to the bag, we never compromise on the quality of our ingredients or our process.</p>
+                            </div>
+                            <div class="value-item">
+                                <h4>Hospitality</h4>
+                                <p>We believe every customer is a neighbor and treat them with the warmth and kindness of Southern hospitality.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUBSCRIPTION SECTION -->
+        <section id="subscription" class="section-alternate">
+             <div class="container">
+                <div class="section-title animated-element animate-on-scroll">
+                    <h2>Join the Tuffee's Pecan Club</h2>
+                    <p>Never run out of goodness. Get our finest pecan treats delivered to your door and enjoy exclusive member perks.</p>
+                </div>
+                <div class="subscription-grid">
+                    <div class="subscription-tier animated-element animate-on-scroll">
+                        <h3 class="tier-name">The Snacker</h3>
+                        <div class="tier-price">$16<span>/month</span></div>
+                        <p>Perfect for your personal stash.</p>
+                        <ul class="tier-benefits">
+                            <li>1 Bag of Classic Pecans</li>
+                            <li>Save 10% on all orders</li>
+                            <li>Cancel Anytime</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Choose Plan</a>
+                    </div>
+                    <div class="subscription-tier featured animated-element animate-on-scroll" style="animation-delay: 0.2s;">
+                        <h3 class="tier-name">The Entertainer</h3>
+                        <div class="tier-price">$35<span>/month</span></div>
+                        <p>For the host with the most.</p>
+                        <ul class="tier-benefits">
+                            <li>1 Bag of Classic Pecans</li>
+                            <li>1 Bag of a Rotating Flavor</li>
+                            <li><strong>Free Shipping</strong></li>
+                            <li>Save 15% on all orders</li>
+                            <li>Early access to new flavors</li>
+                        </ul>
+                        <a href="#" class="btn btn-accent">Choose Plan</a>
+                    </div>
+                    <div class="subscription-tier animated-element animate-on-scroll" style="animation-delay: 0.4s;">
+                        <h3 class="tier-name">The Connoisseur</h3>
+                        <div class="tier-price">$45<span>/month</span></div>
+                        <p>Experience the best of Tuffee's.</p>
+                        <ul class="tier-benefits">
+                            <li>3 Assorted Bags</li>
+                            <li>Includes one exclusive flavor</li>
+                            <li>Free Shipping</li>
+                            <li>Save 15% on all orders</li>
+                            <li>A free gift in every box</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Choose Plan</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-title animated-element animate-on-scroll">
+                    <h2>Get in Touch</h2>
+                    <p>We'd love to hear from you! Whether you have a question about our treats, a story to share, or a special request, drop us a line.</p>
+                </div>
+                <div class="contact-layout">
+                    <form class="contact-form animated-element animate-on-scroll" onsubmit="event.preventDefault(); alert('Thank you for your message! We will get back to you shortly.');">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                    <div class="contact-info animated-element animate-on-scroll" style="animation-delay: 0.2s;">
+                        <h3>Our Details</h3>
+                        <p>Feel free to reach out directly or stop by if you're in the neighborhood. The porch is always open.</p>
+                        <div class="contact-info-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+                            <div>
+                                <strong>Address</strong><br>
+                                123 Pecan Grove Lane<br>
+                                Monticello, GA 31064
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0l-7.5-4.615A2.25 2.25 0 013 6.993V6.75" /></svg>
+                            <div>
+                                <strong>Email</strong><br>
+                                hello@tuffeespecans.com
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.672-1.332-4.945-3.605-6.277-6.277l1.293-.97c.362-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 6.75z" /></svg>
+                             <div>
+                                <strong>Phone</strong><br>
+                                (706) 555-PECN
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
     </main>
     
-    <!-- ======================= Footer ======================= -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
+                <div class="footer-column">
                     <h4>Tuffee's Pecan Treats</h4>
-                    <p>A Taste of Southern Tradition<br>Baked with Love in Georgia</p>
-                    <p>support@tuffeestreats.com</p>
+                    <p>Southern Inspired Homemade Goodness, from our family to yours.</p>
                 </div>
-                <div class="footer-col">
+                <div class="footer-column">
                     <h4>Quick Links</h4>
-                    <a href="#home">Home</a>
-                    <a href="#pecan-pies">Pecan Pies</a>
-                    <a href="#pralines">Pralines</a>
-                    <a href="#about">Our Story</a>
-                    <a href="#">FAQ</a>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Our Treats</a></li>
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#subscription">Pecan Club</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Shop</h4>
-                    <a href="#chocolate-pecans">Chocolate Pecans</a>
-                    <a href="#roasted-pecans">Roasted Pecans</a>
-                    <a href="#">Gift Bundles</a>
-                    <a href="#">Subscriptions</a>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Get In Touch</h4>
-                    <p>Have a question or a special request? Send us a message!</p>
-                    <form id="contact-form">
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <textarea name="message" rows="3" placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn btn-primary">Send</button>
-                    </form>
+                 <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <p>Join our community and share your Tuffee's moments.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook">[FB]</a>
+                        <a href="#" aria-label="Instagram">[IG]</a>
+                        <a href="#" aria-label="Pinterest">[P]</a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="copyright-year"></span> Tuffee's Pecan Treats. All Rights Reserved.</p>
+                &copy; 2024 Tuffee's Pecan Treats. All Rights Reserved.
             </div>
         </div>
     </footer>
 
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Mobile Navigation ---
-            const navToggle = document.getElementById('nav-toggle');
-            const navLinks = document.getElementById('nav-links');
-            const mainHeader = document.getElementById('main-header');
+            // Mobile Navigation Toggle
+            const navToggle = document.querySelector('.nav-toggle');
+            const body = document.body;
 
             navToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                mainHeader.classList.toggle('nav-open');
+                body.classList.toggle('nav-open');
             });
             
-            navLinks.querySelectorAll('a').forEach(link => {
+            // Close nav when a link is clicked
+            document.querySelectorAll('.main-nav a').forEach(link => {
                 link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    mainHeader.classList.remove('nav-open');
-                })
+                    body.classList.remove('nav-open');
+                });
             });
 
-            // --- Sticky Header Background on Scroll ---
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    mainHeader.style.backgroundColor = 'var(--surface)';
-                } else {
-                    mainHeader.style.backgroundColor = 'var(--surface)'; // Keeps it consistent, could be transparent
+            // Countdown Timer
+            const countdownDate = new Date().setDate(new Date().getDate() + 3);
+            
+            const timer = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.getElementById('countdown-timer').innerHTML = "<span>Offer Expired</span>";
                 }
+            }, 1000);
+
+            // Intersection Observer for Animations (as per strict rules)
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1
             });
 
-            // --- Fresh Batch Countdown Timer ---
-            const countdownElement = document.getElementById('countdown-timer');
-            if (countdownElement) {
-                let timeInSeconds = 1 * 3600 + 45 * 60 + 22; // 1h 45m 22s
-
-                const timerInterval = setInterval(() => {
-                    timeInSeconds--;
-                    if (timeInSeconds <= 0) {
-                        clearInterval(timerInterval);
-                        countdownElement.textContent = "00:00:00";
-                        // Optionally change the message
-                        document.querySelector('.timer-section p').textContent = "A fresh batch is ready now!";
-                        return;
-                    }
-
-                    const hours = Math.floor(timeInSeconds / 3600);
-                    const minutes = Math.floor((timeInSeconds % 3600) / 60);
-                    const seconds = timeInSeconds % 60;
-                    
-                    countdownElement.textContent = 
-                        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                }, 1000);
-            }
-
-            // --- Flavor Quiz ---
-            const quizSubmit = document.getElementById('quiz-submit');
-            const quizResult = document.getElementById('quiz-result');
-            
-            if (quizSubmit) {
-                quizSubmit.addEventListener('click', () => {
-                    quizResult.style.display = 'block';
-                    quizResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                });
-            }
-
-
-            // --- Contact Form ---
-            const contactForm = document.getElementById('contact-form');
-            if(contactForm){
-                contactForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    alert('Thank you for your message! We will get back to you shortly.');
-                    contactForm.reset();
-                });
-            }
-            
-            // --- Copyright Year ---
-            document.getElementById('copyright-year').textContent = new Date().getFullYear();
-
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
         });
     </script>
 </body>
-</html>
-```</body>
 </html>
