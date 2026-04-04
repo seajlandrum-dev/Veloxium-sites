@@ -1,9 +1,998 @@
-<!-- VELOXIUM PARSE FAILED len=834 start=```json
-{
-  "file_tree": [
-    {
-      "path": "package.json",
-      "type": "file"
-    },
-    {
-    -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpowerHer | Empowering Young Women Through BJJ & AI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #374151;
+            --secondary: #c026d3;
+            --accent: #f472b6;
+            --background: #f9fafb;
+            --surface: #ffffff;
+            --text-primary: #030712;
+            --text-secondary: #6b7280;
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --nav-height: 70px;
+        }
+
+        /* --- Global Styles & Resets --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.25rem; }
+        h3 { font-size: 1.5rem; }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover, a:focus {
+            color: var(--accent);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Layout & Utility Classes --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section {
+            padding: 5rem 0;
+            overflow: hidden;
+        }
+        
+        .section:nth-child(even) {
+            background-color: var(--surface);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2-cols {
+            grid-template-columns: 1fr;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            color: #fff;
+            background-color: #a824b8;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .btn-secondary:hover {
+            color: var(--surface);
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            background-color: var(--surface);
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        /* --- Animations --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: none;
+            list-style: none;
+        }
+
+        .nav-link a {
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            position: relative;
+        }
+        
+        .nav-link a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link a:hover::after,
+        .nav-link a.active::after {
+            width: 50%;
+        }
+
+        .nav-link a:hover,
+        .nav-link a.active {
+            color: var(--text-primary);
+        }
+        
+        .nav-actions {
+            display: none;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 2rem;
+            height: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+
+        .hamburger:focus {
+            outline: none;
+        }
+
+        .hamburger span {
+            width: 2rem;
+            height: 0.25rem;
+            background: var(--primary);
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            position: relative;
+            transform-origin: 1px;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--surface);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            list-style: none;
+        }
+
+        .mobile-nav.open {
+            transform: translateX(0);
+        }
+
+        .mobile-nav li {
+            margin: 1.5rem 0;
+        }
+
+        .mobile-nav a {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+        
+
+        /* --- Hero Section --- */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - var(--nav-height));
+            text-align: center;
+            background: linear-gradient(rgba(249, 250, 251, 0.8), rgba(249, 250, 251, 0.8)), url('https://images.unsplash.com/photo-1549576441-15a095364952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            padding-top: var(--nav-height);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+        
+        .hero-content h1 .highlight {
+            color: var(--secondary);
+        }
+
+        .hero-content p {
+            font-size: 1.125rem;
+            margin: 1.5rem auto;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        /* --- About Section --- */
+        #about .grid-2-cols {
+            align-items: center;
+        }
+        
+        #about .about-image {
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            overflow:hidden;
+        }
+        .about-image img {
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+        
+        .about-content h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        /* --- Programs Section --- */
+        #programs .grid-2-cols {
+            gap: 2.5rem;
+        }
+        
+        .program-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-card .card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .program-card p {
+            flex-grow: 1;
+        }
+
+        .program-card .btn {
+            margin-top: auto;
+        }
+        
+        .program-card .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+        .program-card .icon svg {
+             width: 30px; height: 30px;
+        }
+        .icon-bjj { background-color: var(--accent); color: white;}
+        .icon-ai { background-color: var(--secondary); color: white;}
+
+        /* --- Testimonials Section --- */
+        #testimonials {
+            background-color: var(--primary);
+        }
+
+        #testimonials .section-header h2, #testimonials .section-header p {
+            color: var(--surface);
+        }
+
+        .testimonial-card {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .testimonial-card blockquote {
+            font-size: 1.125rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- Volunteering Section --- */
+        #volunteering .grid-2-cols {
+            align-items: center;
+        }
+        
+        .volunteer-intro p:first-of-type {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .opportunities-list {
+            list-style: none;
+        }
+
+        .opportunities-list li {
+            background-color: var(--background);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent);
+        }
+        .opportunities-list li strong { color: var(--text-primary); }
+
+        /* --- Form styles -- */
+        .form-wrapper {
+            background-color: var(--surface);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .form-group input, 
+        .form-group textarea, 
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color .3s, box-shadow .3s;
+        }
+        .form-group input:focus, 
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(192, 38, 211, 0.2);
+        }
+        
+        /* --- FAQ Section --- */
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            font-size: 1.125rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question:hover { color: var(--secondary); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .faq-answer p {
+            padding-bottom: 1.5rem;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* --- Blog Section --- */
+        #blog .grid-3-cols {
+            grid-template-columns: 1fr;
+        }
+        .blog-post-card img {
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .blog-post-card .post-category {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        /* --- Donate Section --- */
+        #donate .grid-2-cols {
+            align-items: start;
+            gap: 3rem;
+        }
+
+        #donate .donation-options {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        #donate .donation-options button {
+            flex: 1 1 auto;
+            background-color: var(--surface);
+            border: 1px solid #d1d5db;
+            color: var(--text-secondary);
+        }
+        #donate .donation-options button.active,
+        #donate .donation-options button:hover {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .impact-statement h3 {
+            margin-bottom: 1.5rem;
+        }
+        .impact-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .impact-item .icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: rgba(244, 114, 182, 0.1);
+            color: var(--accent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .impact-item .icon svg { width: 24px; height: 24px; }
+
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--primary);
+            color: var(--background);
+            padding: 4rem 0 2rem 0;
+        }
+        .footer-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .footer-about h4 {
+            font-size: 1.5rem; color: #fff; margin-bottom: 1rem;
+        }
+        .footer-about p {
+            color: #d1d5db;
+        }
+        .footer-links h4 {
+            color: #fff; margin-bottom: 1rem;
+        }
+        .footer-links ul {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #d1d5db;
+        }
+        .footer-links a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .social-links a {
+            color: #d1d5db;
+            font-size: 1.5rem;
+        }
+        .social-links a:hover {
+            color: #fff;
+        }
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #4b5563;
+            padding-top: 2rem;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* --- Media Queries --- */
+        @media (min-width: 768px) {
+            h1 { font-size: 3.75rem; }
+            h2 { font-size: 2.5rem; }
+            .section { padding: 6rem 0; }
+            .grid-2-cols { grid-template-columns: repeat(2, 1fr); }
+            #blog .grid-3-cols { grid-template-columns: repeat(3, 1fr); }
+
+            .hamburger { display: none; }
+            .nav-links { display: flex; gap: 0.5rem; }
+            .nav-actions { display: block; }
+            
+            .hero-content h1 { font-size: 3.5rem; }
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+        }
+        
+        @media (min-width: 1024px) {
+            .nav-links { gap: 1rem; }
+            #testimonials .grid-3-cols { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="main-header">
+        <div class="container navbar">
+            <a href="#hero" class="nav-logo">EmpowerHer</a>
+            <nav>
+                <ul class="nav-links">
+                    <li class="nav-link"><a href="#hero" class="active">Home</a></li>
+                    <li class="nav-link"><a href="#about">About</a></li>
+                    <li class="nav-link"><a href="#programs">Programs</a></li>
+                    <li class="nav-link"><a href="#volunteering">Volunteer</a></li>
+                    <li class="nav-link"><a href="#faq">FAQ</a></li>
+                    <li class="nav-link"><a href="#blog">Blog</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <a href="#donate" class="btn btn-primary">Donate</a>
+            </div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
+    <ul class="mobile-nav" id="mobile-nav-menu">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#volunteering">Volunteer</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#donate" class="btn btn-primary">Donate</a></li>
+    </ul>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container hero-content animate-on-scroll">
+                <h1>Forge Your Future: <span class="highlight">Strength in Code, Power on the Mat</span></h1>
+                <p>EmpowerHer equips young women with the resilience of Brazilian Jiu-Jitsu and the logic of Artificial Intelligence to become confident leaders in a changing world.</p>
+                <div class="hero-buttons">
+                    <a href="#programs" class="btn btn-primary">Explore Our Programs</a>
+                    <a href="#volunteering" class="btn btn-secondary">Join Our Team</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container grid grid-2-cols">
+                <div class="about-image animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1593352222389-3e0421375593?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="A group of diverse young women looking confident and empowered.">
+                </div>
+                <div class="about-content animate-on-scroll">
+                    <h2 class="section-title">Our Mission</h2>
+                    <h3>Building the Next Generation of Female Leaders</h3>
+                    <p>At EmpowerHer, we believe that true empowerment comes from a combination of physical confidence and intellectual prowess. Our unique model blends the strategic discipline of Brazilian Jiu-Jitsu with future-focused education in AI and technology.</p>
+                    <p>We provide a safe, inclusive, and challenging environment where young women can discover their strength, sharpen their minds, and build a supportive community. We're not just teaching skills; we're building character, resilience, and the unshakeable belief that they can achieve anything.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section id="programs" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2>Our Core Programs</h2>
+                    <p>We offer two distinct but complementary paths designed to build a holistic foundation for success.</p>
+                </div>
+                <div class="grid grid-2-cols">
+                    <div class="card program-card animate-on-scroll">
+                        <div class="card-content">
+                            <div class="icon icon-bjj">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            </div>
+                            <h3>The Mat: Brazilian Jiu-Jitsu</h3>
+                            <p>Develop physical confidence, discipline, and problem-solving skills under pressure. Our BJJ program is designed for all levels, focusing on self-defense, body awareness, and the mental fortitude to overcome challenges.</p>
+                            <a href="#contact" class="btn btn-secondary">Enroll in BJJ</a>
+                        </div>
+                    </div>
+                    <div class="card program-card animate-on-scroll" style="transition-delay: 200ms;">
+                        <div class="card-content">
+                            <div class="icon icon-ai">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-2.25-2.25H7.5A2.25 2.25 0 005.25 7.5v9a2.25 2.25 0 002.25 2.25z" /></svg>
+                            </div>
+                            <h3>The Code: AI & Technology</h3>
+                            <p>Unlock the future with our hands-on AI and coding workshops. We demystify technology, teaching fundamental programming concepts, ethical AI, and how to build projects that solve real-world problems.</p>
+                            <a href="#contact" class="btn btn-secondary">Join AI Workshop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2>Voices of Empowerment</h2>
+                    <p>Hear from the young women in our community.</p>
+                </div>
+                <div class="grid grid-3-cols">
+                    <div class="card testimonial-card animate-on-scroll">
+                        <blockquote>"BJJ taught me that I'm stronger than I ever imagined. That confidence carries over into everything I do, especially in my coding classes."</blockquote>
+                        <p class="testimonial-author">Aisha, 17</p>
+                        <p class="testimonial-role">Program Participant</p>
+                    </div>
+                    <div class="card testimonial-card animate-on-scroll" style="transition-delay: 200ms;">
+                        <blockquote>"EmpowerHer gave me a community of supportive girls who are all ambitious and smart. It's inspiring to be around so many future leaders."</blockquote>
+                        <p class="testimonial-author">Maria, 16</p>
+                        <p class="testimonial-role">AI Workshop Mentee</p>
+                    </div>
+                    <div class="card testimonial-card animate-on-scroll" style="transition-delay: 400ms;">
+                        <blockquote>"Volunteering as a mentor has been incredibly rewarding. Seeing the 'aha!' moments when a student's code works is the best feeling."</blockquote>
+                        <p class="testimonial-author">Jessica, 24</p>
+                        <p class="testimonial-role">AI Mentor & Volunteer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Volunteering Section -->
+        <section id="volunteering" class="section">
+            <div class="container grid grid-2-cols">
+                <div class="volunteer-intro animate-on-scroll">
+                    <h2>Become a Catalyst for Change</h2>
+                    <p>Your time and expertise can create a lasting impact. By volunteering with EmpowerHer, you help shape the next generation of female leaders and innovators.</p>
+                     <p>We are looking for passionate individuals to join our mission. Whether you're a BJJ black belt, a software engineer, or just someone who wants to help, there's a place for you here.</p>
+                    <h3>Current Opportunities:</h3>
+                     <ul class="opportunities-list">
+                         <li><strong>AI & Coding Mentor:</strong> Guide students through projects and concepts.</li>
+                         <li><strong>BJJ Assistant Instructor:</strong> Help lead classes and ensure a safe training environment.</li>
+                         <li><strong>Event & Workshop Support:</strong> Assist with logistics for our community events.</li>
+                         <li><strong>Professional Mentor:</strong> Share your career journey and advice with our older participants.</li>
+                     </ul>
+                </div>
+                <div class="form-wrapper animate-on-scroll" style="transition-delay: 200ms;">
+                    <h3 style="text-align: center; margin-bottom: 1.5rem">Apply to Volunteer</h3>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="interest">Area of Interest</label>
+                            <select id="interest" name="interest" required>
+                                <option value="" disabled selected>Select an area</option>
+                                <option value="ai-mentor">AI & Coding Mentor</option>
+                                <option value="bjj-instructor">BJJ Instructor</option>
+                                <option value="event-support">Event Support</option>
+                                <option value="general">General Support</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Why do you want to volunteer?</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Have questions? We have answers. If you don't see your question here, feel free to contact us.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item animate-on-scroll">
+                        <button class="faq-question">
+                            <span>Who is eligible for the programs?</span>
+                            <div class="faq-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </div>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Our programs are designed for young women and girls aged 13-19. We are committed to inclusivity and welcome applicants from all backgrounds, regardless of prior experience in BJJ or coding.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <button class="faq-question">
+                            <span>Is there a cost to participate?</span>
+                            <div class="faq-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </div>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Thanks to our generous donors, we are able to offer our core programs at no cost to most participants. We operate on a sliding scale and provide scholarships to ensure that financial barriers do not prevent anyone from joining.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item animate-on-scroll">
+                        <button class="faq-question">
+                            <span>Is Brazilian Jiu-Jitsu safe for beginners?</span>
+                            <div class="faq-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </div>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutely. Safety is our top priority. Our certified instructors create a controlled and supportive learning environment. Classes begin with fundamental movements and techniques, and sparring (rolling) is always supervised and optional.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item animate-on-scroll">
+                        <button class="faq-question">
+                            <span>Do I need my own computer or BJJ uniform?</span>
+                            <div class="faq-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </div>
+                        </button>
+                        <div class="faq-answer">
+                            <p>No. We provide laptops for use during our AI workshops and have loaner BJJ uniforms (gis) available for new students. Our goal is to make our programs as accessible as possible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2>From the EmpowerHer Blog</h2>
+                    <p>Insights, stories, and updates from our community.</p>
+                </div>
+                <div class="grid grid-3-cols">
+                    <div class="card blog-post-card animate-on-scroll">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Blog post about women in tech">
+                        <div class="card-content">
+                            <p class="post-category">Technology</p>
+                            <h3>Breaking Bias: How Women are Shaping the Future of AI</h3>
+                            <p>Explore the critical role women play in developing ethical and unbiased AI, and meet some of the pioneers from our own program.</p>
+                            <a href="#" class="read-more">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="card blog-post-card animate-on-scroll" style="transition-delay: 200ms;">
+                        <img src="https://images.unsplash.com/photo-1600140232578-4395e4a05f32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Blog post about BJJ principles">
+                        <div class="card-content">
+                            <p class="post-category">Empowerment</p>
+                            <h3>The Chess Match on the Mat: Life Lessons from BJJ</h3>
+                            <p>Brazilian Jiu-Jitsu is more than self-defense; it's a philosophy for life. Learn how its principles can help you navigate any challenge.</p>
+                            <a href="#" class="read-more">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="card blog-post-card animate-on-scroll" style="transition-delay: 400ms;">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Blog post about a student spotlight">
+                        <div class="card-content">
+                            <p class="post-category">Community</p>
+                            <h3>Student Spotlight: From First Line of Code to First App</h3>
+                            <p>Meet Sarah, a 15-year-old participant who developed a mobile app to help her community after just six months in our AI program.</p>
+                            <a href="#" class="read-more">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donate Section -->
+        <section id="donate" class="section">
+            <div class="container grid grid-2-cols">
+                <div class="form-wrapper animate-on-scroll">
+                     <h3 style="text-align: center; margin-bottom: 2rem">Fuel the Movement</h3>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label>Choose Amount</label>
+                            <div class="donation-options">
+                                <button type="button" class="btn active">$25</button>
+                                <button type="button" class="btn">$50</button>
+                                <button type="button" class="btn">$100</button>
+                                <button type="button" class="btn">$250</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="custom-amount">Or Custom Amount ($)</label>
+                            <input type="number" id="custom-amount" name="custom-amount" placeholder="e.g., 75">
+                        </div>
+                         <div class="form-group">
+                            <label for="email-donate">Email Address</label>
+                            <input type="email" id="email-donate" name="email-donate" required>
+                        </div>
+                        <div class="form-group">
+                             <p>Your generous donation will be processed securely. We are a 501(c)(3) nonprofit organization.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem;">Donate Now</button>
+                    </form>
+                </div>
+                <div class="impact-statement animate-on-scroll" style="transition-delay: 200ms;">
+                     <h2 style="margin-bottom: 2rem;">Your Donation Empowers</h2>
+                     <div class="impact-item">
+                         <div class="icon">
+                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12.75a.75.75 0 00.75-.75v-3a.75.75 0 00-1.5 0v3a.75.75 0 00.75.75zM12 15a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75v-.008a.75.75 0 00-.75-.75H12zM12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM4.573 13.624A8.25 8.25 0 013 12c0-2.454 1.07-4.67 2.803-6.196.17-.146.353-.284.546-.412A8.253 8.253 0 0112 3.75c1.838 0 3.55.61 4.908 1.644.193.128.376.266.546.412A8.25 8.25 0 0121 12c0 .498-.046.986-.134 1.464" /></svg>
+                         </div>
+                         <div>
+                             <h4>Scholarships</h4>
+                             <p>A $50 donation can fund a full month of BJJ training for one young woman, providing her with a uniform and class access.</p>
+                         </div>
+                     </div>
+                     <div class="impact-item">
+                         <div class="icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M3 6a3 3 0 013-3h12a3 3 0 013 3v12a3 3 0 01-3 3H6a3 3 0 01-3-3V6zm14.25 1.5a.75.75 0 000-1.5H6.75a.75.75 0 000 1.5h10.5z" clip-rule="evenodd" /></svg>
+                         </div>
+                         <div>
+                             <h4>Technology & Tools</h4>
+                             <p>A $100 donation helps purchase a Raspberry Pi kit, enabling a student to learn hardware programming and build her own computer.</p>
+                         </div>
+                     </div>
+                      <div class="impact-item">
+                         <div class="icon">
+                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 6.375a4.125 4.125 0 018.25 0c0 1.253.303 2.455.856 3.518c.21.393.427.785.67 1.173c.224.354.409.684.558.981c.148.294.275.565.386.812c.11.247.206.467.288.662c.08.192.146.357.198.5c.05.14.087.26.112.363c.025.101.038.18.04.242c.003.065.003.11.003.136c0 .012 0 .02-.002.027c-.002.007-.005.013-.007.018H4.256c-.002-.005-.005-.011-.007-.018c-.002-.007-.002-.015-.002-.027c0-.026.001-.07.003-.136c.002-.061.015-.141.04-.242c.025-.103.062-.224.112-.363c.052-.143.118-.308.198-.5c.082-.195.178-.415.288-.662c.11-.247.237-.518.386-.812c.15-.297.334-.627.558-.981c.243-.388.46-.78.67-1.173C11.197 8.83 11.5 7.628 11.5 6.375c0-1.523-1.077-2.82-2.56-3.115A.75.75 0 0110.5 4.5c.01 0 .02.002.03.003A2.625 2.625 0 004.5 6.375zM17.25 6.375c0 1.253.303 2.455.856 3.518c.21.393.427.785.67 1.173c.224.354.409.684.558.981c.148.294.275.565.386.812c.11.247.206.467.288.662c.08.192.146.357.198.5c.05.14.087.26.112.363c.025.101.038.18.04.242c.003.065.003.11.003.136c0 .012 0 .02-.002.027c-.002.007-.005.013-.007.018h-8.08c1.334-1.25 2.22-2.924 2.373-4.752A.75.75 0 1013.5 9.75c-.01 0-.02-.002-.03-.003c-1.498-.293-2.56-1.59-2.56-3.115c0-.94.437-1.791 1.144-2.358A4.126 4.126 0 0113.
