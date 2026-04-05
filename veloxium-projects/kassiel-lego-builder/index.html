@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEGO - The Lego Builder</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            --primary: #FF4081;
+            --secondary: #64FFDA;
+            --accent: #FFD700;
+            --background: #121212;
+            --surface: #1E1E1E;
+            --text-primary: #FFFFFF;
+            --text-secondary: #BDBDBD;
+        }
+
+        /* --- Base & Scroll --- */
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--background);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--background);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e63974;
+        }
+
+        /* --- Typography & Headings --- */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Bebas Neue', cursive;
+            margin: 0 0 1rem 0;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h1 { font-size: 5rem; line-height: 1.1; }
+        h2 { font-size: 3.5rem; text-shadow: 0 0 10px var(--secondary); }
+        h3 { font-size: 2.5rem; color: var(--secondary); }
+        h4 { font-size: 1.8rem; }
+        
+        p {
+            margin: 0 0 1.5rem 0;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--text-primary);
+        }
+
+        /* --- Animations --- */
+        @keyframes slideInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 1; }
+            to { opacity: 1; }
+        }
+
+        .animated {
+            opacity: 1; /* Critical for visibility on load */
+            animation-duration: 0.8s;
+            animation-fill-mode: both;
+            animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .animated.slide-up {
+            animation-name: slideInUp;
+        }
+        
+        /* --- Layout & Sections --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 0;
+        }
+
+        section {
+            padding-top: 80px; /* Offset for sticky nav */
+            overflow: hidden;
+        }
+
+        section:nth-of-type(odd) {
+            background-color: var(--background);
+        }
+        
+        section:nth-of-type(even) {
+            background-color: #161616;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            width: 90%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 64, 129, 0.2);
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .nav-logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+
+        .nav-links a {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            text-shadow: 0 0 5px var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .nav-toggle { display: none; }
+
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            font-family: 'Bebas Neue', cursive;
+            padding: 14px 32px;
+            border-radius: 4px;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--text-primary);
+            box-shadow: 0 0 15px rgba(255, 64, 129, 0.5);
+        }
+
+        .btn-primary:hover {
+            background: #e63974;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px rgba(255, 64, 129, 0.7);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: var(--background);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px rgba(100, 255, 218, 0.4);
+        }
+
+
+        /* --- Hero Section --- */
+        #home {
+            min-height: calc(100vh - 80px); /* 80px is nav height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(18,18,18,0.8), rgba(18,18,18,1)), url('https://images.unsplash.com/photo-1618843480070-a3374a5a1da3?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            padding-top: 0;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            text-shadow: 0 0 20px rgba(255, 64, 129, 0.8), 0 0 30px rgba(100, 255, 218, 0.6);
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1s 0.2s;
+        }
+
+        @keyframes glitch {
+            2%, 64% { transform: translate(2px, 0) skew(0deg); }
+            4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+            62% { transform: translate(0, 0) skew(5deg); }
+        }
+        .hero-content h1:hover { animation: glitch 1s linear infinite; }
+
+
+        /* --- Featured Content & Community --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 2px solid var(--surface);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+
+        /* --- Content Section --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            background-color: var(--surface);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--primary);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 40px 20px 20px;
+            color: var(--text-primary);
+        }
+        
+        .overlay h4 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        
+        .social-feeds {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .feed-card {
+            background-color: var(--surface);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        .feed-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .feed-header svg {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+            fill: var(--primary);
+        }
+        .feed-header h4 {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        
+        /* --- Level Up Section --- */
+        .blog-posts {
+             display: grid;
+             grid-template-columns: 1fr;
+             gap: 40px;
+        }
+        .blog-post-card {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            background: var(--surface);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--surface);
+        }
+        .blog-post-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--secondary);
+        }
+        .blog-post-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .blog-post-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-post-content h4 { color: var(--text-primary); }
+        .blog-post-content .read-more { margin-top: auto; align-self: flex-start; }
+
+        .category-tags {
+            text-align: center;
+            margin: 50px 0 0;
+        }
+        .tag {
+            display: inline-block;
+            background-color: var(--surface);
+            color: var(--secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tag:hover {
+            background-color: var(--secondary);
+            color: var(--background);
+        }
+
+        /* --- Contact Section --- */
+        #contact .grid-2 {
+            gap: 60px;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--surface);
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        .social-links-contact {
+            margin-top: 2rem;
+        }
+        .social-links-contact a {
+            margin-right: 20px;
+            display: inline-block;
+        }
+        .social-links-contact svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        .social-links-contact a:hover svg {
+            fill: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+
+        /* --- Footer --- */
+        .footer {
+            background: var(--background);
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid var(--surface);
+        }
+        .footer-logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .footer-logo span { color: var(--primary); }
+        .footer-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .footer-socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .footer-socials a svg {
+             width: 24px;
+             height: 24px;
+             fill: var(--text-secondary);
+             transition: all 0.3s ease;
+        }
+        .footer-socials a:hover svg {
+            fill: var(--secondary);
+            transform: translateY(-3px);
+        }
+        .copyright {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            h1 { font-size: 4rem; }
+            h2 { font-size: 2.8rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            #contact .grid-2 > div:last-child {
+                text-align: center;
+            }
+            .social-links-contact {
+                margin-top: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.2rem; }
+            .container { padding: 60px 0; }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--surface);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+            .nav-toggle {
+                display: block;
+                cursor: pointer;
+                background: none;
+                border: none;
+                z-index: 1001;
+            }
+            .hamburger {
+                display: block;
+                position: relative;
+                width: 30px;
+                height: 20px;
+            }
+            .hamburger span {
+                display: block;
+                width: 100%;
+                height: 3px;
+                background: var(--text-primary);
+                border-radius: 3px;
+                position: absolute;
+                transition: all 0.3s ease-in-out;
+            }
+            .hamburger span:nth-child(1) { top: 0; }
+            .hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+            .hamburger span:nth-child(3) { bottom: 0; }
+            
+            .nav-toggle.active .hamburger span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+            .nav-toggle.active .hamburger span:nth-child(2) { opacity: 0; }
+            .nav-toggle.active .hamburger span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+            .blog-post-card {
+                grid-template-columns: 1fr;
+            }
+            .blog-post-card img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#home" class="nav-logo">KEGO<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#content">Content Hub</a></li>
+            <li><a href="#level-up">Level Up</a></li>
+            <li><a href="#contact">Collaborate</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </nav>
+    
+    <main>
+
+        <!-- HOME SECTION -->
+        <section id="home">
+            <div class="hero-content animated">
+                <h1>KEGO: BUILDING BEYOND THE BRICKS</h1>
+                <p class="hero-tagline">Welcome to the hub for everything Kasstiel 'KEGO' the Lego Builder. Dive into epic MOCs, master new techniques, and join a community that clicks.</p>
+                <a href="#content" class="btn btn-primary animated slide-up">Explore The Builds</a>
+            </div>
+        </section>
+
+        <!-- FEATURED CONTENT & COMMUNITY -->
+        <div class="container animated slide-up">
+            <div class="grid-2">
+                <div>
+                    <h3>Featured Build: The Cyberpunk Cityscape</h3>
+                    <p>My biggest project to date. Over 50,000 pieces, countless hours, and a whole lot of neon. This build combines advanced SNOT techniques with integrated custom lighting to bring a sprawling futuristic metropolis to life. Check out the full build video for a deep dive into the design process and hidden details.</p>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-secondary">Watch on YouTube</a>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/3od-kQMTZ9M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <div class="grid-2" style="margin-top: 100px;">
+                <div style="order: 2;">
+                    <h3>Join The Builder's Guild!</h3>
+                    <p>The Builder's Guild is our official community on Discord. It's the ultimate place to share your own creations, get feedback, participate in exclusive building challenges, and connect with other passionate LEGO fans. Whether you're a seasoned MOC master or just starting out, you have a spot on our server.</p>
+                    <p><strong>Community Spotlight:</strong> Huge shoutout to <strong>BrickMaster_Alex</strong> for their incredible "Deep Sea Research Vessel" shared last week. The parts usage was genius!</p>
+                    <a href="#" class="btn btn-secondary">Join The Discord</a>
+                </div>
+                <div style="order: 1;">
+                     <img src="https://images.unsplash.com/photo-1585336261222-268e09f08552?q=80&w=2070&auto=format&fit=crop" alt="LEGO community creations" style="width: 100%; border-radius: 8px; box-shadow: 0 0 20px rgba(255, 64, 129, 0.2);">
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT SECTION -->
+        <section id="content">
+            <div class="container">
+                <div class="section-header animated slide-up">
+                    <h2 class="animated slide-up">The Content Hub</h2>
+                    <p>Your one-stop archive for all my creations. From epic video showcases to detailed breakdowns, it's all here.</p>
+                </div>
+
+                <h3 class="animated slide-up">Video Gallery</h3>
+                <div class="gallery-grid animated slide-up">
+                    <div class="gallery-item" style="animation-delay: 0.1s;">
+                        <img src="https://images.pexels.com/photos/163013/lego-building-blocks-constructor-play-163013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="LEGO MOC Showcase">
+                        <div class="overlay"><h4>MOC Showcase: The Starship Leviathan</h4></div>
+                    </div>
+                    <div class="gallery-item" style="animation-delay: 0.2s;">
+                        <img src="https://images.pexels.com/photos/220268/pexels-photo-220268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="LEGO Speed Build Challenge">
+                        <div class="overlay"><h4>Speed Build: 10-Minute Mech Challenge</h4></div>
+                    </div>
+                    <div class="gallery-item" style="animation-delay: 0.3s;">
+                        <img src="https://images.pexels.com/photos/1790446/pexels-photo-1790446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="LEGO Building Tips">
+                        <div class="overlay"><h4>Building Tips: Advanced SNOT Techniques</h4></div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 50px;" class="animated slide-up">Live From the Workbench</h3>
+                 <div class="social-feeds animated slide-up">
+                    <div class="feed-card" style="animation-delay: 0.1s;">
+                        <div class="feed-header">
+                            <svg viewBox="0 0 24 24"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.64,4 11.73,5.91 11.73,8.27C11.73,8.6 11.77,8.92 11.84,9.22C8.28,9.03 5.15,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.48 2.96,10.29 2.38,10V10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" /></svg>
+                            <h4>Latest Tweet</h4>
+                        </div>
+                        <p>Just hit 100k subs on YouTube! To celebrate, I'm giving away a brand new Star Wars LEGO set. RT to enter! Let me know your favorite build of mine in the comments. #KEGO100K #LEGOgiveaway</p>
+                    </div>
+                     <div class="feed-card" style="border-left-color: var(--secondary); animation-delay: 0.2s;">
+                        <div class="feed-header">
+                            <svg viewBox="0 0 24 24" style="fill: var(--secondary);"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4A3.6,3.6 0 0,0 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6A3.6,3.6 0 0,0 16.4,4H7.6M17.2,6A1.2,1.2 0 0,1 18.4,7.2A1.2,1.2 0 0,1 17.2,8.4A1.2,1.2 0 0,1 16,7.2A1.2,1.2 0 0,1 17.2,6M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg>
+                            <h4>Instagram Post</h4>
+                        </div>
+                        <p>The lighting on this new mech is insane. The trans-neon orange parts are glowing like crazy under the blacklight. Full video dropping Friday! #LEGO #MOC #cyberpunk #legomech</p>
+                    </div>
+                     <div class="feed-card" style="animation-delay: 0.3s;">
+                        <div class="feed-header">
+                           <svg viewBox="0 0 24 24"><path d="M12.53,2.44C12.23,2.6 11.23,3.3 10.93,3.46C10.63,3.62 10.33,3.78 10.13,3.84C9.93,3.9 9.63,3.9 9.33,3.9C9.03,3.9 8.83,3.86 8.53,3.8C8.23,3.74 7.93,3.64 7.73,3.56C7.53,3.48 7.33,3.38 7.13,3.28C6.13,2.78 5.43,2.32 4.63,2.04C4.23,1.9 3.83,1.82 3.43,1.78C2.33,1.66 1.43,2.06 0.83,2.8C0.23,3.54 0.03,4.52 0.13,5.6C0.23,6.68 0.73,7.64 1.53,8.34C1.73,8.54 1.73,8.54 1.83,8.64C2.53,9.24 3.23,9.64 3.93,10C4.23,10.12 4.63,10.22 4.93,10.28C5.23,10.34 5.53,10.38 5.83,10.38C6.53,10.38 7.23,10.18 7.83,9.86C8.03,9.76 8.03,9.76 8.13,9.7C8.23,9.64 8.73,9.34 9.03,9.18C9.53,8.88 9.93,8.62 10.33,8.42C12.13,7.42 12.33,7.38 12.53,7.38C12.83,7.38 13.23,7.46 13.53,7.62C14.13,7.92 14.73,8.4 15.33,9.02C15.63,9.32 15.93,9.6 16.23,9.88C16.93,10.58 17.63,11.08 18.53,11.42C19.13,11.66 19.83,11.8 20.53,11.74C21.73,11.62 22.83,10.92 23.43,9.86C23.73,9.26 23.83,8.66 23.83,8.04C23.83,7.06 23.53,6.16 22.93,5.36C22.63,4.96 22.33,4.64 21.93,4.36C21.13,3.66 20.33,3.14 19.43,2.76C19.03,2.56 18.63,2.42 18.13,2.3C17.03,2.06 15.83,2.1 14.73,2.7C14.53,2.8 14.33,2.9 14.13,3C13.43,3.38 12.83,3.68 12.33,3.68C12.03,3.68 11.83,3.62 11.53,3.5C10.93,3.22 10.33,2.84 9.83,2.5C9.73,2.44 9.73,2.44 9.63,2.38C9.63,2.38 9.63,2.38 9.63,2.38C9.63,2.38 9.43,2.26 9.33,2.2C8.63,1.78 7.93,1.44 7.13,1.2C6.43,1 5.63,0.9 4.83,1.02C3.53,1.22 2.33,1.88 1.63,2.9C1.23,3.52 1.03,4.18 1.13,4.9C1.23,5.62 1.53,6.28 2.03,6.86C2.23,7.06 2.43,7.26 2.63,7.46C2.93,7.76 3.23,7.98 3.53,8.16C3.73,8.26 3.93,8.34 4.13,8.4C4.13,8.4 4.13,8.4 4.13,8.4C4.43,8.5 4.73,8.56 5.03,8.58C5.23,8.6 5.53,8.6 5.83,8.6C6.13,8.6 6.43,8.56 6.73,8.46C7.33,8.26 7.93,7.94 8.43,7.56C8.63,7.46 8.63,7.36 8.73,7.3C9.23,6.9 9.63,6.54 10.13,6.18C10.23,6.12 10.33,6.06 10.43,6C10.93,5.52 11.43,5.1 12.03,4.76C12.23,4.66 12.43,4.58 12.63,4.5C13.33,4.18 14.13,3.94 14.93,4.02C15.53,4.08 16.13,4.24 16.63,4.5C17.13,4.76 17.63,5.1 18.03,5.5C18.23,5.7 18.53,5.96 18.73,6.18C19.13,6.68 19.53,7.18 20.13,7.52C20.33,7.62 20.63,7.74 20.93,7.8C21.43,7.9 21.93,7.84 22.43,7.64C22.93,7.44 23.23,7.06 23.43,6.6C23.63,6.14 23.63,5.66 23.53,5.16C23.33,4.18 22.83,3.32 22.03,2.64C21.43,2.16 20.83,1.8 20.13,1.52C19.13,1.14 18.03,1 16.93,1.16C15.83,1.32 14.93,1.76 14.03,2.26C13.83,2.36 13.83,2.36 13.73,2.4C13.33,2.6 12.93,2.78 12.53,2.9C12.53,2.9 12.53,2.44 12.53,2.44Z" /></svg>
+                            <h4>Popular TikTok</h4>
+                        </div>
+                        <p>Watch me build a tiny robot in 60 seconds. Proof that amazing things can come in small packages! What should I build next? #legotiktok #minibuild #kego #legorobot</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEVEL UP SECTION -->
+        <section id="level-up">
+            <div class="container">
+                <div class="section-header animated slide-up">
+                    <h2 class="animated slide-up">Level Up</h2>
+                    <p>Your builder's blueprint. Go beyond the videos with in-depth articles, tutorials, and insights from my journey.</p>
+                </div>
+                
+                <div class="blog-posts animated slide-up">
+                    <article class="blog-post-card" style="animation-delay: 0.1s;">
+                        <img src="https://images.unsplash.com/photo-1622039601055-7053e1b71b78?q=80&w=1974&auto=format&fit=crop" alt="LEGO bricks">
+                        <div class="blog-post-content">
+                            <h4>From Gray Bricks to Neon Dreams: My Content Creation Journey</h4>
+                            <p>It started with a box of classic space LEGOs and a cheap webcam. Here's the inside story of how I turned a lifelong passion into a full-time creative career, the lessons learned, and my advice for aspiring creators.</p>
+                            <a href="#" class="read-more btn btn-secondary">Read Article</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post-card" style="animation-delay: 0.2s;">
+                        <img src="https://images.unsplash.com/photo-1599652458633-874f67b5435f?q=80&w=2070&auto=format&fit=crop" alt="Cyberpunk LEGO parts">
+                        <div class="blog-post-content">
+                            <h4>Top 5 Must-Have Parts for Any Cyberpunk MOC</h4>
+                            <p>Trans-neon orange? Check. Grill bricks? Double-check. Let's dive into the essential, and sometimes unconventional, LEGO elements I use to give my cyberpunk creations that signature high-tech, low-life feel.</p>
+                            <a href="#" class="read-more btn btn-secondary">Read Article</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-post-card" style="animation-delay: 0.3s;">
+                        <img src="https://images.unsplash.com/photo-1611931752943-933a01d5bdd4?q=80&w=2070&auto=format&fit=crop" alt="LED lit keyboard">
+                        <div class="blog-post-content">
+                            <h4>How to Light Your LEGO Builds Like a Pro</h4>
+                            <p>LEDs can make or break a build. I'll show you my simple, non-destructive wiring techniques, my favorite third-party lighting kits, and how to plan your build with illumination in mind from the very first brick.</p>
+                            <a href="#" class="read-more btn btn-secondary">Read Article</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="category-tags animated slide-up">
+                    <span class="tag">MOC Techniques</span>
+                    <span class="tag">Content Creation</span>
+                    <span class="tag">Community Builds</span>
+                    <span class="tag">Set Reviews</span>
+                    <span class="tag">Behind The Scenes</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <div class="container animated slide-up">
+                <div class="section-header">
+                    <h2 class="animated slide-up">Connect & Collaborate</h2>
+                    <p>Got a project in mind? A question about a build? Or a business inquiry? Let's connect.</p>
+                </div>
+
+                <div class="grid-2">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Mission</button>
+                    </form>
+                    
+                    <div>
+                        <h3>Collaboration Info</h3>
+                        <p>For business inquiries, sponsorships, or collaboration proposals, please use the form or email me directly. I'm always looking for exciting new projects with brands that align with creativity, community, and building awesome things. Let's build something amazing together.</p>
+                        <p><strong>Email:</strong> <a href="mailto:collabs@kego-builder.com">collabs@kego-builder.com</a></p>
+
+                        <div class="social-links-contact">
+                            <a href="#" aria-label="YouTube">
+                                <svg viewBox="0 0 24 24"><path d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.73,18.78 17.93,18.84C17.13,18.91 16.44,18.94 15.84,18.94L15,19C12.81,19 11.2,18.84 10.17,18.56C9.27,18.31 8.69,17.73 8.44,16.83C8.31,16.36 8.22,15.73 8.16,14.93C8.09,14.13 8.06,13.44 8.06,12.84L8,12C8,9.81 8.16,8.2 8.44,7.17C8.69,6.27 9.27,5.69 10.17,5.44C11.64,5.06 14.37,5 15.84,5.06L16,5C17.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z" /></svg>
+                            </a>
+                            <a href="#" aria-label="Twitter">
+                                <svg viewBox="0 0 24 24"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.64,4 11.73,5.91 11.73,8.27C11.73,8.6 11.77,8.92 11.84,9.22C8.28,9.03 5.15,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.48 2.96,10.29 2.38,10V10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" /></svg>
+                            </a>
+                             <a href="#" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4A3.6,3.6 0 0,0 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6A3.6,3.6 0 0,0 16.4,4H7.6M17.2,6A1.2,1.2 0 0,1 18.4,7.2A1.2,1.2 0 0,1 17.2,8.4A1.2,1.2 0 0,1 16,7.2A1.2,1.2 0 0,1 17.2,6M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">KEGO<span>.</span></div>
+        <ul class="footer-nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#content">Content</a></li>
+            <li><a href="#level-up">Level Up</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="footer-socials">
+             <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.73,18.78 17.93,18.84C17.13,18.91 16.44,18.94 15.84,18.94L15,19C12.81,19 11.2,18.84 10.17,18.56C9.27,18.31 8.69,17.73 8.44,16.83C8.31,16.36 8.22,15.73 8.16,14.93C8.09,14.13 8.06,13.44 8.06,12.84L8,12C8,9.81 8.16,8.2 8.44,7.17C8.69,6.27 9.27,5.69 10.17,5.44C11.64,5.06 14.37,5 15.84,5.06L16,5C17.19,5 18.8
