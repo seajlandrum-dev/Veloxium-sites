@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bloom Initiative</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            --primary: #3f3d56;
+            --secondary: #bab86c;
+            --accent: #6cba60;
+            --background: #eee9ff;
+            --surface: #ffffff;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --heading-font: 'Roboto', sans-serif;
+            --body-font: 'Roboto', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--background);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--heading-font);
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 2.2rem; margin-bottom: 2rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 60px 0;
+            opacity: 1; /* All sections must be visible on load */
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animated-heading {
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--surface);
+            color: var(--primary);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-toggle {
+            display: none;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+        }
+
+        .hamburger {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger::before { top: -8px; }
+        .hamburger::after { bottom: -8px; }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background-color: #514f6d;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-accent:hover {
+             transform: translateY(-2px);
+            background-color: #85d17c;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(63, 61, 86, 0.7), rgba(63, 61, 86, 0.7)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') no-repeat center center/cover;
+            color: white;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 0;
+        }
+
+        #hero h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        #hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            opacity: 0.9;
+        }
+        
+        /* About Section */
+        #about .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        #about .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        #about .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        #about .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Programs Section */
+        #programs {
+            background-color: var(--surface);
+        }
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .program-card {
+            background-color: var(--background);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .program-card h3 {
+            color: var(--primary);
+        }
+        
+        /* Volunteer Section */
+        .volunteer-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            text-align:center;
+        }
+        .opportunity-card {
+            background-color: var(--surface);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* FAQ Section */
+        #faq {
+            background-color: var(--surface);
+        }
+        .faq-item {
+            background-color: #fff;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            position: relative;
+        }
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            padding: 0 1.5rem;
+            color: var(--text-secondary);
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding-bottom: 1.5rem;
+        }
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        /* Donate Section */
+        #donate {
+            text-align: center;
+        }
+        #donate .container p {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--primary);
+            color: var(--background);
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer-nav {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        .footer-nav a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer-socials {
+            margin: 1rem 0;
+        }
+        .footer-socials a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.5rem;
+        }
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--surface);
+                flex-direction: column;
+                text-align: center;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out;
+            }
+
+            .nav-links.nav-open {
+                max-height: 500px;
+                padding-bottom: 1rem; /* add padding when open */
+            }
+
+            .nav-links li {
+                padding: 1rem 0;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+            
+            .navbar.open .hamburger {
+                transform: rotate(45deg);
+            }
+            .navbar.open .hamburger::before {
+                transform: rotate(90deg);
+                top: 0;
+            }
+            .navbar.open .hamburger::after {
+                transform: rotate(90deg);
+                bottom: 0;
+            }
+
+            #hero {
+               min-height: 60vh;
+            }
+            
+            #about .about-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar" id="main-nav">
+        <div class="nav-container">
+            <a href="#hero" class="nav-brand">The Bloom Initiative</a>
+            
+            <button class="nav-toggle" id="nav-toggle-button" aria-label="Menu">
+                <span class="hamburger"></span>
+            </button>
+            
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#programs">Our Programs</a></li>
+                <li><a href="#volunteer">Get Involved</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#donate" class="btn btn-accent">Donate</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container">
+                <h1 class="animated-heading">Cultivating Community, One Seed at a Time.</h1>
+                <p>The Bloom Initiative transforms urban spaces into vibrant community hubs through gardening, education, and connection.</p>
+                <a href="#about" class="btn btn-primary">Learn More</a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="animated-heading">Our Roots</h2>
+                    <p>We are a non-profit dedicated to greening our city and empowering its residents.</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Our Mission & Vision</h3>
+                        <p>Our mission is to cultivate healthier communities by creating and sustaining urban green spaces, fostering environmental education, and ensuring equitable access to fresh, locally-grown food. We envision a city where every neighborhood is connected through a network of thriving gardens that empower residents and nurture a healthier planet for generations to come.</p>
+                        <br>
+                        <p>Founded in 2018, The Bloom Initiative started as a small group of neighbors wanting to convert a vacant lot into a shared garden. Today, we manage over a dozen community gardens and educational programs across the city, all powered by dedicated volunteers and community partners like you.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1466692496096-475653805f4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Volunteers working together in a community garden">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Programs Section -->
+        <section id="programs">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="animated-heading">Our Programs</h2>
+                    <p>From garden plots to educational workshops, we offer several ways to help our community grow.</p>
+                </div>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <h3>Community Roots Gardens</h3>
+                        <p>We establish and support shared garden plots across the city. Members can grow their own fresh produce, share harvests, and connect with neighbors in a beautiful, productive setting.</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>Seedling Stewards Education</h3>
+                        <p>Our workshops for children and adults cover everything from basic botany and composting to water conservation and urban farming techniques. We believe education is key to sustainable change.</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>Urban Orchard Project</h3>
+                        <p>In partnership with city parks, we plant and maintain fruit-bearing trees in public spaces. These orchards provide free, healthy snacks for the community and enhance local biodiversity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Get Involved Section -->
+        <section id="volunteer">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="animated-heading">Get Involved</h2>
+                    <p>Your time and talent can make a world of difference. Join our team of dedicated volunteers!</p>
+                </div>
+                <div class="volunteer-grid">
+                    <div class="opportunity-card">
+                        <h3>Become a Garden Guardian</h3>
+                        <p>Help us with planting, weeding, watering, and harvesting at our various garden sites. No experience is necessary – just a willingness to get your hands dirty! Shifts are flexible.</p>
+                    </div>
+                    <div class="opportunity-card">
+                        <h3>Lead a Workshop</h3>
+                        <p>Have a passion for composting, beekeeping, or another green skill? We are always looking for knowledgeable community members to lead our Seedling Stewards workshops.</p>
+                    </div>
+                    <div class="opportunity-card">
+                        <h3>Support Our Events</h3>
+                        <p>From our annual seedling sale to harvest festival celebrations, we need friendly faces to help with setup, greeting, and coordination. It’s a fun way to meet people and support our mission.</p>
+                    </div>
+                </div>
+                 <div style="text-align: center; margin-top: 3rem;">
+                     <a href="mailto:volunteer@bloominitiative.org" class="btn btn-primary">Sign Up to Volunteer</a>
+                 </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="animated-heading">Frequently Asked Questions</h2>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">Do I need my own tools or any gardening experience to volunteer?</div>
+                        <div class="faq-answer">
+                            <p>Not at all! We welcome volunteers of all skill levels. We provide all the necessary tools and gloves, and our site leaders are always on hand to guide you. All you need to bring is a positive attitude and a willingness to learn.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">How can I get a plot in a Community Roots Garden?</div>
+                        <div class="faq-answer">
+                            <p>Plots are assigned on a first-come, first-served basis each spring. You can sign up for our mailing list on the "Get Involved" page to be notified when plot registration opens. A small annual fee is required to cover water and tool maintenance costs.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Are your programs and workshops free?</div>
+                        <div class="faq-answer">
+                            <p>Yes, the vast majority of our community workshops and events are completely free and open to the public, thanks to generous donations and grants. Some specialized, multi-session courses may have a small materials fee.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <div class="faq-question">What do my donations support?</div>
+                        <div class="faq-answer">
+                            <p>100% of your donation goes directly toward our programs. Donations fund the purchase of seeds, soil, compost, gardening tools, educational materials for our workshops, and maintenance for our public urban orchards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donate Section -->
+        <section id="donate">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="animated-heading">Support Our Growth</h2>
+                    <p>Your contribution helps us purchase seeds, tools, and educational materials that empower our community. Every donation, big or small, makes a lasting impact.</p>
+                    <a href="#" class="btn btn-accent btn-large">Donate Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <ul class="footer-nav">
+                <li><a href="#about">About</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#volunteer">Volunteer</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+             <div class="footer-socials">
+                <a href="#" aria-label="Facebook">[FB]</a>
+                <a href="#" aria-label="Instagram">[IG]</a>
+                <a href="#" aria-label="Twitter">[TW]</a>
+            </div>
+            <p class="copyright">&copy; 2024 The Bloom Initiative. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navToggle = document.getElementById('nav-toggle-button');
+            const navMenu = document.getElementById('nav-menu');
+            const mainNav = document.getElementById('main-nav');
+
+            if (navToggle && navMenu && mainNav) {
+                navToggle.addEventListener('click', function () {
+                    navMenu.classList.toggle('nav-open');
+                    mainNav.classList.toggle('open');
+                });
+            }
+
+            // Close mobile nav when a link is clicked
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('nav-open')) {
+                        navMenu.classList.remove('nav-open');
+                        mainNav.classList.remove('open');
+                    }
+                });
+            });
+            
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Optional: Close other open items
+                    // faqItems.forEach(otherItem => {
+                    //     if (otherItem !== item) {
+                    //         otherItem.classList.remove('active');
+                    //     }
+                    // });
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
