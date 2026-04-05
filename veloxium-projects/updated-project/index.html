@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Web Solutions | Professional Web Design for Small Businesses</title>
+    <meta name="description" content="Apex Web Solutions builds professional, high-performance websites for small businesses. We specialize in custom design, e-commerce, and SEO to help you grow your online presence.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
+
+        :root {
+            --primary: #007bff;
+            --secondary: #6c757d;
+            --accent: #ffc107;
+            --background: #f8f9fa;
+            --surface: #ffffff;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --heading-font: 'Montserrat', sans-serif;
+            --body-font: 'Open Sans', sans-serif;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Global Styles & Resets --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Offset for sticky nav */
+        }
+
+        body {
+            font-family: var(--body-font);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--background);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.75rem; }
+        p { margin-bottom: 1rem; color: var(--text-secondary); }
+        a { color: var(--primary); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: #0056b3; }
+        img { max-width: 100%; height: auto; display: block; }
+        section { padding: 80px 0; }
+
+        .container {
+            width: 90%;
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: var(--body-font);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--surface);
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .btn-accent:hover {
+            background-color: #e0a800;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            position: relative;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        /* --- Animation --- */
+        @keyframes fadeIn {
+            from { opacity: 1; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 1;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animated-section > * {
+            animation: slideInUp 0.8s ease-out forwards;
+            animation-play-state: running;
+        }
+
+
+        /* --- Header & Navigation --- */
+        #header-nav {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--surface);
+            box-shadow: var(--shadow-sm);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            padding: 15px 0;
+        }
+        
+        #header-nav.scrolled {
+             box-shadow: var(--shadow-md);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--heading-font);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .nav-logo-accent {
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link a {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-link a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link a:hover, .nav-link a.active {
+            color: var(--primary);
+        }
+        
+        .nav-link a:hover::after, .nav-link a.active::after {
+            width: 100%;
+        }
+
+
+        .nav-toggle {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .nav-toggle-icon {
+            width: 28px;
+            height: 22px;
+            position: relative;
+        }
+        .nav-toggle-icon span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: var(--text-primary);
+            border-radius: 3px;
+            left: 0;
+            transition: all 0.25s ease-in-out;
+        }
+        .nav-toggle-icon span:nth-child(1) { top: 0px; }
+        .nav-toggle-icon span:nth-child(2) { top: 9px; }
+        .nav-toggle-icon span:nth-child(3) { top: 18px; }
+        
+        body.nav-open .nav-toggle-icon span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+        body.nav-open .nav-toggle-icon span:nth-child(2) { opacity: 0; left: -60px; }
+        body.nav-open .nav-toggle-icon span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+
+        /* --- Hero Section (#home)--- */
+        #home {
+            background-color: var(--surface);
+            padding: 100px 0;
+            min-height: calc(90vh - 80px);
+            display: flex;
+            align-items: center;
+        }
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero-content h1 {
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation-delay: 0.1s;
+        }
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            animation-delay: 0.2s;
+        }
+        .hero-content .btn {
+            animation-delay: 0.3s;
+        }
+        
+        /* --- About Section --- */
+        #about {
+            background-color: var(--surface);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-image img {
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+        }
+        .about-text h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* --- Services Section --- */
+        #services {
+           background-color: var(--background);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .service-card {
+            background-color: var(--surface);
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md);
+        }
+        .service-card .icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            margin-bottom: 15px;
+        }
+
+        /* --- Testimonials Section --- */
+        #testimonials {
+            background-color: var(--surface);
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .testimonial-card {
+            background-color: var(--background);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary);
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .testimonial-author {
+            font-weight: 600;
+        }
+        .testimonial-author span {
+            display: block;
+            font-weight: 400;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- CTA Section --- */
+        #cta {
+            background-color: var(--primary);
+            color: var(--surface);
+            padding: 60px 0;
+            text-align: center;
+        }
+        #cta h2 {
+            color: var(--surface);
+            margin-bottom: 15px;
+        }
+        #cta p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+           background-color: var(--background);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-family: var(--body-font);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        .form-feedback {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #212529;
+            color: var(--background);
+            padding: 60px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .footer-about h4, .footer-links h4, .footer-contact h4 {
+            color: var(--surface);
+            font-family: var(--heading-font);
+            margin-bottom: 20px;
+        }
+        .footer-about p {
+            color: var(--text-secondary);
+        }
+        .footer-links ul, .footer-social ul {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        .footer-links a, .footer-contact a {
+            color: var(--text-secondary);
+        }
+        .footer-links a:hover, .footer-contact a:hover {
+            color: var(--surface);
+            text-decoration: underline;
+        }
+        .footer-social ul {
+            display: flex;
+            gap: 15px;
+        }
+        .footer-social a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: #495057;
+            border-radius: 50%;
+            color: var(--surface);
+            transition: background-color 0.3s ease;
+        }
+        .footer-social a:hover {
+            background-color: var(--primary);
+        }
+        .footer-social svg {
+            width: 20px;
+            height: 20px;
+        }
+        .footer-copyright {
+            text-align: center;
+            border-top: 1px solid #343a40;
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            
+            .about-grid { grid-template-columns: 1fr; }
+            .about-image { margin-bottom: 30px; }
+            
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            
+            .testimonials-grid { grid-template-columns: 1fr; }
+
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-map { order: -1; margin-bottom: 40px; }
+
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-about { grid-column: 1 / -1; }
+        }
+
+        @media (max-width: 768px) {
+            html { scroll-padding-top: 70px; }
+            #header-nav { padding: 10px 0; }
+            
+            .nav-menu {
+                position: absolute;
+                top: 71px; /* Navbar height */
+                left: 0;
+                width: 100%;
+                background-color: var(--surface);
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: var(--shadow-md);
+            }
+            body.nav-open .nav-menu {
+                max-height: 500px; /* Arbitrary large height */
+            }
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+            .nav-link a {
+                padding: 15px 20px;
+                display: block;
+                width: 100%;
+                border-bottom: 1px solid var(--background);
+            }
+            .nav-link a::after { display: none; }
+            
+            .nav-toggle { display: block; }
+            
+            #home { padding: 80px 0; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1.1rem; }
+
+            .services-grid { grid-template-columns: 1fr; }
+            
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-about, .footer-links, .footer-contact { text-align: center; }
+            .footer-social ul { justify-content: center; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header id="header-nav">
+        <div class="container navbar">
+            <a href="#home" class="nav-logo">Apex<span class="nav-logo-accent">.</span></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-link"><a href="#about">About</a></li>
+                    <li class="nav-link"><a href="#services">Services</a></li>
+                    <li class="nav-link"><a href="#testimonials">Testimonials</a></li>
+                    <li class="nav-link"><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <div class="nav-toggle-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home">
+            <div class="container">
+                <div class="hero-content animated-section">
+                    <h1>Crafting Digital Experiences That Drive Growth</h1>
+                    <p>We are Apex Web Solutions, a professional web design agency dedicated to helping small businesses succeed online. We build beautiful, functional, and results-driven websites that convert visitors into loyal customers.</p>
+                    <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container animated-section">
+                <div class="section-title">
+                     <h2>About Apex Web Solutions</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-image">
+                        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="A team of professionals collaborating around a table with laptops.">
+                    </div>
+                    <div class="about-text">
+                        <h3>Our Mission: Your Digital Partner</h3>
+                        <p>Our mission is simple: to provide small businesses with high-quality, affordable web design solutions that deliver tangible results. We believe every business, regardless of size, deserves a powerful online presence that accurately reflects their brand and connects with their audience.</p>
+                        <p>Founded by a team of passionate designers and developers, Apex was born from the desire to bridge the gap between enterprise-level web design and the needs of local businesses. We're not just service providers; we're your dedicated digital partners, committed to your growth and success.</p>
+                        <p><strong>Our Values:</strong> Integrity, Innovation, and Partnership. We operate with transparency, constantly seek better solutions, and build lasting relationships with our clients.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Services Section -->
+        <section id="services">
+            <div class="container animated-section">
+                <div class="section-title">
+                    <h2>Our Services</h2>
+                    <p>We offer a comprehensive suite of services to build and grow your online presence.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                        </div>
+                        <h3>Custom Web Design</h3>
+                        <p>We create unique, responsive websites tailored to your brand. Our designs are intuitive, mobile-first, and optimized for an exceptional user experience that captivates and converts.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                        </div>
+                        <h3>E-commerce Solutions</h3>
+                        <p>Ready to sell online? We build robust and secure e-commerce platforms using Shopify and WooCommerce, complete with payment gateways, inventory management, and a seamless checkout process.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        </div>
+                        <h3>SEO & Digital Marketing</h3>
+                        <p>A beautiful website is only effective if people can find it. Our SEO services improve your search engine rankings, drive organic traffic, and put your business in front of the right audience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials">
+            <div class="container animated-section">
+                <div class="section-title">
+                    <h2>What Our Clients Say</h2>
+                    <p>We're proud to have partnered with amazing businesses. Here's what they think of our work.</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Apex Web Solutions transformed our online presence. Our new website is not only beautiful but has also led to a 40% increase in customer inquiries. Their team was professional, responsive, and a pleasure to work with."</p>
+                        <div class="testimonial-author">
+                            Sarah Chen
+                            <span>Owner, The Bloom Room Floral Design</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"As a small business owner, I needed a web solution that was affordable yet high-quality. Apex delivered beyond my expectations. They handled everything from design to launch, making the entire process seamless."</p>
+                        <div class="testimonial-author">
+                            Mark Rivera
+                            <span>Founder, Grit & Grind Fitness</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta">
+            <div class="container animated-section">
+                <h2>Ready to Elevate Your Business?</h2>
+                <p>Let's discuss how a professional website can help you achieve your goals. Get in touch for a free, no-obligation consultation and quote.</p>
+                <a href="#contact" class="btn btn-accent">Let's Build Together</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container animated-section">
+                <div class="section-title">
+                    <h2>Get In Touch</h2>
+                    <p>Have a project in mind or just want to say hello? We'd love to hear from you.</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" rows="6" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                            <div class="form-feedback" id="form-feedback">Thank you for your message! We will get back to you shortly.</div>
+                        </form>
+                    </div>
+                    <div class="contact-map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.217316335128!2d-87.63695268455855!3d41.88824197922184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2cb5d2c36691%3A0x8f2d5757d531d11!2s500%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060654!5e0!3m2!1sen!2sus!4v1678219463581!5m2!1sen!2sus" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h4>Apex<span class="nav-logo-accent">.</span></h4>
+                    <p>Apex Web Solutions is a corporate web design agency helping small businesses build a strong digital foundation and achieve sustainable growth.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>500 N Clark St<br>Chicago, IL 60654<br>
+                    <a href="tel:+13125550123">(312) 555-0123</a><br>
+                    <a href="mailto:hello@apexsolutions.dev">hello@apexsolutions.dev</a>
+                    </p>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a></li>
+                        <li><a href="#" aria-label="Twitter"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-.424.727-.666 1.581-.666 2.477 0 1.61.82 3.027 2.053 3.863-.764-.024-1.482-.234-2.11-.583v.06c0 2.256 1.605 4.14 3.737 4.568-.39.106-.803.163-1.227.163-.3 0-.593-.028-.877-.082.593 1.85 2.307 3.198 4.341 3.234-1.595 1.248-3.604 1.991-5.79 1.991-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.092 7.14 2.092 8.57 0 13.255-7.098 13.255-13.254 0-.202-.005-.403-.014-.602.91-.658 1.7-1.47 2.323-2.41z"></path></svg></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; <span id="copyright-year"></span> Apex Web Solutions. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const body = document.body;
+            const headerNav = document.getElementById('header-nav');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+
+            // Hamburger menu toggle
+            navToggle.addEventListener('click', () => {
+                body.classList.toggle('nav-open');
+            });
+            
+            // Close mobile menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (body.classList.contains('nav-open')) {
+                        body.classList.remove('nav-open');
+                    }
+                });
+            });
+
+            // Sticky navbar background on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    headerNav.classList.add('scrolled');
+                } else {
+                    headerNav.classList.remove('scrolled');
+                }
+            });
+
+            // Active nav link on scroll
+            const sections = document.querySelectorAll('section[id]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.nav-link a').forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-30% 0px -70% 0px" });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            const formFeedback = document.getElementById('form-feedback');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // In a real application, you would send this data to a server.
+                // For this demo, we'll just show a success message.
+                formFeedback.style.display = 'block';
+                contactForm.reset();
+                setTimeout(() => {
+                    formFeedback.style.display = 'none';
+                }, 5000);
+            });
+
+            // Set current year in footer
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+        });
+    </script>
+
+</body>
+</html>
