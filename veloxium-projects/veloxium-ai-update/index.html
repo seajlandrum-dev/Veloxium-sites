@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veloxium AI | Official Contact Information Update</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+        :root {
+            --primary: #2E9AFE;
+            --secondary: #64B5F6;
+            --accent: #03A9F4;
+            --background: #FAFAFA;
+            --surface: #FFFFFF;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --nav-height: 70px;
+        }
+
+        /* CSS Reset and Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 100%;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        h1 { font-size: 3rem; font-weight: 900; }
+        h2 { font-size: 2.25rem; }
+        h3 { font-size: 1.75rem; }
+        p { margin-bottom: 1rem; color: var(--text-secondary); }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { color: var(--accent); text-decoration: underline; }
+        img { max-width: 100%; height: auto; display: block; }
+        
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 80px 0;
+            opacity: 1; /* All content visible on load */
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary);
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Animation Keyframes (starts from opacity:1) */
+        @keyframes slideInUp {
+            from {
+                opacity: 1;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated-item {
+            animation: slideInUp 0.8s ease-out forwards;
+            animation-play-state: running; /* Auto-plays animation on load */
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: var(--surface);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: var(--nav-height);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links_item a {
+            color: var(--text-primary);
+            font-weight: 500;
+            text-decoration: none;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links_item a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links_item a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease-out;
+        }
+
+        .nav-links_item a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+        
+        .nav-toggle .bar {
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-primary);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section (#home) */
+        #home {
+            background-color: var(--surface);
+            display: flex;
+            align-items: center;
+            min-height: calc(100vh - var(--nav-height));
+            padding: 40px 0;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            text-align: left;
+        }
+        
+        .hero-content .subtitle {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .hero-content h1 {
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-box {
+            background: var(--background);
+            border-left: 5px solid var(--primary);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-box p {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .info-box strong {
+            color: var(--text-primary);
+        }
+
+        /* Features Section (#features) */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--surface);
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(46, 154, 254, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+        }
+        
+        /* CTA Section (#cta is integrated into #contact) */
+
+        /* Contact Section (#contact) */
+        #contact {
+            background-color: var(--surface);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .contact-info h3 {
+             margin-bottom: 2rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info-item .icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 1rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .contact-info-item p {
+            margin-bottom: 0;
+        }
+        
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            background-color: var(--background);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--surface);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .footer p { color: #aaa; }
+        
+        .footer-nav {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-nav a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .social-icons {
+            margin-bottom: 2rem;
+        }
+        
+        .social-icons a {
+            color: #ccc;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #777;
+            border-top: 1px solid #333;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            section { padding: 60px 0; }
+            
+            .nav-toggle { display: flex; }
+            
+            .nav-links {
+                position: absolute;
+                top: var(--nav-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--surface);
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-out;
+            }
+            
+            .nav-links.active {
+                max-height: 300px;
+                padding-bottom: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+            }
+            
+            .nav-links_item {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links_item a {
+                display: block;
+                padding: 1rem;
+                width: 100%;
+            }
+            
+            .nav-links_item a::after {
+                display: none;
+            }
+
+            .body-no-scroll {
+                overflow: hidden;
+            }
+            
+            #home {
+                text-align: center;
+                min-height: auto;
+            }
+            
+            .hero-content { text-align: left; }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="#home" class="nav-logo">Veloxium AI</a>
+            <nav>
+                <ul class="nav-links" id="nav-menu">
+                    <li class="nav-links_item"><a href="#home">Home</a></li>
+                    <li class="nav-links_item"><a href="#features">Solutions</a></li>
+                    <li class="nav-links_item"><a href="#contact">Contact Update</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home">
+            <div class="container hero-content animated-item">
+                <span class="subtitle">CORPORATE UPDATE</span>
+                <h1>We're Moving Forward: Announcing Our New Location</h1>
+                <p>To better serve our clients and accommodate our growing team, Veloxium AI has relocated its corporate headquarters. Please update your records with our new contact information, effective immediately. We are excited to continue driving innovation from our new home.</p>
+                
+                <div class="info-box">
+                    <p><strong>New Address:</strong> 801 Barton Springs Rd, Austin, TX 78704</p>
+                    <p><strong>New General Inquiries Email:</strong> contact@veloxium.ai</p>
+                </div>
+                
+                <a href="#contact" class="btn" style="margin-top: 2rem;">Contact Us</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Enterprise AI-Powered Solutions</h2>
+                    <p>We empower organizations to unlock their full potential through intelligent automation and data-driven insights.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card animated-item" style="animation-delay: 0.1s;">
+                       <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 7-7 7-7-7 7-7z"/><path d="M2 12l7 7-7 7"/></svg>
+                        </div>
+                        <h3>Synapse Platform</h3>
+                        <p>Our flagship integration platform seamlessly connects your existing systems with cutting-edge AI models, creating a unified, intelligent operational fabric.</p>
+                    </div>
+                    <div class="feature-card animated-item" style="animation-delay: 0.2s;">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                        </div>
+                        <h3>Cognito Analytics</h3>
+                        <p>Transform raw data into actionable business intelligence. Cognito Analytics provides predictive insights, anomaly detection, and comprehensive reporting.</p>
+                    </div>
+                    <div class="feature-card animated-item" style="animation-delay: 0.3s;">
+                        <div class="feature-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        </div>
+                        <h3>Nexus RPA</h3>
+                        <p>Automate repetitive, rule-based tasks with our Robotic Process Automation solution. Free up your human workforce to focus on high-value, strategic initiatives.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Updated Contact Information & Inquiries</h2>
+                    <p>Reach out to our team for sales, support, or partnership inquiries using our updated details.</p>
+                </div>
+                <div class="contact-wrapper">
+                    <div class="contact-info animated-item">
+                        <h3>Our New Headquarters</h3>
+                        <p>We are thrilled to be in the heart of Austin's vibrant tech community. Our new office provides an enhanced environment for innovation and collaboration.</p>
+                        <br>
+                        <div class="contact-info-item">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Address</h4>
+                                <p>801 Barton Springs Rd,<br>Austin, TX 78704, USA</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>General: contact@veloxium.ai<br>Sales: sales@veloxium.ai</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>Main Office: +1 (512) 555-0182 <br>(Phone number remains unchanged)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form animated-item" style="animation-delay: 0.2s;">
+                        <form action="#" method="POST">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" required placeholder="Full Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" required placeholder="Work Email">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="company" name="company" placeholder="Company Name">
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">Veloxium AI</div>
+            <p>Driving the Future of Intelligent Enterprise</p>
+            <ul class="footer-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Solutions</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+            <div class="social-icons">
+                 <!-- Placeholder for actual SVG icons -->
+                <a href="#" aria-label="LinkedIn">LI</a>
+                <a href="#" aria-label="Twitter">TW</a>
+                <a href="#" aria-label="GitHub">GH</a>
+            </div>
+            <div class="copyright">
+                &copy; 2024 Veloxium AI Corporation. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = navMenu.querySelectorAll('a');
+
+        // Toggle mobile menu
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('body-no-scroll');
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    document.body.classList.remove('body-no-scroll');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
