@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D. Edward Contractors | Quality Construction & Renovation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #2E7D32;
+            --secondary: #A5D6A7;
+            --accent: #FFB300;
+            --background: #F5F5F5;
+            --surface: #FFFFFF;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        /* CSS Reset & Global Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            background-color: var(--background);
+            color: var(--text-primary);
+        }
+
+        /* Animation Keyframes */
+        @keyframes slideInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 1; }
+            to { opacity: 1; }
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 20px;
+            animation: slideInUp 0.8s ease-out;
+            animation-fill-mode: both;
+            animation-timeline: view();
+            animation-range-start: entry 10%;
+            animation-range-end: cover 20%;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+            animation: slideInUp 0.8s ease-out 0.2s;
+            animation-fill-mode: both;
+            animation-timeline: view();
+            animation-range-start: entry 10%;
+            animation-range-end: cover 30%;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #ffc13b;
+            transform: translateY(-2px);
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: var(--surface);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        .nav-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-primary);
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hero Section */
+        #home {
+            background: linear-gradient(rgba(46, 125, 50, 0.7), rgba(46, 125, 50, 0.7)), url(https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) no-repeat center center/cover;
+            color: var(--surface);
+            padding: 150px 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        #home h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        #home p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            animation: slideInUp 0.8s ease-out 0.2s;
+        }
+
+        #home .btn {
+            animation: slideInUp 0.8s ease-out 0.4s;
+        }
+        
+        /* Services Section */
+        #services .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .service-category {
+            background-color: var(--surface);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            animation: slideInUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+            animation-fill-mode: both;
+            animation-timeline: view();
+            animation-range-start: entry 10%;
+            animation-range-end: cover 30%;
+        }
+
+        .service-category h3 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-category h3 svg {
+            width: 32px;
+            height: 32px;
+            margin-right: 15px;
+            fill: var(--primary);
+        }
+
+        .service-category p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .service-list {
+            list-style: none;
+        }
+        
+        .service-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-list li svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            fill: var(--accent);
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--surface);
+        }
+        #about .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        #about .about-text {
+            flex: 1;
+            animation: slideInUp 0.8s ease-out;
+            animation-fill-mode: both;
+            animation-timeline: view();
+            animation-range-start: entry 10%;
+            animation-range-end: cover 30%;
+
+        }
+        #about .about-text h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        #about .about-text p {
+            margin-bottom: 15px;
+        }
+        #about .about-image {
+            flex: 1;
+            max-width: 500px;
+        }
+        #about .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease-out;
+            animation-fill-mode: both;
+            animation-timeline: view();
+            animation-range-start: entry 10%;
+            animation-range-end: cover 30%;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background: var(--surface);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideInUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+            animation-fill-mode: both;
+            animation-timeline: view();
+            animation-range-start: entry 10%;
+            animation-range-end: cover 30%;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+        .project-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .project-info {
+            padding: 25px;
+        }
+        .project-info h4 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        .project-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            background-color: var(--secondary);
+        }
+        #testimonials .section-title {
+            color: var(--primary);
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .testimonial-card {
+            background: var(--surface);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            animation: slideInUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+            animation-fill-mode: both;
+            animation-timeline: view();
+            animation-range-start: entry 10%;
+            animation-range-end: cover 30%;
+        }
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .testimonial-author span {
+            display: block;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* CTA Section */
+        #cta {
+            background-color: var(--primary);
+            color: var(--surface);
+            text-align: center;
+            padding: 80px 20px;
+        }
+        #cta h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        #cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        #contact {
+             background-color: var(--surface);
+        }
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            background: var(--surface);
+            margin-top: 50px;
+        }
+        .contact-info, .contact-form {
+            animation: slideInUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+            animation-fill-mode: both;
+            animation-timeline: view();
+            animation-range-start: entry 10%;
+            animation-range-end: cover 30%;
+        }
+        .contact-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        .contact-details li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        .contact-details li svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            fill: var(--primary);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+        .form-group_btn {
+            text-align: right;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--text-primary);
+            color: var(--background);
+            padding: 60px 0;
+            text-align: center;
+        }
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--surface);
+        }
+        .footer-nav {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .footer-nav a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-nav a:hover {
+            color: var(--surface);
+        }
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+        .social-icons a {
+            color: var(--surface);
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .section-title { font-size: 2.5rem; }
+            #home h1 { font-size: 3rem; }
+            #about .about-content { flex-direction: column; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            body { font-size: 16px; }
+            .section { padding: 60px 0; }
+            #home { padding: 100px 0; min-height: 60vh; }
+            #home h1 { font-size: 2.5rem; }
+            #home p { font-size: 1.1rem; }
+            .section-title { font-size: 2.2rem; }
+            
+            #services .services-grid { grid-template-columns: 1fr; }
+
+            .nav-toggle {
+                display: block;
+                z-index: 1001;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--surface);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+            .nav-link { font-size: 1.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="#home" class="logo">D. Edward Contractors</a>
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="section">
+            <div class="container">
+                <h1>Building Your Vision. Exceeding Expectations.</h1>
+                <p>For over 15 years, D. Edward Contractors has been the trusted partner for homeowners and businesses in the greater region, delivering exceptional craftsmanship with unwavering integrity and fair pricing.</p>
+                <a href="#contact" class="btn btn-primary">Request a Free Quote</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title">Our Comprehensive Services</h2>
+                <p class="section-subtitle">From custom residential builds to large-scale commercial renovations, our team has the expertise to bring your project to life with quality and precision.</p>
+                <div class="services-grid">
+                    <div class="service-category">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg> 
+                            Residential Construction
+                        </h3>
+                        <p>We transform houses into homes with meticulous attention to detail and a commitment to your family's needs and lifestyle.</p>
+                        <ul class="service-list">
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Custom Home Builds</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Full-Scale Renovations & Additions</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Kitchen & Bathroom Remodeling</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Basement Finishing</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Decks, Patios, and Exterior Upgrades</li>
+                        </ul>
+                    </div>
+                    <div class="service-category">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+                            Commercial Construction
+                        </h3>
+                        <p>We deliver on-time, on-budget commercial projects that enhance functionality and value for your business operations.</p>
+                        <ul class="service-list">
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Tenant Improvements & Office Build-Outs</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Retail & Restaurant Construction</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Light Industrial & Warehouse Solutions</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Medical and Dental Office Renovations</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Property Maintenance & Repair Contracts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://images.pexels.com/photos/8005396/pexels-photo-8005396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Portrait of David Edward Miller, founder of D. Edward Contractors">
+                    </div>
+                    <div class="about-text">
+                        <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Built on a Foundation of Trust</h2>
+                        <h3>Our Mission and Values</h3>
+                        <p>Founded by David Edward Miller, a third-generation builder, our company was built on a foundation of honesty, a passion for quality construction, and a deep respect for our clients' investments. We believe that a successful project is a partnership built on clear communication and mutual trust.</p>
+                        <p><strong>Our mission is simple:</strong> to deliver superior construction services through exceptional craftsmanship, innovative solutions, and unwavering integrity. We approach every project, big or small, with the same commitment to fair pricing, transparency, and your complete satisfaction.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Our Featured Projects</h2>
+                <p class="section-subtitle">We let our work speak for itself. Explore a selection of our residential and commercial projects that showcase our commitment to quality and client vision.</p>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="https://images.pexels.com/photos/209274/pexels-photo-209274.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Modern farmhouse custom home build">
+                        <div class="project-info">
+                            <h4>The Oak Knoll Residence</h4>
+                            <p>A modern farmhouse-style custom home build, featuring an open-concept living space, energy-efficient systems, and bespoke carpentry throughout.</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Interior of a renovated downtown bistro">
+                        <div class="project-info">
+                            <h4>Downtown Bistro Renovation</h4>
+                            <p>Complete interior fit-out for a new restaurant, involving commercial kitchen installation, a custom-built bar, and unique lighting and flooring solutions.</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Multi-level composite deck with outdoor kitchen">
+                        <div class="project-info">
+                            <h4>Suburban Oasis Deck</h4>
+                            <p>Design and construction of a multi-level composite deck with an integrated outdoor kitchen, fire pit, and privacy screening for a high-end backyard transformation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section">
+            <div class="container">
+                <h2 class="section-title">What Our Clients Say</h2>
+                <p class="section-subtitle">Our reputation is built on the satisfaction of our clients. Here's what they have to say about their experience with D. Edward Contractors.</p>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p>"D. Edward and his team were phenomenal. They finished our basement ahead of schedule and under budget. The quality and attention to detail are second to none. They treated our home with respect and kept us informed every step of the way."</p>
+                        <strong class="testimonial-author">The Peterson Family
+                            <span>Residential Basement Finishing</span>
+                        </strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"As a business owner, I needed a contractor who was reliable, communicative, and could handle complex requirements. D. Edward Contractors delivered on all fronts for our office expansion. The project was smooth, professional, and the result is fantastic."</p>
+                        <strong class="testimonial-author">Mark Chen, CEO of Innovate Solutions
+                            <span>Commercial Office Expansion</span>
+                        </strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"We had a vision for our kitchen remodel, and David's team brought it to life better than we could have imagined. Their craftsmanship is top-notch, and their pricing was fair and transparent. We highly recommend them to anyone."</p>
+                        <strong class="testimonial-author">Sarah & Tom Jenkins
+                            <span>Residential Kitchen Remodel</span>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta" class="section">
+            <div class="container">
+                <h2>Ready to Start Your Next Project?</h2>
+                <p>Let's discuss how we can turn your ideas into reality. We provide detailed, no-obligation quotes and expert guidance to help you make informed decisions.</p>
+                <a href="#contact" class="btn btn-primary">Let's Build Together</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Request a Quote</h2>
+                 <p class="section-subtitle">Fill out the form below or contact us directly. We look forward to hearing about your project and how we can help you build with confidence.</p>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p>Get in touch with us today to schedule your free consultation. We're here to answer your questions and provide the expert advice you need.</p>
+                        <ul class="contact-details">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> 
+                                (555) 123-4567
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> 
+                                quotes@dedwardcontractors.com
+                            </li>
+                             <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg> 
+                                123 Construction Way, Builder City, ST 54321
+                            </li>
+                        </ul>
+                    </div>
+                    <form class="contact-form" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                           <label for="service-interest">Service of Interest</label>
+                           <select id="service-interest" name="service-interest">
+                               <option value="">-- Please select a service --</option>
+                               <option value="residential">Residential Construction</option>
+                               <option value="commercial">Commercial Construction</option>
+                               <option value="remodel">Remodeling / Renovation</option>
+                               <option value="other">Other</option>
+                           </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group_btn">
+                            <button type="submit" class="btn btn-primary">Submit Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">D. Edward Contractors</div>
+            <ul class="footer-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+             <div class="social-icons">
+                 <!-- In a real site, these would be icon fonts or SVGs -->
+                <a href="#" aria-label="Facebook">FB</a>
+                <a href="#" aria-label="Instagram">IG</a>
+                <a href="#" aria-label="LinkedIn">LI</a>
+            </div>
+            <div class="copyright">
+                &copy; <span id="year"></span> D. Edward Contractors. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile navigation toggle
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+            }
+
+            // Close mobile menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+
+
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+        });
+    </script>
+
+</body>
+</html>
