@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veloxium AI Consulting | AI Solutions for Nonprofits & SMBs</title>
+    <meta name="description" content="Veloxium AI Consulting provides AI strategy, Power Platform solutions, and Copilot development to empower nonprofits and small businesses to automate processes and achieve their mission.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
         :root {
-            --primary: #2E3192;
-            --secondary: #F9A03F;
-            --accent: #34A853;
-            --background: #F9F9F9;
+            --primary: #2E90FA;
+            --secondary: #6B48FF;
+            --accent: #50C878;
+            --background: #F9FAFB;
             --surface: #FFFFFF;
-            --text-primary: #212121;
-            --text-secondary: #757575;
-            --heading-font: 'Roboto Slab', serif;
-            --body-font: 'Roboto', sans-serif;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --font-family: 'Open Sans', sans-serif;
             --nav-height: 70px;
         }
 
-        /* --- Base & Reset --- */
+        /* --- CSS Reset & Base Styles --- */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -33,26 +35,28 @@
         }
 
         body {
-            font-family: var(--body-font);
-            font-size: 16px;
-            line-height: 1.7;
+            font-family: var(--font-family);
             background-color: var(--background);
             color: var(--text-primary);
+            font-size: 16px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4 {
-            font-family: var(--heading-font);
-            color: var(--primary);
-            line-height: 1.3;
+            line-height: 1.2;
+            font-weight: 700;
             margin-bottom: 1rem;
         }
 
         h1 { font-size: 2.5rem; }
-        h2 { font-size: 2.2rem; }
+        h2 { font-size: 2rem; color: var(--primary); }
         h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.1rem; font-weight: 600; }
+
         p {
-            color: var(--text-secondary);
             margin-bottom: 1rem;
+            color: var(--text-secondary);
         }
 
         a {
@@ -65,750 +69,895 @@
             color: var(--secondary);
         }
 
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
         section {
             padding: 80px 0;
-            opacity: 1; /* MUST BE 1 FOR INITIAL LOAD */
-            transform: none; /* MUST BE NONE FOR INITIAL LOAD */
+            overflow: hidden; /* Contains animations */
         }
-        section:nth-of-type(even) {
-            background-color: var(--surface);
+        
+        .section-light { background-color: var(--surface); }
+        .section-dark  { background-color: var(--background); }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .btn {
             display: inline-block;
             padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 500;
+            border-radius: 8px;
+            font-weight: 600;
             text-align: center;
-            border: 2px solid transparent;
             transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
-
         .btn-primary {
             background-color: var(--primary);
             color: var(--surface);
-            border-color: var(--primary);
         }
-
         .btn-primary:hover {
-            background-color: var(--secondary);
-            border-color: var(--secondary);
+            background-color: #1a74d3;
             color: var(--surface);
+            transform: translateY(-2px);
         }
-
         .btn-secondary {
             background-color: var(--secondary);
             color: var(--surface);
-            border-color: var(--secondary);
         }
-
         .btn-secondary:hover {
-            background-color: var(--primary);
+            background-color: #5538cc;
+            color: var(--surface);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
             border-color: var(--primary);
+        }
+        .btn-outline:hover {
+            background-color: var(--primary);
             color: var(--surface);
         }
-        
+
+        .text-center { text-align: center; }
         .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        .section-header h2 {
-            font-size: 2.5rem;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background-color: var(--secondary);
-        }
-        .section-header p {
             max-width: 700px;
-            margin: 1rem auto 0;
+            margin: 0 auto 40px auto;
         }
 
-        /* --- Animation --- */
+        /* --- Animations --- */
         @keyframes slideInUp {
-            from {
-                transform: translateY(30px);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(30px); opacity: 1; }
+            to { transform: translateY(0); opacity: 1; }
         }
-
-        .animated-card {
+        .animate-on-scroll {
+            opacity: 1; /* Initial state is visible per instructions */
+        }
+        .animate-on-scroll.in-view {
             animation: slideInUp 0.8s ease-out forwards;
         }
 
-        /* --- Navbar --- */
-        .main-header {
+        /* --- Navigation --- */
+        .main-nav {
             position: sticky;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: var(--surface);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             height: var(--nav-height);
         }
 
-        .main-nav {
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 100%;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .nav-logo a {
-            font-family: var(--heading-font);
-            font-weight: 700;
+        .nav-logo {
             font-size: 1.5rem;
+            font-weight: 700;
             color: var(--primary);
         }
-
-        .nav-menu {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
+        .nav-logo span {
+            color: var(--secondary);
         }
 
-        .nav-link {
-            font-weight: 500;
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links li a {
+            font-weight: 600;
             color: var(--text-primary);
             padding: 5px 0;
             position: relative;
         }
-
-        .nav-link::after {
+        .nav-links li a::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--secondary);
+            background-color: var(--primary);
             transition: width 0.3s ease;
         }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
+        .nav-links li a:hover::after,
+        .nav-links li a.active::after {
             width: 100%;
         }
 
         .nav-toggle {
             display: none;
-            font-size: 1.5rem;
+            cursor: pointer;
             background: none;
             border: none;
-            cursor: pointer;
-            color: var(--primary);
+            padding: 5px;
+        }
+        .nav-toggle .icon-bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-primary);
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
         }
 
         /* --- Hero Section --- */
         #home {
-            background: linear-gradient(rgba(46, 49, 146, 0.8), rgba(46, 49, 146, 0.8)), url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600') no-repeat center center/cover;
-            color: var(--surface);
-            padding: 120px 0;
+            min-height: 90vh;
             display: flex;
             align-items: center;
-            min-height: 90vh;
+            padding-top: var(--nav-height);
         }
-
         .hero-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 650px;
         }
-
         .hero-content h1 {
-            color: var(--surface);
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-size: 3.5rem;
         }
-
-        .hero-content p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.2rem;
+        .hero-content .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
             margin-bottom: 2rem;
         }
-
-        /* --- Grid Layouts for Cards --- */
-        .grid {
-            display: grid;
-            gap: 2rem;
+        .hero-content .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
         }
-        
-        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 
-        .card {
-            background: var(--surface);
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
-            text-align: center;
+        /* --- Value Prop Section --- */
+        #value-prop .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 40px;
+        }
+        #value-prop .card {
+            background-color: var(--surface);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(46, 49, 146, 0.1);
+        #value-prop .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(30, 41, 59, 0.07);
         }
-        .card .icon {
-            font-size: 3rem;
-            color: var(--secondary);
+        .card-icon {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-        }
-
-        /* --- Who We Serve Section --- */
-        #who-we-serve {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        .serve-item h3 {
             color: var(--accent);
         }
         
-        /* --- Trust & Responsible AI --- */
-        #trust-responsible-ai {
-            background-color: #eef2ff;
-        }
-        
-        .trust-grid {
+        /* --- Who We Serve --- */
+        #who-we-serve .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
             align-items: center;
         }
-
-        .trust-item {
-            padding: 2rem;
-            border-left: 4px solid var(--accent);
+        #who-we-serve .content-block h3 {
+            color: var(--secondary);
+        }
+        #who-we-serve ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        #who-we-serve li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.5rem;
+        }
+        #who-we-serve li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
         }
 
-        .trust-item h3 {
-            color: var(--primary);
+        /* --- Trust Section --- */
+        #trust {
+            padding: 40px 0;
         }
-
+        .trust-logos {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            filter: grayscale(100%);
+            opacity: 0.6;
+        }
+        .trust-logos p {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        
         /* --- Services Section --- */
-        .service-card {
-            background: var(--surface);
+        #services .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 40px;
+        }
+        #services .service-card {
+            background-color: var(--surface);
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
             text-align: left;
-           
-        }
-        .service-card:hover {
-             transform: translateY(-8px);
-             box-shadow: 0 8px 25px rgba(46, 49, 146, 0.1);
         }
         .service-card .icon {
-            font-size: 2.5rem; color: var(--secondary); margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
-        .service-card h3 {
-            font-size: 1.3rem; margin-bottom: 0.5rem;
-        }
-        
-        /* --- 90-Day Transformation --- */
-        #transformation {
-            background: var(--primary);
+
+        /* --- 90-Day Program --- */
+        #program {
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
             color: var(--surface);
-            border-radius: 10px;
-            padding: 4rem;
+            border-radius: 16px;
+            padding: 60px;
+            margin: 80px auto;
+            max-width: 1100px;
         }
-        #transformation h2, #transformation h3 { color: var(--surface); }
-        #transformation p { color: rgba(255,255,255,0.8); }
+        #program h2, #program h3 { color: var(--surface); }
+        #program p { color: rgba(255,255,255,0.85); }
+        .program-phases {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .phase h4 { font-weight: 700; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; display: inline-block; }
 
         /* --- Solutions (Case Studies) Section --- */
-        .solution-story {
-            background-color: var(--surface);
-            border-radius: 8px;
+        #solutions .case-study {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        }
+        #solutions .case-study:last-child { margin-bottom: 0; }
+        #solutions .case-study:nth-child(even) .case-study-image { grid-column: 2; grid-row: 1; }
+        #solutions .case-study:nth-child(even) .case-study-content { grid-column: 1; grid-row: 1; }
+
+        .case-study-content .category {
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .case-study-image {
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        .solution-content { padding: 2rem; }
-        .solution-content .client { font-weight: 700; color: var(--accent); display: block; margin-bottom: 0.5rem; }
-        .solution-content h3 { margin-bottom: 1rem; }
-        .solution-result {
-            background-color: #eef2ff;
-            padding: 1.5rem 2rem;
+        .case-study-image img {
+            display: block;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
             margin-top: 1.5rem;
-            border-left: 4px solid var(--secondary);
         }
-        .solution-result p { margin-bottom: 0; font-weight: 500; }
-        
+        .stat-item .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            line-height: 1;
+        }
+        .stat-item .stat-label {
+            color: var(--text-secondary);
+        }
+
         /* --- Blog Section --- */
+        #blog .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 40px;
+        }
         .blog-post-card {
             background: var(--surface);
-            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
             display: flex;
             flex-direction: column;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .blog-post-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(46, 49, 146, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(30, 41, 59, 0.07);
         }
         .blog-post-card img {
-            width: 100%;
             height: 200px;
             object-fit: cover;
         }
-        .blog-content {
+        .blog-post-content {
             padding: 1.5rem;
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
-        .blog-content h3 { font-size: 1.3rem; }
-        .blog-meta { color: var(--text-secondary); font-size: 0.9rem; margin-top: auto; padding: 0 1.5rem 1.5rem; }
-
+        .blog-post-content h4 { margin-top: 0; }
+        .blog-post-content .read-more {
+            margin-top: auto;
+            font-weight: 600;
+        }
+        .post-meta {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
 
         /* --- Contact Section --- */
-        #contact .container {
+        #contact .contact-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: center;
+            align-items: flex-start;
         }
-
-        .contact-form .form-group {
+        #contact .contact-info ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 2rem;
+        }
+        #contact .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            width: 30px;
+            text-align: center;
+        }
+        #contact-form {
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+        #contact-form .form-group {
             margin-bottom: 1.5rem;
         }
-        .contact-form input, .contact-form textarea {
+        #contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        #contact-form input,
+        #contact-form textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
             font-family: inherit;
             font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
-        .contact-form input:focus, .contact-form textarea:focus {
+        #contact-form input:focus,
+        #contact-form textarea:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 144, 250, 0.2);
         }
-        .contact-info-item {
-            display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;
+        #contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
         }
-        .contact-info-item .icon { font-size: 1.5rem; color: var(--secondary); }
-
+        
         /* --- Footer --- */
-        footer {
+        .site-footer {
             background-color: var(--text-primary);
             color: var(--background);
-            padding: 60px 0 30px;
+            padding: 60px 0 20px 0;
         }
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 40px;
         }
-        .footer-col h4 {
-            color: var(--surface);
-            font-family: var(--heading-font);
+        .footer-about .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
             margin-bottom: 1rem;
         }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 0.5rem; }
-        .footer-col a { color: var(--text-secondary); }
-        .footer-col a:hover { color: var(--secondary); }
-
-        .footer-socials { display: flex; gap: 1rem; }
-        .footer-socials a { font-size: 1.5rem; color: var(--background); }
+        .footer-about { color: var(--text-secondary); }
+        .footer-about p { color: #a0aec0; }
+        .footer-column h4 {
+            color: var(--surface);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a {
+            color: #a0aec0;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
         .footer-bottom {
+            border-top: 1px solid #4a5568;
+            padding-top: 20px;
             text-align: center;
-            border-top: 1px solid var(--text-secondary);
-            padding-top: 1.5rem;
+            color: #a0aec0;
             font-size: 0.9rem;
-            color: var(--text-secondary);
+        }
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-icons a {
+            color: #a0aec0;
+            font-size: 1.5rem;
+        }
+        .social-icons a:hover {
+            color: var(--primary);
         }
 
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            h1 { font-size: 2rem; }
-            .hero-content h1 { font-size: 2.5rem; }
-            h2, .section-header h2 { font-size: 2rem; }
-            #who-we-serve, .trust-grid, #contact .container { grid-template-columns: 1fr; }
+        /* --- Responsive Styles --- */
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.2rem; }
+            .hero-content h1 { font-size: 3rem; }
         }
 
         @media (max-width: 768px) {
-            body { font-size: 16px; }
-            
-            .nav-menu {
-                position: absolute;
-                top: var(--nav-height);
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - var(--nav-height));
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                background-color: var(--surface);
-                gap: 1.5rem;
-                padding-top: 2rem;
-                transition: left 0.3s ease-in-out;
-            }
-            
-            .nav-menu.show-menu {
-                left: 0;
-            }
-
-            .nav-toggle {
-                display: block;
-            }
+            h1 { font-size: 2rem; }
+            .hero-content h1 { font-size: 2.5rem; }
+            p { font-size: 1rem; }
             
             section { padding: 60px 0; }
+
+            /* Mobile Nav */
+            .nav-links {
+                position: absolute;
+                top: var(--nav-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--surface);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-out;
+            }
+            .nav-links.open {
+                max-height: 500px;
+                border-bottom: 1px solid #e5e7eb;
+            }
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            .nav-links li a {
+                display: block;
+                padding: 1.2rem 1rem;
+                width: 100%;
+                border-bottom: 1px solid #f3f4f6;
+            }
+            .nav-links li a::after { display: none; }
+            .nav-cta { display: none; }
+
+            .nav-toggle { display: block; }
+            .nav-toggle.open .icon-bar:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .nav-toggle.open .icon-bar:nth-child(2) { opacity: 0; }
+            .nav-toggle.open .icon-bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+            
+            #hero { text-align: center; }
+            .hero-content .btn-group { justify-content: center; }
+            
+            #who-we-serve .grid { grid-template-columns: 1fr; }
+            .content-block { margin-bottom: 2rem; }
+
+            #program .program-phases { grid-template-columns: 1fr; }
+            #program { padding: 40px 20px; }
+
+            #solutions .case-study, #solutions .case-study:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+            #solutions .case-study:nth-child(even) .case-study-image { grid-column: 1; grid-row: 2; }
+            #solutions .case-study-content { margin-bottom: 1.5rem; }
+
+            #contact .contact-wrapper { grid-template-columns: 1fr; }
+            #contact-form { margin-top: 2rem; }
+
+            .footer-grid { grid-template-columns: 1fr; }
         }
+
     </style>
 </head>
 <body>
 
-    <!-- Header & Navigation -->
-    <header class="main-header">
-        <nav class="container main-nav">
-            <div class="nav-logo">
-                <a href="#home">Veloxium AI</a>
-            </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#solutions" class="nav-link">Solutions</a></li>
-                <li><a href="#insights" class="nav-link">Insights</a></li>
-                <li><a href="#contact" class="nav-link btn btn-primary">Contact Us</a></li>
-            </ul>
-            <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-                &#9776; <!-- Hamburger Icon -->
+    <header class="main-nav" id="main-nav">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">Veloxium<span>AI</span></a>
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#solutions" class="nav-link">Solutions</a></li>
+                    <li><a href="#blog" class="nav-link">Blog</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li class="nav-cta-mobile"><a href="#contact" class="btn btn-primary">Get Consultation</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="btn btn-primary nav-cta">Free Consultation</a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-        </nav>
+        </div>
     </header>
 
     <main>
-        <!-- Home Section -->
-        <section id="home">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>AI-Powered Growth for Nonprofits & SMBs</h1>
-                    <p>Leverage responsible, secure AI to automate workflows, unlock data-driven insights, and amplify your mission-driven impact.</p>
-                    <a href="#services" class="btn btn-secondary">Explore Our Services</a>
-                </div>
-            </div>
-        </section>
 
-        <!-- What We Do -->
-        <section id="what-we-do">
+        <!-- HOME SECTION -->
+        <section id="home" class="section-light">
             <div class="container">
-                <div class="section-header">
-                    <h2>Empowering Your Mission with Intelligent Technology</h2>
-                    <p>We translate the complexities of artificial intelligence into practical, powerful solutions that drive tangible results for your organization.</p>
-                </div>
-                <div class="grid grid-4">
-                    <div class="card animated-card">
-                        <div class="icon">&#128187;</div>
-                        <h3>AI Strategy Consulting</h3>
-                        <p>We help you define a clear, actionable AI roadmap that aligns with your organizational goals and ensures maximum ROI.</p>
-                    </div>
-                    <div class="card animated-card">
-                        <div class="icon">&#129302;</div>
-                        <h3>Custom AI Solutions</h3>
-                        <p>From custom Copilots to intelligent agents, we build bespoke AI tools that integrate seamlessly into your existing workflows.</p>
-                    </div>
-                    <div class="card animated-card">
-                        <div class="icon">&#128202;</div>
-                        <h3>Data Analytics & Insights</h3>
-                        <p>Transform your raw data into a strategic asset. We uncover hidden patterns and deliver actionable insights through advanced analytics.</p>
-                    </div>
-                     <div class="card animated-card">
-                        <div class="icon">⚙️</div>
-                        <h3>AI-Powered Automation</h3>
-                        <p>Streamline operations, reduce manual tasks, and free up your team to focus on high-value work with intelligent automation.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Who We Serve -->
-        <section id="who-we-serve">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Tailored AI for Mission-Driven Organizations</h2>
-                </div>
-                <div id="who-we-serve" class="grid grid-2">
-                    <div class="serve-item">
-                        <h3>For Nonprofits</h3>
-                        <p>Maximize your impact and stretch your resources further. We help nonprofits automate grant reporting, personalize donor engagement, optimize fundraising campaigns, and streamline volunteer management, allowing you to focus more on your core mission.</p>
-                        <ul>
-                            <li>Intelligent Grant Management</li>
-                            <li>Automated Donor Journey Personalization</li>
-                            <li>Predictive Analytics for Fundraising</li>
-                        </ul>
-                    </div>
-                    <div class="serve-item">
-                        <h3>For Small & Medium Businesses</h3>
-                        <p>Gain a competitive edge without the enterprise-level price tag. We empower SMBs to enhance customer service with AI chatbots, improve operational efficiency with automated workflows, and make smarter decisions with data-driven insights, fueling sustainable growth.</p>
-                        <ul>
-                            <li>AI-Powered Customer Support Agents</li>
-                            <li>Sales & Operations Process Automation</li>
-                            <li>Intelligent Inventory & Supply Chain Forecasting</li>
-                        </ul>
+                <div class="hero-content animate-on-scroll">
+                    <h1>AI for Impact. Solutions for Growth.</h1>
+                    <p class="subtitle">We empower nonprofits and small businesses with responsible AI, automating operations and unlocking data-driven insights to help you achieve your mission.</p>
+                    <div class="btn-group">
+                        <a href="#contact" class="btn btn-primary">Schedule a Free Strategy Call</a>
+                        <a href="#services" class="btn btn-outline">Explore Our Services</a>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Trust & Responsible AI -->
-        <section id="trust-responsible-ai">
+        <!-- VALUE PROP SECTION -->
+        <section id="value-prop" class="section-dark">
             <div class="container">
-                 <div class="section-header">
-                    <h2>Your Partner in Secure & Ethical AI</h2>
-                    <p>We believe that trust is the foundation of any successful AI implementation. Our commitment to security and responsible AI is embedded in everything we do.</p>
-                </div>
-                <div class="trust-grid">
-                    <div class="trust-item animated-card">
-                        <h3>Trust & Security First</h3>
-                        <p>Your data's integrity and privacy are paramount. We build solutions on secure-by-design principles, ensuring compliance with standards like GDPR and CCPA. Our transparent models and robust security protocols give you the confidence to innovate safely.</p>
+                <div class="grid">
+                    <div class="card animate-on-scroll">
+                        <div class="card-icon">⚙️</div>
+                        <h3>Automate & Optimize</h3>
+                        <p>Free up your team from repetitive tasks. We implement AI-powered automation to streamline workflows, reduce administrative burden, and increase operational efficiency.</p>
                     </div>
-                    <div class="trust-item animated-card">
-                        <h3>Our Responsible AI Framework</h3>
-                        <p>We are dedicated to building AI that is fair, accountable, and transparent. Our ethical framework guides our development process, focusing on mitigating bias, ensuring human oversight, and creating systems that align with human values and serve society positively.</p>
+                    <div class="card animate-on-scroll" style="animation-delay: 0.1s;">
+                        <div class="card-icon">📊</div>
+                        <h3>Data-Driven Decisions</h3>
+                        <p>Turn your data into your most valuable asset. Our analytics solutions provide clear, actionable insights, enabling you to make smarter decisions and measure your impact effectively.</p>
+                    </div>
+                    <div class="card animate-on-scroll" style="animation-delay: 0.2s;">
+                        <div class="card-icon">🚀</div>
+                        <h3>Scale Your Mission</h3>
+                        <p>Amplify your reach without expanding your team. AI tools like custom copilots and intelligent apps can enhance your services, improve stakeholder engagement, and scale your impact.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="services">
+        <!-- WHO WE SERVE SECTION -->
+        <section id="who-we-serve" class="section-light">
             <div class="container">
-                <div class="section-header">
-                    <h2>Our Comprehensive AI Services</h2>
-                    <p>From strategy to implementation and support, we provide end-to-end AI services to accelerate your organization's growth and efficiency.</p>
+                <div class="text-center section-header animate-on-scroll">
+                    <h2>Tailored AI for Your Unique Needs</h2>
+                    <p>We understand that nonprofits and SMBs have distinct challenges. Our approach is never one-size-fits-all. We partner with you to build solutions that align with your specific goals.</p>
                 </div>
-                <div class="grid grid-3">
-                    <div class="service-card animated-card">
+                <div class="grid">
+                    <div class="content-block animate-on-scroll">
+                        <h3>For Nonprofits</h3>
+                        <p>Your mission is our priority. We help charitable organizations leverage technology to maximize their impact, from automating grant reporting to personalizing donor outreach.</p>
+                        <ul>
+                            <li>Streamline donor management and fundraising campaigns.</li>
+                            <li>Automate reporting for grants and compliance.</li>
+                            <li>Analyze program data to measure and improve outcomes.</li>
+                            <li>Develop AI tools for volunteer coordination and engagement.</li>
+                        </ul>
+                    </div>
+                    <div class="content-block animate-on-scroll">
+                        <h3>For Small & Medium Businesses</h3>
+                        <p>Gain a competitive edge with enterprise-level intelligence. We help you integrate AI to optimize processes, enhance customer service, and drive sustainable growth.</p>
+                        <ul>
+                            <li>Implement intelligent automation in finance and HR.</li>
+                            <li>Develop custom copilots for sales and support teams.</li>
+                            <li>Create predictive models for inventory and demand forecasting.</li>
+                            <li>Build dashboards for real-time business performance tracking.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESPONSIBLE AI SECTION -->
+        <section id="responsible-ai" class="section-dark">
+            <div class="container text-center section-header animate-on-scroll">
+                 <h2>Committed to Responsible AI</h2>
+                 <p>Technology should serve humanity. We are dedicated to developing and deploying AI systems that are fair, transparent, and accountable. Our ethical framework guides every project to ensure our solutions are not only effective but also equitable and secure, building trust with you and your stakeholders.</p>
+                 <a href="#contact" class="btn btn-secondary">Learn About Our Ethics Framework</a>
+            </div>
+        </section>
+        
+        <!-- SERVICES SECTION -->
+        <section id="services" class="section-light">
+            <div class="container">
+                <div class="text-center section-header animate-on-scroll">
+                    <h2>Our Services</h2>
+                    <p>We offer a comprehensive suite of AI consulting and implementation services designed to deliver tangible results. Whether you're just starting your AI journey or looking to scale existing capabilities, we have a solution for you.</p>
+                </div>
+                <div class="grid">
+                    <div class="service-card animate-on-scroll">
                         <div class="icon">🧭</div>
-                        <h3>AI Strategy & Roadmap</h3>
-                        <p>We help you identify high-impact AI opportunities, assess your organizational readiness, and craft a practical, phased roadmap for successful AI adoption.
-                        </p>
+                        <h4>AI Strategy & Consulting</h4>
+                        <p>We help you navigate the AI landscape by creating a clear, actionable roadmap that aligns with your business objectives, identifies high-impact opportunities, and plans for responsible implementation.</p>
                     </div>
-                    <div class="service-card animated-card">
-                        <div class="icon">🧩</div>
-                        <h3>Power Platform Solutions</h3>
-                        <p>Leverage the full potential of Microsoft Power Platform. We design and deploy custom apps, automated workflows with Power Automate, and AI-infused dashboards with Power BI.
-                        </p>
+                    <div class="service-card animate-on-scroll" style="animation-delay: 0.1s;">
+                        <div class="icon">🔌</div>
+                        <h4>Microsoft Power Platform</h4>
+                        <p>Leverage low-code solutions to rapidly build custom apps, automate workflows, and visualize data. We specialize in Power Apps, Power Automate, and Power BI to digitize your operations.</p>
                     </div>
-                    <div class="service-card animated-card">
+                    <div class="service-card animate-on-scroll" style="animation-delay: 0.2s;">
                         <div class="icon">🤖</div>
-                        <h3>Copilot & Agent Development</h3>
-                        <p>Build your intelligent workforce. We create custom Microsoft Copilots and AI agents tailored to your business needs, handling tasks from customer service to internal data queries.</p>
+                        <h4>Custom Copilot Development</h4>
+                        <p>Empower your team with a custom AI assistant. We build secure, internal copilots using Azure OpenAI that understand your data and processes, providing instant answers and boosting productivity.</p>
                     </div>
-                    <div class="service-card animated-card">
-                        <div class="icon">📊</div>
-                        <h3>Data Analytics & Visualization</h3>
-                        <p>Turn your data from a liability into an asset. We unlock critical insights with advanced analytics, predictive modeling, and intuitive visualizations that empower decision-making.</p>
-                    </div>
-                    <div class="service-card animated-card">
-                        <div class="icon">🛠️</div>
-                        <h3>Managed AI Services</h3>
-                        <p>Our work doesn't end at deployment. We provide ongoing monitoring, performance tuning, and expert support to ensure your AI systems deliver sustained, long-term value.</p>
-                    </div>
-                     <div class="service-card animated-card">
-                        <div class="icon">🚀</div>
-                        <h3>90-Day Transformation</h3>
-                        <p>Need results fast? Our structured program is designed to deliver a high-impact, production-ready AI solution in just 90 days, moving swiftly from discovery to deployment.</p>
+                    <div class="service-card animate-on-scroll" style="animation-delay: 0.3s;">
+                        <div class="icon">📈</div>
+                        <h4>Data Analytics & Insights</h4>
+                        <p>From data cleansing and warehousing to advanced predictive modeling, we help you unlock the stories hidden in your data to forecast trends, understand behavior, and make confident decisions.</p>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Solutions Section -->
-        <section id="solutions">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Real-World Impact: Solution Stories</h2>
-                    <p>See how we've helped organizations like yours overcome challenges and achieve remarkable results with targeted, responsible AI solutions.</p>
-                </div>
-                <div class="grid grid-3">
-                    <div class="solution-story animated-card">
-                        <div class="solution-content">
-                            <span class="client">Nonprofit - Global Relief Fund</span>
-                            <h3>Streamlining Grant Processing</h3>
-                            <p><strong>Challenge:</strong> An overwhelming volume of grant applications led to a slow, manual review process, causing delays in funding critical projects.</p>
-                            <p><strong>Solution:</strong> We implemented an AI-powered document analysis solution using Microsoft AI Builder to automatically extract and categorize key information from applications.</p>
-                            <div class="solution-result">
-                               <p><strong>Result:</strong> Reduced application processing time by 80%, enabling staff to focus on strategic evaluation instead of data entry.</p>
-                            </div>
-                        </div>
+                <div id="program" class="animate-on-scroll">
+                    <div class="text-center">
+                        <h2>The 90-Day AI Accelerator Program</h2>
+                        <p>Go from idea to impact in one quarter. Our structured program is designed to deliver a functional AI pilot solution that demonstrates value and sets the stage for future scaling.</p>
                     </div>
-                    <div class="solution-story animated-card">
-                        <div class="solution-content">
-                            <span class="client">SMB - Innovate Manufacturing Co.</span>
-                            <h3>Enhancing Customer Support</h3>
-                            <p><strong>Challenge:</strong> A small support team was struggling to keep up with a high volume of repetitive customer inquiries, impacting response times.</p>
-                            <p><strong>Solution:</strong> Developed a custom AI Copilot integrated into their website and internal knowledge base to provide instant answers to common questions.</p>
-                             <div class="solution-result">
-                               <p><strong>Result:</strong> 40% reduction in support tickets and 24/7 customer assistance, freeing up the human team for complex problem-solving.</p>
-                            </div>
+                    <div class="program-phases">
+                        <div class="phase">
+                            <h4>Phase 1: Discovery & Strategy (Days 1-30)</h4>
+                            <p>We work with your team to identify a key challenge, define success metrics, and design a tailored AI solution and implementation plan.</p>
                         </div>
-                    </div>
-                    <div class="solution-story animated-card">
-                        <div class="solution-content">
-                            <span class="client">Nonprofit - Community Health Clinics</span>
-                            <h3>Optimizing Patient Appointments</h3>
-                            <p><strong>Challenge:</strong> High patient no-show rates were leading to wasted resources and gaps in care delivery across multiple clinic locations.</p>
-                            <p><strong>Solution:</strong> Built a predictive analytics model that analyzed historical data to identify appointments with a high risk of no-shows, triggering automated reminders.</p>
-                             <div class="solution-result">
-                               <p><strong>Result:</strong> Achieved a 15% reduction in no-show rates within three months, improving clinic efficiency and patient outcomes.</p>
-                            </div>
+                        <div class="phase">
+                            <h4>Phase 2: Pilot Development (Days 31-75)</h4>
+                            <p>Our experts build a minimum viable product (MVP) of your AI solution, focusing on core functionality and integrating with your existing systems.</p>
+                        </div>
+                        <div class="phase">
+                            <h4>Phase 3: Deployment & Training (Days 76-90)</h4>
+                             <p>We deploy the pilot, train your key users, and gather feedback. We deliver a final report on performance, ROI, and a roadmap for expansion.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Blog Section -->
-        <section id="insights">
+        <!-- SOLUTIONS (CASE STUDIES) SECTION -->
+        <section id="solutions" class="section-dark">
             <div class="container">
-                <div class="section-header">
-                    <h2>Insights on AI, Automation, and Impact</h2>
-                    <p>Stay informed with our expert analysis on the latest trends, strategies, and best practices in the world of applied AI.</p>
+                <div class="text-center section-header animate-on-scroll">
+                    <h2>Proven Results. Real-World Impact.</h2>
+                    <p>We measure our success by the success of our clients. Explore how we've helped organizations like yours overcome challenges and achieve their goals with AI.</p>
                 </div>
-                <div class="grid grid-3">
-                    <div class="blog-post-card animated-card">
-                        <img src="https://images.unsplash.com/photo-1516321497487-6aa828c44d7a?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800" alt="Person working on a laptop with charts">
-                        <div class="blog-content">
-                            <h3>Is Your Nonprofit Ready for AI? A 5-Step Checklist</h3>
-                            <p>Before you dive in, it's crucial to assess your readiness. This guide walks you through the key considerations...</p>
+
+                <div class="case-study animate-on-scroll">
+                    <div class="case-study-content">
+                        <p class="category">Nonprofit Automation</p>
+                        <h3>Streamlining Donor Management for a National Charity</h3>
+                        <p>A leading environmental nonprofit was spending over 20 hours per week on manual data entry and reporting from multiple donation platforms. This administrative burden limited their ability to focus on donor engagement and campaign strategy.</p>
+                        <p><strong>Solution:</strong> We developed an automated workflow using Microsoft Power Automate to centralize data into their CRM. A Power BI dashboard was created to provide real-time insights into fundraising performance.</p>
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">40%</div>
+                                <div class="stat-label">Reduction in Admin Time</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">25%</div>
+                                <div class="stat-label">Increase in Donor Engagement</div>
+                            </div>
                         </div>
-                        <div class="blog-meta">By Alex Chen | Oct 26, 2023</div>
                     </div>
-                    <div class="blog-post-card animated-card">
-                        <img src="https://images.unsplash.com/photo-1507146153580-69a1FE6d8aa1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800" alt="Drawing of a balanced scale">
-                        <div class="blog-content">
-                            <h3>Responsible AI: Moving from Principles to Practice</h3>
-                            <p>Everyone talks about ethical AI, but what does it look like in practice? We break down actionable steps for implementation...</p>
+                    <div class="case-study-image"><img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop&ixid=your-unsplash-id" alt="Nonprofit team working on laptops"></div>
+                </div>
+
+                <div class="case-study animate-on-scroll">
+                    <div class="case-study-content">
+                        <p class="category">SMB Analytics</p>
+                        <h3>Optimizing Inventory for a Regional Retail Chain</h3>
+                        <p>An SMB retail chain struggled with frequent stockouts of popular items and overstocking of slow-moving products, leading to lost sales and increased carrying costs. Their manual forecasting process was inaccurate and time-consuming.</p>
+                        <p><strong>Solution:</strong> Veloxium built a predictive sales forecasting model using historical sales data and external factors. An interactive dashboard allows managers to visualize demand predictions and optimize stock levels across all stores.</p>
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">20%</div>
+                                <div class="stat-label">Reduction in Stockouts</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">15%</div>
+                                <div class="stat-label">Increase in Profit Margins</div>
+                            </div>
                         </div>
-                        <div class="blog-meta">By Dr. Imani Reed | Oct 18, 2023</div>
                     </div>
-                    <div class="blog-post-card animated-card">
-                        <img src="https://images.unsplash.com/photo-1677756119517-756a184055a2?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800" alt="Microsoft Copilot logo on a screen">
-                        <div class="blog-content">
-                            <h3>How Microsoft Copilot Can Transform Your SMB Operations</h3>
-                             <p>Beyond simple chat, Copilot offers a revolution in productivity. Discover three under-the-radar use cases for your business...</p>
+                    <div class="case-study-image"><img src="https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?q=80&w=800&auto=format&fit=crop&ixid=your-unsplash-id" alt="Business team analyzing charts on a glass wall"></div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- BLOG SECTION -->
+        <section id="blog" class="section-light">
+            <div class="container">
+                <div class="text-center section-header animate-on-scroll">
+                    <h2>Insights from the Forefront of AI</h2>
+                    <p>Stay informed with our latest articles, analysis, and practical guides on leveraging AI for social good and business growth.</p>
+                </div>
+                <div class="blog-grid">
+                    <article class="blog-post-card animate-on-scroll">
+                        <img src="https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=800&auto=format&fit=crop&ixid=your-unsplash-id" alt="AI chat bot interface">
+                        <div class="blog-post-content">
+                            <p class="post-meta">GUIDE | March 15, 2024</p>
+                            <h4>Is Your Nonprofit Ready for a Copilot? A 5-Step Guide</h4>
+                            <p>Discover the key steps to assess your organization's readiness for a custom AI assistant and how to ensure a successful implementation.</p>
+                            <a href="#" class="read-more">Read More →</a>
                         </div>
-                        <div class="blog-meta">By Ben Carter | Oct 05, 2023</div>
-                    </div>
+                    </article>
+                    <article class="blog-post-card animate-on-scroll" style="animation-delay: 0.1s;">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop&ixid=your-unsplash-id" alt="Business analytics dashboard on a screen">
+                        <div class="blog-post-content">
+                            <p class="post-meta">ANALYSIS | March 02, 2024</p>
+                            <h4>The ROI of AI: A Practical Guide for Small Businesses</h4>
+                            <p>Go beyond the hype. Learn how to calculate the real return on investment for AI projects and make a compelling business case for automation.</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                    <article class="blog-post-card animate-on-scroll" style="animation-delay: 0.2s;">
+                        <img src="https://images.unsplash.com/photo-1516116412359-3a6952d33459?q=80&w=800&auto=format&fit=crop&ixid=your-unsplash-id" alt="Abstract image of network connections representing ethics">
+                        <div class="blog-post-content">
+                            <p class="post-meta">INSIGHT | February 21, 2024</p>
+                            <h4>Beyond the Buzzwords: Responsible AI in Practice</h4>
+                            <p>We break down what fairness, accountability, and transparency in AI truly mean and share practical ways to embed these principles in your projects.</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact">
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section-dark">
             <div class="container">
-                <div class="contact-form">
-                    <h2>Let's Start Building Your AI Future</h2>
-                    <p>Ready to explore how AI can benefit your organization? Fill out the form below or reach out to us directly. We're here to help.</p>
-                    <form action="#" method="POST">
+                <div class="contact-wrapper">
+                    <div class="contact-info animate-on-scroll">
+                        <h2>Let's Build Your AI Future</h2>
+                        <p>Ready to explore how AI can transform your organization? Reach out for a complimentary, no-obligation strategy session with one of our AI experts. We're here to answer your questions and help you get started.</p>
+                        <ul>
+                            <li>
+                                <span class="contact-icon">📧</span>
+                                <span><a href="mailto:hello@veloxium.ai">hello@veloxium.ai</a></span>
+                            </li>
+                            <li>
+                                <span class="contact-icon">📞</span>
+                                <span><a href="tel:+15552345678">+1 (555) 234-5678</a></span>
+                            </li>
+                             <li>
+                                <span class="contact-icon">📍</span>
+                                <span>123 Innovation Drive, Tech City, USA</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <form id="contact-form" class="animate-on-scroll" style="animation-delay: 0.1s;">
+                        <h3>Send us a Message</h3>
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Full Name" required>
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="organization" placeholder="Company / Organization" required>
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Work Email" required>
+                            <label for="company">Organization / Company</label>
+                            <input type="text" id="company" name="company">
                         </div>
                         <div class="form-group">
-                            <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                            <label for="message">How can we help?</label>
+                            <textarea id="message" name="message" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
                     </form>
-                </div>
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p>We look forward to connecting with you.</p>
-                     <div class="contact-info-item">
-                        <div class="icon">📍</div>
-                        <div>
-                            <h4>Our Office</h4>
-                            <p>123 Innovation Drive<br>Tech Park, Suite 400<br>Metropolis, USA 12345</p>
-                        </div>
-                    </div>
-                     <div class="contact-info-item">
-                        <div class="icon">✉️</div>
-                        <div>
-                            <h4>Email Us</h4>
-                            <p><a href="mailto:hello@veloxium.ai">hello@veloxium.ai</a></p>
-                        </div>
-                    </div>
-                     <div class="contact-info-item">
-                        <div class="icon">📞</div>
-                        <div>
-                            <h4>Call Us</h4>
-                            <p><a href="tel:+15552345678">(555) 234-5678</a></p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <!-- Footer -->
-    <footer>
+    
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Veloxium AI</h4>
-                    <p>AI-Powered Solutions for Nonprofits and SMBs. We build responsible, secure AI to amplify your impact.</p>
+                <div class="footer-about">
+                    <h3 class="footer-logo">Veloxium<span>AI</span></h3>
+                    <p>Empowering nonprofits and SMBs with responsible AI solutions for automation, data insights, and sustainable growth.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="LinkedIn">L</a>
+                        <a href="#" aria-label="Twitter">T</a>
+                        <a href="#" aria-label="Medium">M</a>
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
+                <div class="footer-column">
+                    <h4>Navigate</h4>
+                    <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#solutions">Solutions</a></li>
-                        <li><a href="#insights">Insights</a></li>
+                        <li><a href="#blog">Blog</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Responsible AI Policy</a></li>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">AI Strategy</a></li>
+                        <li><a href="#services">Power Platform</a></li>
+                        <li><a href="#services">Copilot Development</a></li>
+                        <li><a href="#services">Data Analytics</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Connect</h4>
-                    <div class="footer-socials">
-                        <a href="#" aria-label="LinkedIn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        </a>
-                        <a href="#" aria-label="Twitter">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-.139 9.237c.209 4.617-3.234 9.765-9.33 9.765-1.854 0-3.579-.543-5.032-1.475 1.742.205 3.48-.355 4.834-1.66-1.58-.03-2.943-1.076-3.41-2.516.516.098 1.023.063 1.512-.05-1.69-.34-2.97-1.84-2.97-3.675v-.05c.49.27 1.05.43 1.65.46-1.616-1.08-2.324-3.23-1.7-5.09.28.34 1.78 2.75 4.97 3.56-1.12-4.13 4.09-6.32 6.18-3.55.93-.18 1.83-.52 2.62-.99-.31 1.05-.89 1.88-1.59 2.37.82-.09 1.6-.31 2.3-.62-.51.87-1.17 1.61-1.92 2.15z"/></svg>
-                        </a>
-                    </div>
+                 <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="#contact">Contact Form</a></li>
+                        <li><a href="mailto:hello@veloxium.ai">hello@veloxium.ai</a></li>
+                        <li><a href="tel:+15552345678">+1 (555) 234-5678</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -817,51 +966,65 @@
         </div>
     </footer>
 
+
     <script>
-        const navToggle = document.getElementById('nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        const navLinks = document.querySelectorAll('.nav-link');
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Mobile Nav Toggle ---
+            const navToggle = document.getElementById('nav-toggle');
+            const navLinks = document.getElementById('nav-links');
 
-        // Toggle mobile menu
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('show-menu');
-        });
-
-        // Close mobile menu when a link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navMenu.classList.contains('show-menu')) {
-                    navMenu.classList.remove('show-menu');
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('open');
+                navToggle.classList.toggle('open');
+            });
+            
+            navLinks.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    navLinks.classList.remove('open');
+                    navToggle.classList.remove('open');
                 }
             });
-        });
 
-        // Add active class to nav link on scroll
-        const sections = document.querySelectorAll('section[id]');
 
-        function scrollActive() {
-            const scrollY = window.pageYOffset;
-
-            sections.forEach(current => {
-                const sectionHeight = current.offsetHeight;
-                const sectionTop = current.offsetTop - (var(--nav-height) + 50);
-                const sectionId = current.getAttribute('id');
-                
-                const link = document.querySelector('.nav-menu a[href*=' + sectionId + ']');
-                if(link){
-                     if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
+            // --- Active Nav Link Highlighting on Scroll ---
+            const navLinkEls = document.querySelectorAll('.nav-link');
+            const sectionEls = document.querySelectorAll('section');
+            let currentSection = 'home';
+            
+            window.addEventListener('scroll', () => {
+                sectionEls.forEach(sectionEl => {
+                    if (window.scrollY >= (sectionEl.offsetTop - sectionEl.clientHeight / 2)) {
+                        currentSection = sectionEl.id;
                     }
-                }
-            });
-        }
-        window.addEventListener('scroll', scrollActive);
-        
-        // Initial call to set active nav link
-        scrollActive();
+                });
 
+                navLinkEls.forEach(navLinkEl => {
+                    if (navLinkEl.href.includes(currentSection)) {
+                        document.querySelector('.active')?.classList.remove('active');
+                        navLinkEl.classList.add('active');
+                    }
+                });
+            });
+
+
+            // --- Scroll Animations ---
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+        });
     </script>
 </body>
 </html>
