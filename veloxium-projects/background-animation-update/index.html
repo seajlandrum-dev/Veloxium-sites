@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindful Tech Solutions | Calm Digital Experiences</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap');
+
+        /* --- CSS Variables --- */
+        :root {
+            --primary-color: #7879F1;
+            --secondary-color: #A3A4F7;
+            --accent-color: #B3E5FC;
+            --background-color: #F5F5FF;
+            --surface-color: #FFFFFF;
+            --text-primary-color: #212121;
+            --text-secondary-color: #757575;
+            --heading-font: 'Poppins', sans-serif;
+            --body-font: 'Lato', sans-serif;
+        }
+
+        /* --- Base & Reset --- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 100%;
+        }
+
+        body {
+            font-family: var(--body-font);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-primary-color);
+            background-color: var(--background-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-primary-color);
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.25rem; }
+        p { 
+            font-size: 1.1rem;
+            color: var(--text-secondary-color); 
+            margin-bottom: 1rem;
+        }
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* --- Background Animation --- */
+        #background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(300deg, var(--secondary-color), var(--primary-color), var(--accent-color), var(--background-color));
+            background-size: 400% 400%;
+            animation: gradientAnimation 25s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* --- Layout & Container --- */
+        .container {
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+
+        /* --- Navbar --- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(120, 121, 241, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: none;
+            flex-direction: column;
+            list-style: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--surface-color);
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .nav-menu.active {
+            display: flex;
+        }
+
+        .nav-item {
+            text-align: center;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            font-family: var(--heading-font);
+            color: var(--text-secondary-color);
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-toggle {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .nav-toggle .icon-bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-primary-color);
+            margin: 5px 0;
+            transition: transform 0.3s ease;
+        }
+        
+        /* --- Utility & Components --- */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            font-family: var(--heading-font);
+            font-weight: 600;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(120, 121, 241, 0.3);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out 0.2s;
+            animation-fill-mode: both;
+            opacity: 1;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInDown 1s ease-out 0.4s;
+            animation-fill-mode: both;
+            opacity: 1;
+        }
+
+        .hero-content .btn {
+            animation: fadeInDown 1s ease-out 0.6s;
+            animation-fill-mode: both;
+            opacity: 1;
+        }
+
+
+        /* --- Features Section --- */
+        #features {
+            background-color: var(--surface-color);
+        }
+        
+        .features-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--background-color);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #E0E0F0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(163, 164, 247, 0.15);
+        }
+
+        .feature-icon {
+            height: 50px;
+            width: 50px;
+            margin: 0 auto 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card:nth-child(1) { animation: slideUp 0.8s ease-out 0.2s; animation-fill-mode: both; opacity: 1; }
+        .feature-card:nth-child(2) { animation: slideUp 0.8s ease-out 0.4s; animation-fill-mode: both; opacity: 1; }
+        .feature-card:nth-child(3) { animation: slideUp 0.8s ease-out 0.6s; animation-fill-mode: both; opacity: 1; }
+        
+
+        /* --- CTA Section --- */
+        .cta-content {
+            background-color: var(--surface-color);
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 15px 30px rgba(163, 164, 247, 0.1);
+        }
+        
+        .cta-content h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .cta-content p {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--text-primary-color);
+            color: var(--background-color);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .footer-nav {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-nav a {
+            color: var(--background-color);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-nav a:hover {
+            opacity: 1;
+        }
+
+        .footer-socials {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-socials a {
+            color: var(--background-color);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            opacity: 1;
+        }
+        
+        .footer-copyright {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from {
+                opacity: 1;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 1;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Responsive Design --- */
+        @media (min-width: 768px) {
+            h1 { font-size: 4rem; }
+            h2 { font-size: 2.75rem; }
+            section { padding: 6rem 0; }
+            
+            .nav-toggle {
+                display: none;
+            }
+
+            .nav-menu {
+                display: flex;
+                flex-direction: row;
+                position: static;
+                width: auto;
+                background-color: transparent;
+                padding: 0;
+                border: none;
+            }
+            
+            .nav-item {
+                margin-left: 2rem;
+            }
+            
+            .nav-link {
+                padding: 0.25rem 0;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="background-animation"></div>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="nav-brand">Mindful Tech</a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
+                <li class="nav-item"><a href="#cta" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Crafting Calm in a Digital World</h1>
+                    <p>Mindful Tech Solutions builds digital interfaces and applications that prioritize focus, reduce stress, and create a more productive, serene user experience. Welcome to technology that works with you, not against you.</p>
+                    <a href="#features" class="btn btn-primary">Discover Our Approach</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Principles for Mindful Design</h2>
+                    <p>We believe great technology should feel effortless and supportive.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:100%; height: 100%;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        </div>
+                        <h3>The Focus Framework</h3>
+                        <p>We design UIs that minimize distractions. Our layouts use generous white space, subtle color palettes, and clear visual hierarchies to guide users, preventing cognitive overload and information fatigue.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:100%; height: 100%;"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        </div>
+                        <h3>Serenity SDK</h3>
+                        <p>A proprietary set of front-end components and animations—like the subtle background of this site—designed to be calming rather than jarring. These elements create a soothing digital environment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:100%; height: 100%;"><path d="M21.21 15.89A10 10 0 1 1 8.11 2.99"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                        </div>
+                        <h3>Attentive Analytics</h3>
+                        <p>Instead of just tracking clicks, our analytics tools measure user focus and task completion. We help you understand user well-being, not just abstract engagement, leading to more meaningful improvements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready for a more mindful product?</h2>
+                    <p>Whether you're starting a new project or looking to infuse calm into an existing application, our team is ready to help. Let's discuss how we can build a better digital experience for your users, together.</p>
+                    <a href="mailto:contact@mindfultech.solutions" class="btn btn-primary">Schedule a Consultation</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <ul class="footer-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#cta">Contact</a></li>
+            </ul>
+             <ul class="footer-socials">
+                <li><a href="#" aria-label="LinkedIn">[LI]</a></li>
+                <li><a href="#" aria-label="Twitter">[TW]</a></li>
+                <li><a href="#" aria-label="Medium">[M]</a></li>
+            </ul>
+            <p class="footer-copyright">© 2024 Mindful Tech Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !isExpanded);
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
