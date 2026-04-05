@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veloxium | Digital Transformation & Cloud Solutions</title>
+    <meta name="description" content="Veloxium delivers expert-led digital transformation, cloud-native development, and AI solutions to accelerate your business growth.">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #007bff;
+            --secondary: #6c757d;
+            --accent: #ffc107;
+            --background: #f8f9fa;
+            --surface: #ffffff;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --heading-font: 'Roboto Slab', serif;
+            --body-font: 'Roboto', sans-serif;
+            --nav-height: 70px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+
+        body {
+            font-family: var(--body-font);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--background);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 2.2rem; }
+        h3 { font-size: 1.75rem; }
+        p { margin-bottom: 1rem; color: var(--text-secondary); }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { color: #0056b3; }
+        img { max-width: 100%; height: auto; display: block; }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 80px 0;
+            opacity: 1; /* Content is visible by default */
+        }
+        
+        section:nth-of-type(odd) {
+            background-color: var(--surface);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--surface);
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            color: var(--surface);
+            transform: translateY(-2px);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--text-primary);
+        }
+        .btn-accent:hover {
+            background-color: #e0a800;
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-on-load {
+            animation: fadeInUp 0.8s ease-out 0.2s;
+            animation-fill-mode: backwards; /* Start animation even if delayed */
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: var(--surface);
+            color: var(--text-primary);
+            padding: 0 5%;
+            height: var(--nav-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-logo {
+            font-family: var(--heading-font);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links li a {
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: var(--primary);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 2rem;
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        #home {
+            padding-top: calc(var(--nav-height) + 80px);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background-color: var(--surface);
+        }
+
+        #home .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #home .hero-content h1 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        #home .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 1; /* Visible by default */
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .card .icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .card h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Team Section */
+        #why-veloxium .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--primary);
+        }
+        
+        .team-member h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .team-member p {
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        /* Case Studies */
+        .case-study-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .case-study-card .card-content {
+            flex-grow: 1;
+        }
+        .case-study-card a {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        /* Contact Form */
+        #contact .grid-2 {
+            align-items: flex-start;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: var(--body-font);
+            font-size: 1rem;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+        
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        .contact-info .icon {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--text-primary);
+            color: #f8f9fa;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-nav {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .footer-nav a {
+            color: #f8f9fa;
+            transition: color 0.3s;
+        }
+        .footer-nav a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .social-icons a {
+            color: #f8f9fa;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --nav-height: 60px; }
+            
+            h1 { font-size: 2.2rem; }
+
+            .nav-toggle {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--surface);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li a {
+                font-size: 1.2rem;
+            }
+            
+            #home {
+                min-height: 70vh;
+                padding-top: calc(var(--nav-height) + 40px);
+                padding-bottom: 40px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            #contact .grid-2 {
+               gap: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#home" class="nav-logo">Veloxium</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#why-veloxium">Why Veloxium</a></li>
+                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+            &#9776;
+        </button>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home">
+            <div class="container hero-content animate-on-load">
+                <h1>Accelerating Your Digital Future</h1>
+                <p>We are a strategic technology partner dedicated to building robust, scalable, and intelligent solutions. Veloxium empowers businesses to innovate faster, operate smarter, and achieve sustainable growth in the digital age.</p>
+                <a href="#services" class="btn btn-primary">Discover Our Services</a>
+                <a href="#contact" class="btn btn-accent" style="margin-left: 10px;">Get In Touch</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Core Services</h2>
+                    <p>We provide end-to-end technology services to transform your ideas into reality.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="icon">&#9928;</div>
+                        <h3>Cloud-Native Development</h3>
+                        <p>We build and modernize applications using microservices, containers (Docker, Kubernetes), and serverless architectures for unparalleled scalability and resilience on an cloud platform like AWS, Azure, or GCP.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon">&#129504;</div>
+                        <h3>AI & Machine Learning</h3>
+                        <p>Leverage the power of data with our AI/ML solutions. We integrate predictive analytics, natural language processing (NLP), and computer vision to unlock actionable insights and automate complex processes.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon">&#128202;</div>
+                        <h3>Data Strategy & Analytics</h3>
+                        <p>Turn data into your most valuable asset. We help you design and implement modern data platforms, real-time analytics dashboards, and robust data governance frameworks to drive informed decision-making.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon">&#128640;</div>
+                        <h3>DevOps & Automation</h3>
+                        <p>Accelerate your software delivery lifecycle with our DevOps expertise. We establish CI/CD pipelines, implement infrastructure-as-code, and embed automated testing to improve speed, quality, and reliability.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon">&#128272;</div>
+                        <h3>Cybersecurity & Compliance</h3>
+                        <p>Protect your digital assets and ensure regulatory compliance. Our services include security assessments, threat modeling, and implementation of security controls across your infrastructure and applications.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon">&#128187;</div>
+                        <h3>Digital Product Strategy</h3>
+                        <p>From ideation to launch and beyond, we partner with you to define, design, and build user-centric digital products that solve real problems and capture market opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Solutions Section -->
+        <section id="solutions">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Industry-Specific Solutions</h2>
+                    <p>Targeted solutions engineered to solve the unique challenges of your industry.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>V-Commerce Accelerator</h3>
+                        <p>A headless, API-first commerce platform for retailers aiming for omnichannel excellence. It enables rapid deployment of customized storefronts and seamless integration with existing PIM, ERP, and marketing systems.</p>
+                    </div>
+                     <div class="card">
+                        <h3>FinSecure Platform</h3>
+                        <p>A compliance-as-a-service framework for FinTech and InsurTech companies. Automate security audits, evidence collection, and regulatory reporting for standards like SOC 2, ISO 27001, and PCI DSS.</p>
+                    </div>
+                    <div class="card">
+                        <h3>HealthSync API Hub</h3>
+                        <p>A HIPAA-compliant data integration engine for healthcare providers. Securely connect disparate EHR/EMR systems, labs, and patient portals to create a unified view of patient data and improve care coordination.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Veloxium Section -->
+        <section id="why-veloxium">
+            <div class="container">
+                <div class="section-title">
+                    <h2>The Veloxium Difference</h2>
+                    <p>We are more than consultants; we are your dedicated technology partners.</p>
+                </div>
+                
+                <h3 style="text-align: center; margin-bottom: 3rem; font-weight: 400;">Our Core Values</h3>
+                <div class="grid-3" style="text-align:center; gap: 3rem; margin-bottom: 5rem;">
+                    <div>
+                        <h4>Client-Centricity</h4>
+                        <p>Your success is our ultimate metric. We immerse ourselves in your business to deliver solutions that generate tangible value.</p>
+                    </div>
+                    <div>
+                        <h4>Pragmatic Innovation</h4>
+                        <p>We apply cutting-edge technology to solve real-world business problems, focusing on practical outcomes, not trends.</p>
+                    </div>
+                    <div>
+                        <h4>Uncompromising Quality</h4>
+                        <p>We are committed to engineering excellence. Our solutions are built to be secure, scalable, and maintainable for the long term.</p>
+                    </div>
+                </div>
+
+                <h3 style="text-align: center; margin-bottom: 3rem; font-weight: 400;">Meet Our Leadership</h3>
+                <div class="grid-3">
+                    <div class="card team-member">
+                        <img src="https://i.pravatar.cc/150?u=a" alt="Dr. Alistair Finch">
+                        <h4>Dr. Alistair Finch</h4>
+                        <p>CEO & Founder</p>
+                    </div>
+                     <div class="card team-member">
+                        <img src="https://i.pravatar.cc/150?u=b" alt="Priya Sharma">
+                        <h4>Priya Sharma</h4>
+                        <p>Chief Technology Officer</p>
+                    </div>
+                    <div class="card team-member">
+                        <img src="https://i.pravatar.cc/150?u=c" alt="Ben Carter">
+                        <h4>Ben Carter</h4>
+                        <p>Head of Product</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section id="case-studies">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Success Stories</h2>
+                    <p>See how we've helped leading companies achieve their goals.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card case-study-card">
+                        <div class="card-content">
+                            <h3>Global Retail Leader</h3>
+                            <p>Implemented our V-Commerce Accelerator, resulting in a 40% increase in online conversion rates and a 50% faster page load time across mobile and desktop.</p>
+                        </div>
+                        <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Read Case Study</a>
+                    </div>
+                    <div class="card case-study-card">
+                        <div class="card-content">
+                            <h3>High-Growth FinTech</h3>
+                            <p>Utilized our FinSecure Platform to achieve SOC 2 Type II compliance in under six months, unlocking enterprise sales channels and building customer trust.</p>
+                        </div>
+                        <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Read Case Study</a>
+                    </div>
+                    <div class="card case-study-card">
+                        <div class="card-content">
+                            <h3>Logistics Corporation</h3>
+                            <p>Developed an AI-powered route optimization engine that reduced fuel costs by 18% and cut shipping errors by over 25% through predictive analytics.</p>
+                        </div>
+                        <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Read Case Study</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog">
+             <div class="container">
+                <div class="section-title">
+                    <h2>Insights & News</h2>
+                    <p>Explore our latest thinking on technology, strategy, and innovation.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Beyond the Hype: Practical AI for SMEs</h3>
+                        <p>AI isn't just for tech giants. This article breaks down actionable strategies for small and medium-sized enterprises to start leveraging AI for a competitive advantage.</p>
+                        <a href="#">Read More &rarr;</a>
+                    </div>
+                     <div class="card">
+                        <h3>The ROI of DevOps: More Than Just Speed</h3>
+                        <p>We explore the hidden benefits of a mature DevOps culture, from improved team morale to enhanced security posture and greater business agility.</p>
+                        <a href="#">Read More &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <h3>Navigating the Multi-Cloud Maze</h3>
+                        <p>A multi-cloud strategy can provide resilience and prevent vendor lock-in, but it comes with complexity. Here’s our guide to making the right choice for your organization.</p>
+                        <a href="#">Read More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                    <p>Let's discuss how Veloxium can accelerate your business. Reach out today for a consultation.</p>
+                </div>
+                <div class="grid-2">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p>Our team is ready to answer your questions and explore your project requirements. We typically respond within one business day.</p>
+                        <p><span class="icon">&#128205;</span> 123 Innovation Drive, Suite 450<br>Tech Hub City, USA 12345</p>
+                        <p><span class="icon">&#128222;</span> (555) 123-4567</p>
+                        <p><span class="icon">&#9993;</span> hello@veloxium.com</p>
+                    </div>
+                    <form id="contact-form" class="contact-form">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="company" placeholder="Your Company">
+                        <textarea name="message" rows="6" placeholder="How can we help?" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                 <a href="#home" class="nav-logo" style="color: var(--surface);">Veloxium</a>
+            </div>
+             <ul class="footer-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#why-veloxium">Why Veloxium</a></li>
+                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="social-icons">
+                 <a href="#" aria-label="LinkedIn">&#128330;</a> <!-- Placeholder Icon -->
+                 <a href="#" aria-label="Twitter">&#128333;</a> <!-- Placeholder Icon -->
+                 <a href="#" aria-label="GitHub">&#128336;</a> <!-- Placeholder Icon -->
+            </div>
+            <p class="copyright">&copy; <span id="copyright-year"></span> Veloxium Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navToggle = document.getElementById('nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const navbar = document.querySelector('.navbar');
+            const navLinkItems = document.querySelectorAll('.nav-links a');
+
+            // Hamburger menu toggle
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile nav when a link is clicked
+            navLinkItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // Sticky navbar background on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Contact form submission simulation
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you shortly.');
+                contactForm.reset();
+            });
+
+            // Set copyright year
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
