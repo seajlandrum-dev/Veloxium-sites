@@ -3,43 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veloxium AI | Intelligent Automation & AI Solutions</title>
-    <meta name="description" content="Veloxium AI delivers cutting-edge intelligent automation, agentic AI, and data solutions to drive business growth and efficiency.">
+    <title>Veloxium: High-Performance Data Solutions</title>
+    <meta name="description" content="Veloxium delivers next-generation data infrastructure and acceleration platforms to unlock real-time insights and unparalleled performance.">
     <style>
         :root {
-            --primary-color: #0A0A2A;
-            --secondary-color: #4C5FD5;
-            --accent-color: #00E6A7;
-            --text-color: #EAEAEA;
-            --text-dark: #333;
-            --bg-light: #F4F5F7;
-            --card-bg: #1A1A3A;
+            --primary-color: #0052cc;
+            --secondary-color: #0a2540;
+            --accent-color: #00c4a7;
+            --text-color: #333;
+            --background-color: #ffffff;
+            --light-gray: #f4f7fa;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--primary-color);
+            background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
         }
 
         .container {
-            width: 90%;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 0;
+            padding: 0 20px;
         }
 
         header {
-            background-color: rgba(10, 10, 42, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 15px 5%;
+            background: var(--background-color);
+            border-bottom: 1px solid #e0e6eb;
+            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         nav {
@@ -49,222 +46,137 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--text-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
             text-decoration: none;
         }
-        .logo span { color: var(--accent-color); }
 
         nav ul {
             list-style: none;
-            display: flex;
-            align-items: center;
             margin: 0;
             padding: 0;
+            display: flex;
+            align-items: center;
         }
 
         nav ul li {
-            margin-left: 30px;
-            position: relative;
+            margin-left: 25px;
         }
 
         nav ul li a {
-            color: var(--text-color);
             text-decoration: none;
+            color: var(--secondary-color);
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
         nav ul li a:hover {
-            color: var(--accent-color);
+            color: var(--primary-color);
         }
         
-        .dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--card-bg);
-            border-radius: 5px;
-            padding: 10px 0;
-            min-width: 250px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-        }
-        
-        .dropdown li {
-            margin: 0;
-        }
-        
-        .dropdown li a {
+        .cta-button {
+            background-color: var(--primary-color);
+            color: #fff;
             padding: 10px 20px;
-            display: block;
-            white-space: nowrap;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #003d99;
+            color: #fff;
         }
 
-        .services-menu:hover .dropdown {
-            display: block;
+        main {
+            padding: 4rem 0;
         }
-
+        
         .hero {
             text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(rgba(10, 10, 42, 0.7), rgba(10, 10, 42, 0.9)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1740') no-repeat center center/cover;
-
+            padding: 6rem 0;
+            background: var(--light-gray);
         }
-
+        
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .section {
-            padding: 60px 0;
-        }
-        
-        .section-light {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .section-light .card {
-            background-color: #fff;
-            color: var(--text-dark);
-             border: 1px solid #ddd;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .card h3 {
-            color: var(--accent-color);
-            margin-top: 0;
-        }
-        
-        .section-light .card h3 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
             color: var(--secondary-color);
         }
         
-        .card-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            color: #5a6e84;
+        }
+
+        .features {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            flex-basis: 30%;
         }
         
-        .card-link:hover { text-decoration: underline; }
+        .feature-card h3 {
+            color: var(--secondary-color);
+        }
 
         footer {
-            background-color: var(--primary-color);
-            color: var(--text-color);
+            background: var(--secondary-color);
+            color: #fff;
             text-align: center;
-            padding: 30px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 0;
+            margin-top: 4rem;
         }
-        
-        footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-        
-        footer p {
-            margin: 5px 0;
-        }
+
     </style>
 </head>
 <body>
+
     <header>
-        <nav>
-            <a href="index.html" class="logo">Veloxium<span>AI</span></a>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li class="services-menu">
-                    <a href="#">Services</a>
-                    <ul class="dropdown">
-                        <li><a href="#">Intelligent Automation</a></li>
-                        <li><a href="#">Agentic AI Solutions</a></li>
-                        <li><a href="#">Data & Insights</a></li>
-                        <li><a href="#">Workflow & System Integration</a></li>
-                        <li><a href="#">Responsible AI Strategy</a></li>
-                    </ul>
-                </li>
-                <li><a href="case-studies.html">Case Studies</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Veloxium</a>
+                <ul>
+                    <li><a href="#">Solutions</a></li>
+                    <li><a href="#">Why Veloxium</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#" class="cta-button">Request Demo</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
         <section class="hero">
-            <h1>Empowering Your Business with Intelligent AI</h1>
-            <p>We build bespoke AI solutions that automate processes, unlock data-driven insights, and create transformative business value.</p>
-        </section>
-
-        <section id="why-veloxium" class="container">
-            <h2 class="section-title">Why Veloxium AI</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Unmatched AI Expertise</h3>
-                    <p>Our team consists of leading AI researchers, data scientists, and engineers dedicated to solving complex business challenges with state-of-the-art technology.</p>
-                </div>
-                <div class="card">
-                    <h3>Commitment to Innovation</h3>
-                    <p>We are constantly pushing the boundaries of what's possible with AI, specializing in agentic workflows and advanced intelligent automation to keep you ahead of the curve.</p>
-                </div>
-                <div class="card">
-                    <h3>Client-Centric Approach</h3>
-                    <p>Your success is our priority. We work as a true partner, deeply understanding your needs to deliver tailored solutions that provide measurable impact and ROI.</p>
-                </div>
+            <div class="container">
+                <h1>Accelerate Your Data. Instantly.</h1>
+                <p>Veloxium's unified data platform empowers organizations to ingest, process, and analyze streaming data in real-time, driving critical business decisions with unprecedented speed.</p>
+                <a href="#" class="cta-button">Explore Our Platform</a>
             </div>
         </section>
 
-        <section id="case-studies" class="section section-light">
-            <div class="container">
-                <h2 class="section-title">Success in Action</h2>
-                <div class="grid">
-                    <div class="card">
-                        <h3>Automating Financial Compliance</h3>
-                        <p>A leading bank reduced manual compliance checks by 95% using our intelligent document processing and automation solution, ensuring accuracy and freeing up expert analysts.</p>
-                        <a href="case-studies.html" class="card-link">Read Case Study &rarr;</a>
-                    </div>
-                    <div class="card">
-                        <h3>Optimizing Retail Supply Chains</h3>
-                        <p>We built a predictive data & insights platform for a major e-commerce brand, leading to a 20% reduction in stockouts and a 15% improvement in inventory turnover.</p>
-                        <a href="case-studies.html" class="card-link">Read Case Study &rarr;</a>
-                    </div>
-                    <div class="card">
-                        <h3>Enhancing Patient Engagement</h3>
-                        <p>A healthcare network deployed our agentic AI solution to manage appointments and patient queries, resulting in a 30% decrease in no-shows and higher patient satisfaction.</p>
-                        <a href="case-studies.html" class="card-link">Read Case Study &rarr;</a>
-                    </div>
+        <section class="container">
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Real-Time Analytics</h3>
+                    <p>Query massive datasets with sub-second latency. Stop waiting for batch jobs and start exploring your data as it arrives.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Scalable Infrastructure</h3>
+                    <p>Built on a cloud-native architecture that scales automatically with your workload, ensuring high availability and cost efficiency.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>AI-Powered Insights</h3>
+                    <p>Leverage integrated machine learning to uncover hidden patterns, predict future trends, and automate complex data workflows.</p>
                 </div>
             </div>
         </section>
@@ -272,10 +184,9 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Veloxium AI. All Rights Reserved.</p>
-            <p>Email: <a href="mailto:info@veloxiumAI.com">info@veloxiumAI.com</a></p>
-            <p>Phone: <a href="tel:617-955-7669">617-955-7669</a></p>
+            <p>&copy; 2024 Veloxium. All Rights Reserved.</p>
         </div>
     </footer>
+
 </body>
 </html>
