@@ -3,124 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veloxium AI | AI & Automation for Business Growth</title>
-    <meta name="description" content="Veloxium AI delivers bespoke AI, automation, and agentic solutions to help nonprofits and small businesses drive efficiency and achieve measurable results.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <title>Home - Veloxium AI | AI Consulting for Nonprofits & SMBs</title>
+    <meta name="description" content="Veloxium AI provides platform-agnostic AI consulting and automation solutions for nonprofits and small to medium-sized businesses to drive measurable results.">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@400;700&display=swap');
+
         :root {
-            --primary: #007BFF;
-            --secondary: #6C757D;
-            --accent: #28A745;
-            --background: #F8F9FA;
+            --primary: #1A73E8;
+            --secondary: #673AB7;
+            --accent: #FFC107;
+            --background: #F5F5F5;
             --surface: #FFFFFF;
-            --text_primary: #212529;
-            --text_secondary: #6C757D;
-            --heading-font: 'Roboto Slab', serif;
-            --body-font: 'Open Sans', sans-serif;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --header-height: 80px;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: var(--body-font);
+            font-family: 'Roboto', sans-serif;
             font-size: 16px;
             line-height: 1.6;
             background-color: var(--background);
-            color: var(--text_primary);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
         }
-        .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         h1, h2, h3, h4 {
-            font-family: var(--heading-font);
-            color: var(--text_primary);
-            margin-bottom: 0.75rem;
+            font-family: 'Roboto Slab', serif;
+            color: var(--text-primary);
             line-height: 1.3;
+            margin-bottom: 20px;
         }
-        h1 { font-size: 3rem; }
-        h2 { font-size: 2.25rem; }
-        h3 { font-size: 1.75rem; }
-        p { margin-bottom: 1rem; color: var(--text_secondary); }
-        a { color: var(--primary); text-decoration: none; transition: color 0.3s ease; }
-        a:hover { color: #0056b3; }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+        p { margin-bottom: 20px; color: var(--text-secondary); }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-light { background-color: var(--background); }
+        .section-white { background-color: var(--surface); }
+
         .btn {
             display: inline-block;
             padding: 12px 24px;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 500;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 4px;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            border: 2px solid transparent;
         }
+
         .btn-primary {
             background-color: var(--primary);
-            color: var(--surface);
+            color: #fff;
         }
-        .btn-primary:hover { background-color: #0056b3; }
+
+        .btn-primary:hover {
+            background-color: #155cb8;
+            color: #fff;
+        }
+        
         .btn-secondary {
             background-color: transparent;
             color: var(--primary);
-            border: 2px solid var(--primary);
+            border-color: var(--primary);
         }
-        .btn-secondary:hover { background-color: var(--primary); color: var(--surface); }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: #fff;
+        }
 
         /* Header & Navigation */
-        .header {
+        .main-header {
             background-color: var(--surface);
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            width: 100%;
+            height: var(--header-height);
         }
-        .header .container {
+
+        .main-header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 100%;
         }
-        .brand-logo {
-            font-family: var(--heading-font);
+
+        .brand-logo a {
+            font-family: 'Roboto Slab', serif;
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text_primary);
+            color: var(--text-primary);
         }
-        .nav-menu ul {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .nav-menu a {
-            font-weight: 600;
-            color: var(--text_primary);
-            padding: 0.5rem 0;
-            position: relative;
-        }
-        .nav-menu a.active, .nav-menu a:hover {
+
+        .brand-logo a:hover {
             color: var(--primary);
         }
-        .nav-menu a.active::after, .nav-menu a:not(.btn):hover::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary);
+        
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
         }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none; border: none;
-        }
-        .hamburger span { display: block; width: 25px; height: 3px; background-color: var(--text_primary); transition: all 0.3s ease;}
 
+        .main-nav li {
+            position: relative;
+        }
+
+        .main-nav a {
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: 10px 5px;
+            display: block;
+        }
+
+        .main-nav a.active, .main-nav a:hover {
+            color: var(--primary);
+        }
+        
+        .main-nav a.active {
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* Dropdown */
         .dropdown {
             position: relative;
         }
+        
+        .dropdown .dropdown-toggle::after {
+            content: ' ▼';
+            font-size: 0.7em;
+            display: inline-block;
+            margin-left: 4px;
+        }
+
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -128,270 +173,348 @@
             left: 0;
             background-color: var(--surface);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 5px;
+            border-radius: 4px;
             list-style: none;
-            padding: 0.5rem 0;
-            z-index: 1001;
+            padding: 10px 0;
             min-width: 250px;
-            flex-direction: column;
-            gap: 0 !important;
+            z-index: 1001;
         }
-        .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu { display: block; }
-        .dropdown-menu li { width: 100%; }
-        .dropdown-menu a {
+
+        .dropdown:hover .dropdown-menu {
             display: block;
-            padding: 0.75rem 1.5rem;
-            width: 100%;
+        }
+
+        .dropdown-menu li a {
+            padding: 10px 20px;
             white-space: nowrap;
-            color: var(--text_primary);
         }
-        .dropdown-menu a::after { display: none; }
-        .dropdown-menu a:hover { background-color: var(--background); color: var(--primary); }
-        .dropdown-menu a.active { background-color: #e9ecef; } 
-
-        /* Sections */
-        section { padding: 80px 0; }
-        .bg-light { background-color: var(--surface); }
-        .text-center { text-align: center; }
-        .section-title { margin-bottom: 4rem; }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--background);
-            padding: 120px 0;
-            text-align: center;
-        }
-        .hero-content h1 {
-            margin-bottom: 1rem;
-        }
-        .hero-content p {
-            font-size: 1.25rem;
-            color: var(--text_secondary);
-            max-width: 800px;
-            margin: 0 auto 2rem auto;
+        
+        .dropdown-menu a.active {
+            border-bottom: none;
+            font-weight: bold;
         }
 
-        /* Services, Value Props */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        .card {
-            background-color: var(--surface);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-        }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .card h3 { color: var(--primary); }
-        .card .icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
-
-        /* Footer */
-        .footer {
-            background-color: var(--text_primary);
-            color: var(--background);
-            padding: 50px 0 20px;
-        }
-        .footer a { color: var(--background); }
-        .footer a:hover { color: var(--primary); }
-        .footer .container {
-            display: flex;
+        /* Mobile Nav */
+        .menu-toggle {
+            display: none;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
         }
-        .footer-nav { list-style: none; display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
-        .footer-socials { list-style: none; display: flex; gap: 1rem; margin-bottom: 1.5rem; }
-        .footer-socials a { font-size: 1.5rem; }
-        .copyright { font-size: 0.9rem; color: var(--text_secondary); }
 
-        /* Responsive */
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        /* Footer */
+        .main-footer {
+            background-color: #333;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            font-family: 'Roboto Slab', serif;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col li a {
+            color: var(--background);
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .footer-col li a:hover {
+            color: var(--accent);
+        }
+
+        .footer-col .socials a {
+             margin-right: 15px;
+             font-weight: bold;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+          from { transform: translateY(20px); opacity: 1; } 
+          to { transform: translateY(0); opacity: 1; }
+        }
+        .animated-section { animation: slideInUp 0.7s ease-out forwards; }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .card {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+
+        /* Responsive Design */
         @media (max-width: 992px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            .grid-3 { grid-template-columns: 1fr; }
-            .nav-menu {
-                display: none;
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            
+            .main-nav {
                 position: absolute;
-                top: 100%;
+                top: var(--header-height);
                 left: 0;
                 width: 100%;
                 background-color: var(--surface);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out;
+            }
+
+            .main-nav.active {
+                max-height: 100vh; /* Adjust as needed */
+            }
+
+            .main-nav ul {
                 flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                padding: 20px;
+                gap: 0;
             }
-            .nav-menu.active {
-                display: flex;
+            
+            .main-nav li {
+                width: 100%;
             }
-            .nav-menu ul { flex-direction: column; width: 100%; gap: 0;}
-            .nav-menu li { width: 100%; text-align: center; }
-            .nav-menu a { display: block; padding: 1rem; width: 100%; }
-            .nav-menu a::after { display: none; }
-            .hamburger { display: flex; }
-            .dropdown {
-              position: static;
+
+            .main-nav a {
+                padding: 15px;
+                border-bottom: 1px solid var(--background);
             }
+            
+            .main-nav a.active {
+                border-bottom-color: var(--primary);
+            }
+            
+            .dropdown .dropdown-toggle::after {
+                float: right;
+            }
+            
             .dropdown-menu {
                 position: static;
+                display: block;
                 box-shadow: none;
-                border-radius: 0;
-                border-top: 1px solid var(--background);
-                min-width: 100%;
-                display: none; /* Hidden by default on mobile */
-                background-color: #fdfdfd; 
+                max-height: 0;
+                overflow: hidden;
+                padding: 0;
+                margin: 0 15px;
+                background-color: var(--background);
+                transition: max-height 0.3s ease;
             }
-            .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu { display: none; } /* Disable hover on mobile */
-            .dropdown-toggle::after { content: ' ▼'; font-size: 0.8em; }
-            .dropdown.open .dropdown-menu { display: block; } /* Show when toggled */
-            .dropdown-menu a { padding-left: 3rem; }
+            
+            .dropdown:hover .dropdown-menu { display: none; } /* Disable hover on mobile */
+            .dropdown.open .dropdown-menu { max-height: 500px; } /* Control with JS or checkbox hack */
+            
+            .dropdown-menu li a { padding-left: 30px; }
 
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
         }
-         /* Animation */
-        @keyframes fadeInUp {
-            from { transform: translateY(20px); opacity: 1; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .fade-in-up { animation: fadeInUp 0.7s ease-out forwards; }
 
     </style>
 </head>
 <body>
-
-    <header class="header">
+    <header class="main-header">
         <div class="container">
-            <a href="index.html" class="brand-logo">Veloxium AI</a>
-            <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <nav class="nav-menu" id="nav-menu">
+            <div class="brand-logo">
+                <a href="index.html">Veloxium AI</a>
+            </div>
+            <nav class="main-nav" id="nav-links">
                 <ul>
-                    <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="solutions.html">Solutions</a></li>
                     <li class="dropdown">
-                        <a href="solutions.html" class="dropdown-toggle">Solutions</a>
+                        <a href="#" class="dropdown-toggle">Services</a>
                         <ul class="dropdown-menu">
-                            <li><a href="intelligent-automation.html">Intelligent Automation</a></li>
-                            <li><a href="agentic-ai-solutions.html">Agentic AI Solutions</a></li>
-                            <li><a href="data-insights.html">Data & Insights</a></li>
-                            <li><a href="workflow-system-integration.html">Workflow & System Integration</a></li>
-                            <li><a href="responsible-ai-strategy.html">Responsible AI Strategy</a></li>
+                            <li><a href="servicesintelligent-automation.html">Intelligent Automation</a></li>
+                            <li><a href="servicesagentic-ai-solutions.html">Agentic AI Solutions</a></li>
+                            <li><a href="servicesdata-and-insights.html">Data & Insights</a></li>
+                            <li><a href="servicesworkflow-and-system-integration.html">Workflow & System Integration</a></li>
+                            <li><a href="servicesresponsible-ai-strategy.html">Responsible AI Strategy</a></li>
                         </ul>
                     </li>
                     <li><a href="case-studies.html">Case Studies</a></li>
                     <li><a href="why-veloxium.html">Why Veloxium</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                 </ul>
+                </ul>
             </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <div class="container hero-content fade-in-up">
-                <h1>Unlock Your Potential with AI</h1>
-                <p>Veloxium AI delivers custom automation and agentic solutions designed for the unique challenges of nonprofits and small to medium-sized businesses. We turn complex problems into growth opportunities.</p>
+        <!-- Hero Section -->
+        <section class="section section-white animated-section text-center" style="padding-top: 100px; padding-bottom: 100px;">
+            <div class="container">
+                <h1 style="font-size: 3rem;">Pragmatic AI for Purpose-Driven Organizations</h1>
+                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px;">We empower nonprofits and SMBs with tailored AI and automation solutions that amplify impact, streamline operations, and drive measurable growth. Solutions-first, platform-agnostic, results-obsessed.</p>
                 <a href="solutions.html" class="btn btn-primary">Explore Our Solutions</a>
-                <a href="contact.html" class="btn btn-secondary">Request a Consultation</a>
+                <a href="contact.html" class="btn btn-secondary">Schedule a Consultation</a>
             </div>
         </section>
 
-        <section id="value" class="bg-light">
+        <!-- Value Proposition Section -->
+        <section class="section section-light">
             <div class="container">
-                <div class="text-center section-title">
+                <div class="text-center" style="margin-bottom: 60px;">
                     <h2>Your Partner in Digital Transformation</h2>
-                    <p>We don't just build technology. We build partnerships that deliver lasting value.</p>
+                    <p>We believe AI should be an accessible tool for growth, not a complex barrier. Our approach is built on three core pillars:</p>
                 </div>
-                <div class="grid-3">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
                     <div class="card">
-                        <div class="icon">💡</div>
-                        <h3>Client-Focused Strategy</h3>
-                        <p>Our process begins with understanding your specific goals. We tailor every solution to fit your operations, ensuring technology serves your mission, not the other way around.</p>
+                        <h3>Solutions-First Focus</h3>
+                        <p>We start with your unique challenges and objectives. We don't sell technology; we build solutions that solve real-world problems, from automating grant reporting for nonprofits to optimizing supply chains for SMBs.</p>
                     </div>
                     <div class="card">
-                        <div class="icon">📈</div>
-                        <h3>Measurable Results</h3>
-                        <p>We are results-obsessed. From reducing administrative overhead to unlocking new data insights, our solutions are designed to deliver clear, quantifiable improvements to your bottom line.</p>
+                        <h3>Platform-Agnostic Expertise</h3>
+                        <p>The best tool is the one that fits your needs and budget. We're not tied to any single platform, ensuring you receive unbiased recommendations and a flexible, future-proof technology stack.</p>
                     </div>
                     <div class="card">
-                        <div class="icon">🤝</div>
-                        <h3>Expert Implementation</h3>
-                        <p>Our team of AI and automation experts handles everything from strategy and development to seamless integration and post-launch support, empowering your team to succeed.</p>
+                        <h3>Measurable Impact</h3>
+                        <p>Our success is measured by yours. We define clear KPIs from the start, whether it's increased fundraising efficiency, reduced operational costs, or enhanced constituent engagement, and we deliver on them.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="services-preview">
+        <!-- Services Preview -->
+        <section class="section section-white">
             <div class="container">
-                <div class="text-center section-title">
+                <div class="text-center" style="margin-bottom: 60px;">
                     <h2>Our Core Services</h2>
-                    <p>Drive efficiency and innovation with our specialized AI solutions.</p>
+                    <p>A holistic suite of services designed to integrate AI seamlessly into your organization.</p>
                 </div>
-                <div class="grid-3">
-                    <div class="card">
+                <div class="grid-2">
+                    <div style="padding-right: 20px;">
                         <h3>Intelligent Automation</h3>
-                        <p>Automate repetitive tasks like data entry, report generation, and customer inquiries to free up your team for more strategic work.</p>
-                        <a href="intelligent-automation.html">Learn More &rarr;</a>
+                        <p>Go beyond basic automation. We implement AI-powered workflows to handle complex tasks, freeing up your team to focus on mission-critical work.</p>
+                        <a href="servicesintelligent-automation.html">Learn More →</a>
+                        <h3 style="margin-top: 30px;">Agentic AI Solutions</h3>
+                        <p>Deploy autonomous AI agents to manage communications, perform research, and execute multi-step processes, scaling your operational capacity.</p>
+                        <a href="servicesagentic-ai-solutions.html">Learn More →</a>
                     </div>
-                    <div class="card">
-                        <h3>Agentic AI Solutions</h3>
-                        <p>Deploy autonomous AI agents that can manage complex workflows, interact with systems, and execute tasks on your behalf.</p>
-                        <a href="agentic-ai-solutions.html">Learn More &rarr;</a>
-                    </div>
-                    <div class="card">
+                    <div>
                         <h3>Data & Insights</h3>
-                        <p>Transform your raw data into actionable intelligence. We help you build dashboards and predictive models to guide decision-making.</p>
-                        <a href="data-insights.html">Learn More &rarr;</a>
+                        <p>Turn your data into your most valuable asset. We help you collect, analyze, and visualize data to uncover actionable insights for strategic decision-making.</p>
+                        <a href="servicesdata-and-insights.html">Learn More →</a>
+                        <h3 style="margin-top: 30px;">Responsible AI Strategy</h3>
+                        <p>Implement AI with confidence. We help you build ethical frameworks and governance models to ensure fairness, transparency, and accountability.</p>
+                        <a href="servicesresponsible-ai-strategy.html">Learn More →</a>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section" style="background-color: var(--primary);">
+            <div class="container text-center" style="color: #fff;">
+                <h2 style="color: #fff;">Ready to Amplify Your Impact?</h2>
+                <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px;">Let's discuss how a tailored AI strategy can help your organization achieve its goals. Schedule a complimentary, no-obligation consultation with our experts today.</p>
+                <a href="contact.html" class="btn" style="background-color: var(--accent); color: var(--text-primary);">Request a Free Consultation</a>
             </div>
         </section>
 
     </main>
 
-    <footer class="footer">
+    <footer class="main-footer">
         <div class="container">
-            <ul class="footer-nav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="case-studies.html">Case Studies</a></li>
-                <li><a href="why-veloxium.html">Why Veloxium</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <ul class="footer-socials">
-                <li><a href="#" aria-label="LinkedIn">LI</a></li>
-                <li><a href="#" aria-label="Twitter">TW</a></li>
-            </ul>
-            <p class="copyright">&copy; 2025 Veloxium AI. All Rights Reserved.</p>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Veloxium AI</h4>
+                    <p style="color: var(--text-secondary);">Pragmatic AI for Purpose-Driven Organizations.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="solutions.html">Solutions</a></li>
+                        <li><a href="why-veloxium.html">Why Veloxium</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="servicesintelligent-automation.html">Intelligent Automation</a></li>
+                        <li><a href="servicesagentic-ai-solutions.html">Agentic AI Solutions</a></li>
+                        <li><a href="servicesdata-and-insights.html">Data & Insights</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <div class="socials">
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Veloxium AI. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
-
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const hamburger = document.getElementById('hamburger-btn');
-            const navMenu = document.getElementById('nav-menu');
-            const dropdownToggle = document.querySelector('.dropdown-toggle');
-            const dropdown = document.querySelector('.dropdown');
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        const dropdownToggles = document.querySelectorAll('.main-nav .dropdown');
 
-            hamburger.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
 
-            if (window.innerWidth <= 992) {
-                dropdownToggle.addEventListener('click', (e) => {
+        dropdownToggles.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992) {
                     e.preventDefault();
                     dropdown.classList.toggle('open');
-                });
-            }
+                }
+            });
         });
     </script>
-
 </body>
 </html>
