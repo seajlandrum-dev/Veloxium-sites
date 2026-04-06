@@ -3,242 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veloxium AI | AI Automation for Nonprofits & SMBs</title>
-    <meta name="description" content="We help nonprofits and small businesses harness the power of AI to automate workflows, reduce costs, and amplify their impact.">
+    <title>Veloxium AI | AI & Automation for Business Growth</title>
+    <meta name="description" content="Veloxium AI delivers bespoke AI, automation, and agentic solutions to help nonprofits and small businesses drive efficiency and achieve measurable results.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap');
         :root {
-            --primary: #2E3192;
-            --secondary: #6658dd;
-            --accent: #98D8AA;
-            --background: #F9FAFB;
+            --primary: #007BFF;
+            --secondary: #6C757D;
+            --accent: #28A745;
+            --background: #F8F9FA;
             --surface: #FFFFFF;
-            --text-primary: #1E293B;
-            --text-secondary: #64748B;
-            --heading-font: 'Poppins', sans-serif;
-            --body-font: 'Inter', sans-serif;
+            --text_primary: #212529;
+            --text_secondary: #6C757D;
+            --heading-font: 'Roboto Slab', serif;
+            --body-font: 'Open Sans', sans-serif;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: var(--body-font);
-            background-color: var(--background);
-            color: var(--text-primary);
             font-size: 16px;
             line-height: 1.6;
+            background-color: var(--background);
+            color: var(--text_primary);
         }
-        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
         h1, h2, h3, h4 {
             font-family: var(--heading-font);
-            color: var(--primary);
-            font-weight: 600;
-            line-height: 1.2;
-            margin-bottom: 0.5em;
+            color: var(--text_primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
         }
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; }
-        p { margin-bottom: 1em; color: var(--text-secondary); }
-        a { color: var(--secondary); text-decoration: none; transition: color 0.3s ease; }
-        a:hover { color: var(--primary); }
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.25rem; }
+        h3 { font-size: 1.75rem; }
+        p { margin-bottom: 1rem; color: var(--text_secondary); }
+        a { color: var(--primary); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: #0056b3; }
         .btn {
             display: inline-block;
             padding: 12px 24px;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
             background-color: var(--primary);
-            color: #FFF;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            color: var(--surface);
         }
-        .btn:hover { background-color: var(--secondary); transform: translateY(-2px); }
+        .btn-primary:hover { background-color: #0056b3; }
         .btn-secondary {
-            background: none;
-            border: 1px solid var(--primary);
+            background-color: transparent;
             color: var(--primary);
+            border: 2px solid var(--primary);
         }
-        .btn-secondary:hover { background-color: var(--primary); color: #FFF; }
+        .btn-secondary:hover { background-color: var(--primary); color: var(--surface); }
 
-        /* Header */
+        /* Header & Navigation */
         .header {
             background-color: var(--surface);
-            padding: 1rem 0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 1rem 0;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            width: 100%;
         }
         .header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .logo { font-family: var(--heading-font); font-size: 1.5rem; color: var(--primary); font-weight: 700; }
-        .nav-menu { display: none; list-style: none; }
-        .nav-menu li { margin-left: 2rem; }
-        .nav-menu a { font-weight: 500; color: var(--text-primary); }
-        .nav-menu a.active { font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 4px; }
-        .hamburger { display: block; cursor: pointer; }
-        .hamburger div { width: 25px; height: 3px; background-color: var(--primary); margin: 5px 0; transition: 0.4s; }
-
-        /* Mobile Nav */
-        .mobile-nav {
-            display: block;
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            max-width:300px;
-            height: 100%;
-            background-color: var(--surface);
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            transition: left 0.3s ease-in-out;
-            z-index: 200;
-            padding-top: 60px;
+        .brand-logo {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text_primary);
         }
-        .mobile-nav.active { left: 0; }
-        .mobile-nav ul { list-style: none; padding: 2rem; }
-        .mobile-nav ul li { margin-bottom: 1.5rem; }
-        .mobile-nav ul a { font-size: 1.2rem; display: block; }
-        .mobile-nav ul a.active { font-weight: bold; color: var(--primary); }
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .nav-menu a {
+            font-weight: 600;
+            color: var(--text_primary);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        .nav-menu a.active, .nav-menu a:hover {
+            color: var(--primary);
+        }
+        .nav-menu a.active::after, .nav-menu a:not(.btn):hover::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none; border: none;
+        }
+        .hamburger span { display: block; width: 25px; height: 3px; background-color: var(--text_primary); transition: all 0.3s ease;}
+
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--surface);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            list-style: none;
+            padding: 0.5rem 0;
+            z-index: 1001;
+            min-width: 250px;
+            flex-direction: column;
+            gap: 0 !important;
+        }
+        .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu { display: block; }
+        .dropdown-menu li { width: 100%; }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            width: 100%;
+            white-space: nowrap;
+            color: var(--text_primary);
+        }
+        .dropdown-menu a::after { display: none; }
+        .dropdown-menu a:hover { background-color: var(--background); color: var(--primary); }
+        .dropdown-menu a.active { background-color: #e9ecef; } 
 
         /* Sections */
-        .section { padding: 80px 0; }
-        .section-hero { background-color: var(--surface); text-align: center; padding: 100px 0; }
-        .section-hero h1 { animation: fadeInUp 0.8s ease-out both; }
-        .section-hero p { animation: fadeInUp 0.8s ease-out 0.2s both; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.1rem; }
-        .section-hero .btn { animation: fadeInUp 0.8s ease-out 0.4s both; }
+        section { padding: 80px 0; }
+        .bg-light { background-color: var(--surface); }
         .text-center { text-align: center; }
-        .text-center h2 { margin-bottom: 1rem; }
-        .text-center .subtitle { max-width: 700px; margin: 0 auto 3rem auto; font-size: 1.1rem; }
+        .section-title { margin-bottom: 4rem; }
 
-        /* Grid */
-        .grid-3 { display: grid; gap: 2rem; }
-
-        /* Cards */
-        .card {
-            background-color: var(--surface);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-        .card h3 { color: var(--secondary); }
-        .card .icon { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; }
-        
-        /* Footer */
-        .footer {
-            background-color: var(--primary);
-            color: #FFF;
-            padding: 40px 0;
+        /* Hero Section */
+        .hero {
+            background-color: var(--background);
+            padding: 120px 0;
             text-align: center;
         }
-        .footer-nav { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
-        .footer-nav li { margin: 0 1rem; }
-        .footer-nav a { color: #FFF; opacity: 0.8; }
-        .footer-nav a:hover { opacity: 1; }
-        .footer .copyright { opacity: 0.6; font-size: 0.9rem; }
+        .hero-content h1 {
+            margin-bottom: 1rem;
+        }
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text_secondary);
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
 
-        /* Animations */
+        /* Services, Value Props */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .card {
+            background-color: var(--surface);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .card h3 { color: var(--primary); }
+        .card .icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
+
+        /* Footer */
+        .footer {
+            background-color: var(--text_primary);
+            color: var(--background);
+            padding: 50px 0 20px;
+        }
+        .footer a { color: var(--background); }
+        .footer a:hover { color: var(--primary); }
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .footer-nav { list-style: none; display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
+        .footer-socials { list-style: none; display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+        .footer-socials a { font-size: 1.5rem; }
+        .copyright { font-size: 0.9rem; color: var(--text_secondary); }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--surface);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-menu ul { flex-direction: column; width: 100%; gap: 0;}
+            .nav-menu li { width: 100%; text-align: center; }
+            .nav-menu a { display: block; padding: 1rem; width: 100%; }
+            .nav-menu a::after { display: none; }
+            .hamburger { display: flex; }
+            .dropdown {
+              position: static;
+            }
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                border-top: 1px solid var(--background);
+                min-width: 100%;
+                display: none; /* Hidden by default on mobile */
+                background-color: #fdfdfd; 
+            }
+            .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu { display: none; } /* Disable hover on mobile */
+            .dropdown-toggle::after { content: ' ▼'; font-size: 0.8em; }
+            .dropdown.open .dropdown-menu { display: block; } /* Show when toggled */
+            .dropdown-menu a { padding-left: 3rem; }
+
+        }
+         /* Animation */
         @keyframes fadeInUp {
-            from { opacity: 1; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { transform: translateY(20px); opacity: 1; }
+            to { transform: translateY(0); opacity: 1; }
         }
+        .fade-in-up { animation: fadeInUp 0.7s ease-out forwards; }
 
-        @media screen and (min-width: 768px) {
-            h1 { font-size: 3.5rem; }
-            .hamburger, .mobile-nav { display: none; }
-            .nav-menu { display: flex; }
-            .grid-3 { grid-template-columns: repeat(3, 1fr); }
-        }
     </style>
 </head>
 <body>
+
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">Veloxium AI</a>
-            <nav class="desktop-nav">
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="solutions.html">Solutions</a></li>
-                    <li><a href="services-intelligent-automation.html">Intelligent Automation</a></li>
-                    <li><a href="services-agentic-ai.html">Agentic AI Solutions</a></li>
-                    <li><a href="services-data-insights.html">Data & Insights</a></li>
+            <a href="index.html" class="brand-logo">Veloxium AI</a>
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                    <li class="dropdown">
+                        <a href="solutions.html" class="dropdown-toggle">Solutions</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="intelligent-automation.html">Intelligent Automation</a></li>
+                            <li><a href="agentic-ai-solutions.html">Agentic AI Solutions</a></li>
+                            <li><a href="data-insights.html">Data & Insights</a></li>
+                            <li><a href="workflow-system-integration.html">Workflow & System Integration</a></li>
+                            <li><a href="responsible-ai-strategy.html">Responsible AI Strategy</a></li>
+                        </ul>
+                    </li>
                     <li><a href="case-studies.html">Case Studies</a></li>
+                    <li><a href="why-veloxium.html">Why Veloxium</a></li>
+                    <li><a href="blog.html">Blog</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                </ul>
+                 </ul>
             </nav>
-            <div class="hamburger" id="hamburger-icon">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
         </div>
     </header>
 
-    <nav class="mobile-nav" id="mobile-nav">
-        <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="solutions.html">Solutions</a></li>
-            <li><a href="services-intelligent-automation.html">Intelligent Automation</a></li>
-            <li><a href="services-agentic-ai.html">Agentic AI Solutions</a></li>
-            <li><a href="services-data-insights.html">Data & Insights</a></li>
-            <li><a href="case-studies.html">Case Studies</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
     <main>
-        <section class="section-hero">
-            <div class="container">
-                <h1>Unlock Your Potential with AI Automation</h1>
-                <p>We help nonprofits and small-to-medium businesses harness artificial intelligence to automate workflows, reduce operational costs, and amplify their impact.</p>
-                <a href="contact.html" class="btn">Schedule a Free Consultation</a>
+        <section class="hero">
+            <div class="container hero-content fade-in-up">
+                <h1>Unlock Your Potential with AI</h1>
+                <p>Veloxium AI delivers custom automation and agentic solutions designed for the unique challenges of nonprofits and small to medium-sized businesses. We turn complex problems into growth opportunities.</p>
+                <a href="solutions.html" class="btn btn-primary">Explore Our Solutions</a>
+                <a href="contact.html" class="btn btn-secondary">Request a Consultation</a>
             </div>
         </section>
 
-        <section class="section">
-            <div class="container text-center">
-                <h2>Your Partner in Practical AI</h2>
-                <p class="subtitle">Veloxium AI bridges the gap between complex technology and real-world results. We focus on delivering affordable, high-impact AI solutions tailored for organizations that do important work.</p>
-                 <div class="grid-3">
+        <section id="value" class="bg-light">
+            <div class="container">
+                <div class="text-center section-title">
+                    <h2>Your Partner in Digital Transformation</h2>
+                    <p>We don't just build technology. We build partnerships that deliver lasting value.</p>
+                </div>
+                <div class="grid-3">
                     <div class="card">
-                        <div class="icon">&#x1F680;</div>
-                        <h3>Mission-Driven Focus</h3>
-                        <p>We understand the unique challenges of nonprofits and SMBs. Our solutions are designed to maximize your resources and help you focus on what truly matters.</p>
+                        <div class="icon">💡</div>
+                        <h3>Client-Focused Strategy</h3>
+                        <p>Our process begins with understanding your specific goals. We tailor every solution to fit your operations, ensuring technology serves your mission, not the other way around.</p>
                     </div>
                     <div class="card">
-                        <div class="icon">&#x1F4B8;</div>
-                        <h3>Practical, Affordable Solutions</h3>
-                        <p>No million-dollar projects. We implement proven, cost-effective automation and AI tools that deliver a clear and immediate return on investment.</p>
+                        <div class="icon">📈</div>
+                        <h3>Measurable Results</h3>
+                        <p>We are results-obsessed. From reducing administrative overhead to unlocking new data insights, our solutions are designed to deliver clear, quantifiable improvements to your bottom line.</p>
                     </div>
                     <div class="card">
-                        <div class="icon">&#x1F91D;</div>
-                        <h3>Expert Guidance & Support</h3>
-                        <p>From initial strategy to implementation and ongoing support, our team of experts is with you every step of the way, ensuring your success with AI.</p>
+                        <div class="icon">🤝</div>
+                        <h3>Expert Implementation</h3>
+                        <p>Our team of AI and automation experts handles everything from strategy and development to seamless integration and post-launch support, empowering your team to succeed.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section" style="background-color:#fff;">
-            <div class="container text-center">
-                <h2>Our Core Services</h2>
-                <p class="subtitle">Discover how our specialized AI services can transform your key operations, from automating daily tasks to uncovering strategic insights.</p>
+        <section id="services-preview">
+            <div class="container">
+                <div class="text-center section-title">
+                    <h2>Our Core Services</h2>
+                    <p>Drive efficiency and innovation with our specialized AI solutions.</p>
+                </div>
                 <div class="grid-3">
                     <div class="card">
                         <h3>Intelligent Automation</h3>
-                        <p>Streamline repetitive administrative tasks, from data entry to email management, freeing your team to focus on strategic, high-value work.</p>
-                        <a href="services-intelligent-automation.html" class="btn btn-secondary">Learn More</a>
+                        <p>Automate repetitive tasks like data entry, report generation, and customer inquiries to free up your team for more strategic work.</p>
+                        <a href="intelligent-automation.html">Learn More &rarr;</a>
                     </div>
                     <div class="card">
                         <h3>Agentic AI Solutions</h3>
-                        <p>Deploy autonomous AI agents to handle complex, multi-step processes like customer support, market research, or project management.</p>
-                        <a href="services-agentic-ai.html" class="btn btn-secondary">Learn More</a>
+                        <p>Deploy autonomous AI agents that can manage complex workflows, interact with systems, and execute tasks on your behalf.</p>
+                        <a href="agentic-ai-solutions.html">Learn More &rarr;</a>
                     </div>
                     <div class="card">
                         <h3>Data & Insights</h3>
-                        <p>Turn your raw data into a strategic asset. We help you visualize trends, measure impact, and make informed, data-driven decisions.</p>
-                        <a href="services-data-insights.html" class="btn btn-secondary">Learn More</a>
+                        <p>Transform your raw data into actionable intelligence. We help you build dashboards and predictive models to guide decision-making.</p>
+                        <a href="data-insights.html">Learn More &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -252,21 +361,37 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
                 <li><a href="case-studies.html">Case Studies</a></li>
+                <li><a href="why-veloxium.html">Why Veloxium</a></li>
+                <li><a href="blog.html">Blog</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <!-- Placeholder for social media icons -->
-            <div class="copyright">
-                &copy; 2024 Veloxium AI. All Rights Reserved.
-            </div>
+            <ul class="footer-socials">
+                <li><a href="#" aria-label="LinkedIn">LI</a></li>
+                <li><a href="#" aria-label="Twitter">TW</a></li>
+            </ul>
+            <p class="copyright">&copy; 2025 Veloxium AI. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        const hamburger = document.getElementById('hamburger-icon');
-        const mobileNav = document.getElementById('mobile-nav');
-        hamburger.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.getElementById('hamburger-btn');
+            const navMenu = document.getElementById('nav-menu');
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdown = document.querySelector('.dropdown');
+
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            if (window.innerWidth <= 992) {
+                dropdownToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    dropdown.classList.toggle('open');
+                });
+            }
         });
     </script>
+
 </body>
 </html>
