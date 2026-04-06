@@ -3,294 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veloxium AI | AI & Automation for Nonprofits and SMBs</title>
-    <meta name="description" content="Veloxium AI empowers nonprofits and SMBs with intelligent automation and custom AI solutions to boost efficiency, scale impact, and drive measurable outcomes.">
+    <title>Veloxium AI | AI Automation for Nonprofits & SMBs</title>
+    <meta name="description" content="We help nonprofits and small businesses harness the power of AI to automate workflows, reduce costs, and amplify their impact.">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap');
         :root {
-            --primary: #007BFF;
-            --secondary: #6C757D;
-            --accent: #FFC107;
-            --background: #F8F9FA;
+            --primary: #2E3192;
+            --secondary: #6658dd;
+            --accent: #98D8AA;
+            --background: #F9FAFB;
             --surface: #FFFFFF;
-            --text_primary: #212529;
-            --text_secondary: #6C757D;
-            --heading-font: 'Roboto Slab', serif;
-            --body-font: 'Roboto', sans-serif;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --heading-font: 'Poppins', sans-serif;
+            --body-font: 'Inter', sans-serif;
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            margin: 0;
             font-family: var(--body-font);
             background-color: var(--background);
-            color: var(--text_primary);
+            color: var(--text-primary);
             font-size: 16px;
             line-height: 1.6;
         }
-        h1, h2, h3, h4, h5, h6 {
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+        h1, h2, h3, h4 {
             font-family: var(--heading-font);
-            color: var(--text_primary);
-            margin-top: 0;
+            color: var(--primary);
+            font-weight: 600;
             line-height: 1.2;
+            margin-bottom: 0.5em;
         }
         h1 { font-size: 2.5rem; }
         h2 { font-size: 2rem; }
-        h3 { font-size: 1.5rem; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        .section { padding: 80px 0; }
-        .section-light { background-color: var(--surface); }
-        a { color: var(--primary); text-decoration: none; transition: color 0.3s ease; }
-        a:hover { color: #0056b3; }
+        p { margin-bottom: 1em; color: var(--text-secondary); }
+        a { color: var(--secondary); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--primary); }
         .btn {
             display: inline-block;
             padding: 12px 24px;
-            font-size: 1rem;
+            background-color: var(--primary);
+            color: #FFF;
+            border-radius: 6px;
+            text-decoration: none;
             font-weight: 500;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--surface);
-            border: 2px solid var(--primary);
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-            color: var(--surface);
-        }
+        .btn:hover { background-color: var(--secondary); transform: translateY(-2px); }
         .btn-secondary {
-            background-color: transparent;
+            background: none;
+            border: 1px solid var(--primary);
             color: var(--primary);
-            border: 2px solid var(--primary);
         }
-        .btn-secondary:hover {
-            background-color: var(--primary);
-            color: var(--surface);
-        }
+        .btn-secondary:hover { background-color: var(--primary); color: #FFF; }
+
         /* Header */
         .header {
             background-color: var(--surface);
-            padding: 15px 0;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            z-index: 100;
         }
         .header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .logo { font-family: var(--heading-font); font-size: 1.5rem; font-weight: 700; color: var(--text_primary); }
-        .logo span { color: var(--primary); }
-        .main-nav {
-            display: flex;
-            gap: 25px;
-        }
-        .main-nav a {
-            color: var(--text_primary);
-            font-weight: 500;
-            padding-bottom: 5px;
-        }
-        .main-nav a.active {
-            font-weight: 700;
-            border-bottom: 2px solid var(--accent);
-        }
-        .hamburger {
-            display: none;
-            font-size: 2rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary);
-            color: var(--surface);
-            padding: 100px 0;
-            text-align: center;
-        }
-        .hero h1 { color: var(--surface); margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; opacity: 0.9; }
-        /* Value Section */
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            text-align: center;
-        }
-        .value-card {
+        .logo { font-family: var(--heading-font); font-size: 1.5rem; color: var(--primary); font-weight: 700; }
+        .nav-menu { display: none; list-style: none; }
+        .nav-menu li { margin-left: 2rem; }
+        .nav-menu a { font-weight: 500; color: var(--text-primary); }
+        .nav-menu a.active { font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 4px; }
+        .hamburger { display: block; cursor: pointer; }
+        .hamburger div { width: 25px; height: 3px; background-color: var(--primary); margin: 5px 0; transition: 0.4s; }
+
+        /* Mobile Nav */
+        .mobile-nav {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width:300px;
+            height: 100%;
             background-color: var(--surface);
-            padding: 30px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            transition: left 0.3s ease-in-out;
+            z-index: 200;
+            padding-top: 60px;
+        }
+        .mobile-nav.active { left: 0; }
+        .mobile-nav ul { list-style: none; padding: 2rem; }
+        .mobile-nav ul li { margin-bottom: 1.5rem; }
+        .mobile-nav ul a { font-size: 1.2rem; display: block; }
+        .mobile-nav ul a.active { font-weight: bold; color: var(--primary); }
+
+        /* Sections */
+        .section { padding: 80px 0; }
+        .section-hero { background-color: var(--surface); text-align: center; padding: 100px 0; }
+        .section-hero h1 { animation: fadeInUp 0.8s ease-out both; }
+        .section-hero p { animation: fadeInUp 0.8s ease-out 0.2s both; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.1rem; }
+        .section-hero .btn { animation: fadeInUp 0.8s ease-out 0.4s both; }
+        .text-center { text-align: center; }
+        .text-center h2 { margin-bottom: 1rem; }
+        .text-center .subtitle { max-width: 700px; margin: 0 auto 3rem auto; font-size: 1.1rem; }
+
+        /* Grid */
+        .grid-3 { display: grid; gap: 2rem; }
+
+        /* Cards */
+        .card {
+            background-color: var(--surface);
+            padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .value-card h3 { color: var(--primary); margin-bottom: 15px; }
-        /* Services Preview */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-        .service-card {
-            background: var(--surface);
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 30px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .service-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-        /* CTA Section */
-        .cta {
-            background-color: var(--primary);
-            color: var(--surface);
-            text-align: center;
-        }
-        .cta h2 { color: var(--surface); margin-bottom: 25px; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .card h3 { color: var(--secondary); }
+        .card .icon { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; }
+        
         /* Footer */
         .footer {
-            background-color: var(--text_primary);
-            color: var(--background);
-            padding: 50px 0;
+            background-color: var(--primary);
+            color: #FFF;
+            padding: 40px 0;
             text-align: center;
         }
-        .footer-nav {
-            margin-bottom: 20px;
+        .footer-nav { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+        .footer-nav li { margin: 0 1rem; }
+        .footer-nav a { color: #FFF; opacity: 0.8; }
+        .footer-nav a:hover { opacity: 1; }
+        .footer .copyright { opacity: 0.6; font-size: 0.9rem; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 1; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .footer-nav a {
-            color: var(--background);
-            margin: 0 15px;
-        }
-        .footer-nav a:hover { text-decoration: underline; }
-        .social-icons { margin-bottom: 20px; }
-        .social-icons a { color: var(--background); margin: 0 10px; font-size: 1.2rem; }
-        .copyright { font-size: 0.9rem; }
-        /* Responsive */
-        @media (max-width: 992px) {
-            .main-nav { display: none; }
-            .hamburger { display: block; }
-            .mobile-nav-active .main-nav {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: var(--surface);
-                padding: 20px 0;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                text-align: center;
-            }
-             .mobile-nav-active .main-nav a { padding: 15px 0; width: 100%; }
-            .value-grid, .services-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
-            .section { padding: 60px 0; }
+
+        @media screen and (min-width: 768px) {
+            h1 { font-size: 3.5rem; }
+            .hamburger, .mobile-nav { display: none; }
+            .nav-menu { display: flex; }
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
 <body>
-
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">Veloxium<span>.AI</span></a>
-            <nav class="main-nav">
-                <a href="index.html" class="active">Home</a>
-                <a href="solutions.html">Solutions</a>
-                <a href="services-intelligent-automation.html">Intelligent Automation</a>
-                <a href="services-agentic-ai-solutions.html">Agentic AI Solutions</a>
-                <a href="case-studies.html">Case Studies</a>
-                <a href="why-veloxium.html">Why Veloxium</a>
-                <a href="contact.html">Contact</a>
+            <a href="index.html" class="logo">Veloxium AI</a>
+            <nav class="desktop-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="solutions.html">Solutions</a></li>
+                    <li><a href="services-intelligent-automation.html">Intelligent Automation</a></li>
+                    <li><a href="services-agentic-ai.html">Agentic AI Solutions</a></li>
+                    <li><a href="services-data-insights.html">Data & Insights</a></li>
+                    <li><a href="case-studies.html">Case Studies</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </nav>
-            <button class="hamburger" id="hamburger-btn" aria-label="Menu">&#9776;</button>
+            <div class="hamburger" id="hamburger-icon">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </header>
 
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="solutions.html">Solutions</a></li>
+            <li><a href="services-intelligent-automation.html">Intelligent Automation</a></li>
+            <li><a href="services-agentic-ai.html">Agentic AI Solutions</a></li>
+            <li><a href="services-data-insights.html">Data & Insights</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
     <main>
-        <section class="hero">
+        <section class="section-hero">
             <div class="container">
-                <h1>AI-Powered Automation for Impactful Organizations</h1>
-                <p>Veloxium AI helps nonprofits and SMBs streamline operations, enhance services, and achieve their mission with intelligent, platform-agnostic solutions that deliver measurable business outcomes.</p>
-                <a href="solutions.html" class="btn btn-secondary">Discover Our Solutions</a>
+                <h1>Unlock Your Potential with AI Automation</h1>
+                <p>We help nonprofits and small-to-medium businesses harness artificial intelligence to automate workflows, reduce operational costs, and amplify their impact.</p>
+                <a href="contact.html" class="btn">Schedule a Free Consultation</a>
             </div>
         </section>
 
-        <section class="section" id="value">
-            <div class="container">
-                <h2 style="text-align: center; margin-bottom: 50px;">Unlock Your Organization's Potential</h2>
-                <div class="value-grid">
-                    <div class="value-card">
-                        <h3>Boost Efficiency</h3>
-                        <p>Automate repetitive, manual tasks to free up your team's valuable time. We help you reduce administrative overhead so you can focus on strategic, mission-critical work.</p>
+        <section class="section">
+            <div class="container text-center">
+                <h2>Your Partner in Practical AI</h2>
+                <p class="subtitle">Veloxium AI bridges the gap between complex technology and real-world results. We focus on delivering affordable, high-impact AI solutions tailored for organizations that do important work.</p>
+                 <div class="grid-3">
+                    <div class="card">
+                        <div class="icon">&#x1F680;</div>
+                        <h3>Mission-Driven Focus</h3>
+                        <p>We understand the unique challenges of nonprofits and SMBs. Our solutions are designed to maximize your resources and help you focus on what truly matters.</p>
                     </div>
-                    <div class="value-card">
-                        <h3>Scale Your Impact</h3>
-                        <p>Handle more with less. Our AI solutions enable your organization to scale service delivery, outreach, and operations without a proportional increase in costs or personnel.</p>
+                    <div class="card">
+                        <div class="icon">&#x1F4B8;</div>
+                        <h3>Practical, Affordable Solutions</h3>
+                        <p>No million-dollar projects. We implement proven, cost-effective automation and AI tools that deliver a clear and immediate return on investment.</p>
                     </div>
-                    <div class="value-card">
-                        <h3>Make Data-Driven Decisions</h3>
-                        <p>Turn your data into actionable insights. We implement systems that provide clear, real-time analytics, empowering you to make smarter decisions and prove your impact.</p>
+                    <div class="card">
+                        <div class="icon">&#x1F91D;</div>
+                        <h3>Expert Guidance & Support</h3>
+                        <p>From initial strategy to implementation and ongoing support, our team of experts is with you every step of the way, ensuring your success with AI.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section section-light" id="services_preview">
-            <div class="container">
-                <h2 style="text-align: center; margin-bottom: 50px;">Core Service Offerings</h2>
-                <div class="services-grid">
-                    <div class="service-card">
+        <section class="section" style="background-color:#fff;">
+            <div class="container text-center">
+                <h2>Our Core Services</h2>
+                <p class="subtitle">Discover how our specialized AI services can transform your key operations, from automating daily tasks to uncovering strategic insights.</p>
+                <div class="grid-3">
+                    <div class="card">
                         <h3>Intelligent Automation</h3>
-                        <p>We design and implement robust automation for your core processes—from financial reporting and data entry to donor communications. By connecting your existing tools, we create seamless, efficient workflows that save time and eliminate errors.</p>
-                        <a href="services-intelligent-automation.html" class="btn-secondary" style="margin-top: 20px;">Learn More</a>
+                        <p>Streamline repetitive administrative tasks, from data entry to email management, freeing your team to focus on strategic, high-value work.</p>
+                        <a href="services-intelligent-automation.html" class="btn btn-secondary">Learn More</a>
                     </div>
-                    <div class="service-card">
+                    <div class="card">
                         <h3>Agentic AI Solutions</h3>
-                        <p>Deploy a digital workforce of AI agents to perform complex tasks. Our agents can conduct research, analyze data, manage personalized communications, and operate 24/7, providing your organization with unprecedented capabilities and insights.</p>
-                        <a href="services-agentic-ai-solutions.html" class="btn-secondary" style="margin-top: 20px;">Learn More</a>
+                        <p>Deploy autonomous AI agents to handle complex, multi-step processes like customer support, market research, or project management.</p>
+                        <a href="services-agentic-ai.html" class="btn btn-secondary">Learn More</a>
+                    </div>
+                    <div class="card">
+                        <h3>Data & Insights</h3>
+                        <p>Turn your raw data into a strategic asset. We help you visualize trends, measure impact, and make informed, data-driven decisions.</p>
+                        <a href="services-data-insights.html" class="btn btn-secondary">Learn More</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section cta" id="cta">
-            <div class="container">
-                <h2>Ready to Transform Your Operations?</h2>
-                <p style="margin-bottom: 30px;">Let's discuss how Veloxium AI can tailor a solution to meet your specific challenges and goals.</p>
-                <a href="contact.html" class="btn btn-secondary">Schedule a Free Consultation</a>
-            </div>
-        </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-nav">
-                <a href="index.html">Home</a>
-                <a href="solutions.html">Solutions</a>
-                <a href="case-studies.html">Case Studies</a>
-                <a href="why-veloxium.html">Why Veloxium</a>
-                <a href="contact.html">Contact</a>
+            <ul class="footer-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="case-studies.html">Case Studies</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <!-- Placeholder for social media icons -->
+            <div class="copyright">
+                &copy; 2024 Veloxium AI. All Rights Reserved.
             </div>
-            <div class="social-icons">
-                <a href="#" aria-label="LinkedIn">in</a>
-                <a href="#" aria-label="Twitter">tw</a>
-            </div>
-            <p class="copyright">&copy; 2024 Veloxium AI. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const header = document.querySelector('.header');
-        hamburgerBtn.addEventListener('click', () => {
-            header.classList.toggle('mobile-nav-active');
+        const hamburger = document.getElementById('hamburger-icon');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
         });
     </script>
-
 </body>
 </html>
