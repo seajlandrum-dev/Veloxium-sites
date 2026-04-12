@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Clover Custom Construction</title>
+    <meta name="description" content="Clover Custom Construction builds high-end custom homes, undertakes luxury remodels, and completes commercial build-outs with a focus on quality, trust, and craftsmanship.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap');
+        :root {
+            --primary: #2E7D32;
+            --secondary: #A5D6A7;
+            --accent: #FFB300;
+            --background: #F5F5F5;
+            --surface: #FFFFFF;
+            --text_primary: #212121;
+            --text_secondary: #757575;
+            --header-height: 80px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background-color: var(--background);
+            color: var(--text_primary);
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4, h5, h6 { 
+            font-family: 'Montserrat', sans-serif; 
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        h1 { font-size: 2.8rem; } h2 { font-size: 2.2rem; } h3 { font-size: 1.5rem; }
+        p { margin-bottom: 1rem; color: var(--text_secondary); }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .section { padding: 4rem 0; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--primary);
+            color: var(--surface);
+            border: 2px solid var(--primary);
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn:hover { background-color: transparent; color: var(--primary); }
+        .btn-accent { background-color: var(--accent); border-color: var(--accent); color: var(--text_primary); }
+        .btn-accent:hover { background-color: transparent; color: var(--accent); }
+
+        /* Header & Navigation */
+        .header {
+            background-color: var(--surface);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: var(--header-height);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        .brand-logo { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--primary); text-decoration: none; }
+        .nav-links { display: none; }
+        .nav-links a {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            padding: 1rem;
+            color: var(--text_primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+        .hamburger-menu {
+            display: block;
+            cursor: pointer;
+        }
+        .hamburger-menu .bar { width: 25px; height: 3px; background-color: var(--text_primary); margin: 5px 0; transition: 0.4s; }
+        #nav-toggle { display: none; }
+        #nav-toggle:checked ~ .nav-links-mobile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background-color: var(--surface);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        #nav-toggle:checked + .hamburger-menu .bar1 { transform: rotate(-45deg) translate(-5px, 6px); }
+        #nav-toggle:checked + .hamburger-menu .bar2 { opacity: 0; }
+        #nav-toggle:checked + .hamburger-menu .bar3 { transform: rotate(45deg) translate(-5px, -6px); }
+        .nav-links-mobile { display: none; }
+        .nav-links-mobile a { font-family: 'Roboto', sans-serif; padding: 1rem; color: var(--text_primary); text-decoration: none; width: 100%; text-align: center; }
+        .nav-links-mobile a.active { background-color: var(--secondary); }
+
+        @media (min-width: 992px) {
+            .hamburger-menu, .nav-links-mobile { display: none; }
+            .nav-links { display: flex; }
+            h1 { font-size: 3.5rem; } h2 { font-size: 2.8rem; }
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--secondary);
+            padding: 6rem 0;
+            text-align: center;
+        }
+        .hero-content { animation: fadeIn 1s ease-in-out; }
+        .hero h1 { color: var(--primary); }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 1rem auto 2rem; }
+
+        /* Grid Layouts */
+        .grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        @media (min-width: 768px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 992px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 768px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+
+        /* Cards */
+        .card {
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        .card-img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 1.5rem; }
+        .card-title { margin-bottom: 0.5rem; }
+
+        /* Why Choose Us Section */
+        .feature-item { text-align: center; }
+        .feature-item .icon { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; }
+
+        /* Testimonials Section */
+        .testimonial-card { padding: 2rem; text-align: center; }
+        .testimonial-text { font-style: italic; color: var(--text_secondary); margin-bottom: 1rem; }
+        .testimonial-author { font-weight: 600; color: var(--text_primary); }
+
+        /* Process Section */
+        .process-step { text-align: center; position: relative; }
+        .process-step h3 { font-size: 1.2rem; font-weight: 600; }
+        .step-number { font-size: 3rem; font-weight: 700; color: var(--secondary); position: absolute; top: -1.5rem; left: 50%; transform: translateX(-50%); z-index: -1; }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--text_primary);
+            color: var(--background);
+            padding: 3rem 0 1rem 0;
+            text-align: center;
+        }
+        .footer a { color: var(--surface); }
+        .footer-nav { margin-bottom: 1.5rem; }
+        .footer-nav a { margin: 0 1rem; }
+        .social-links { margin-bottom: 1.5rem; }
+        .social-links a { margin: 0 0.75rem; font-size: 1.5rem; }
+        .copyright { font-size: 0.9rem; color: var(--text_secondary); }
+        
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="brand-logo">Clover Custom Construction</a>
+            <input type="checkbox" id="nav-toggle">
+            <label for="nav-toggle" class="hamburger-menu">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </label>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="custom-homes.html">Custom Homes</a>
+                <a href="remodels.html">Remodels</a>
+                <a href="commercial-projects.html">Commercial Projects</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <nav class="nav-links-mobile">
+                <a href="index.html" class="active">Home</a>
+                <a href="custom-homes.html">Custom Homes</a>
+                <a href="remodels.html">Remodels</a>
+                <a href="commercial-projects.html">Commercial Projects</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Building Your Vision, Brick by Brick.</h1>
+                <p>Clover Custom Construction brings unparalleled craftsmanship and client-focused service to every project, from luxury homes to state-of-the-art commercial spaces.</p>
+                <a href="custom-homes.html" class="btn btn-accent">Explore Our Work</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container grid grid-2" style="align-items: center;">
+                <div>
+                    <h2 class="section-title" style="text-align: left;">Built on a Foundation of Trust</h2>
+                    <p>Founded by lead contractor Michael Sterling, Clover Custom Construction was born from a desire to deliver a higher standard of building. We believe that construction is more than just materials and labor; it's about building lasting relationships with our clients through transparency, communication, and an unwavering commitment to quality.</p>
+                    <p>Our team of seasoned architects, designers, and craftsmen works collaboratively to turn your unique vision into a tangible, beautiful, and functional reality.</p>
+                    <a href="contact.html" class="btn">Start Your Project</a>
+                </div>
+                <div>
+                    <img src="https://images.pexels.com/photos/1109543/pexels-photo-1109543.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Architects reviewing blueprints at a construction site." style="width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section" style="background-color: var(--surface);">
+            <div class="container">
+                <h2 class="section-title">Our Expertise</h2>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/209274/pexels-photo-209274.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Modern luxury custom home exterior" class="card-img">
+                        <div class="card-body">
+                            <h3 class="card-title">Custom Homes</h3>
+                            <p>We design and build bespoke homes that perfectly reflect your lifestyle and aesthetic, with meticulous attention to detail from foundation to finish.</p>
+                            <a href="custom-homes.html" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/1668860/pexels-photo-1668860.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Newly remodeled modern kitchen" class="card-img">
+                        <div class="card-body">
+                            <h3 class="card-title">Luxury Remodels</h3>
+                            <p>Transform your existing space with our high-end remodeling services, including kitchens, bathrooms, additions, and whole-home renovations.</p>
+                            <a href="remodels.html" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/262333/pexels-photo-262333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Modern commercial office interior" class="card-img">
+                        <div class="card-body">
+                            <h3 class="card-title">Commercial Build-Outs</h3>
+                            <p>From retail spaces to corporate offices, we deliver functional and inspiring commercial environments designed to elevate your business.</p>
+                            <a href="commercial-projects.html" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="why-us" class="section">
+            <div class="container">
+                <h2 class="section-title">The Clover Difference</h2>
+                <div class="grid grid-4">
+                    <div class="feature-item">
+                        <h3 class="card-title">Unwavering Quality</h3>
+                        <p>We use only the finest materials and partner with master craftsmen to ensure every detail of your project is executed to the highest standard.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3 class="card-title">Transparent Process</h3>
+                        <p>Our clients are partners. You'll receive clear communication, detailed timelines, and transparent budgeting throughout the entire process.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3 class="card-title">Client-Centric</h3>
+                        <p>Your satisfaction is our primary metric for success. We listen intently to your needs and goals to deliver a space that is uniquely yours.</p>
+                    </div>
+                     <div class="feature-item">
+                        <h3 class="card-title">Proven Reliability</h3>
+                        <p>With a track record of completing projects on time and on budget, we provide the peace of mind you deserve during a major investment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section" style="background-color: var(--surface);">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="grid grid-3">
+                     <div class="card">
+                        <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Exterior of a large suburban home" class="card-img">
+                        <div class="card-body">
+                            <h3 class="card-title">The Willow Creek Estate</h3>
+                            <p>A sprawling custom-built family home featuring timeless architecture and modern amenities.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Interior of a modern, renovated kitchen" class="card-img">
+                        <div class="card-body">
+                            <h3 class="card-title">Downtown Loft Renovation</h3>
+                            <p>A complete overhaul of a historic loft, blending industrial character with luxury finishes.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/439227/pexels-photo-439227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Modern open-plan office space" class="card-img">
+                        <div class="card-body">
+                            <h3 class="card-title">Innovate Tech HQ</h3>
+                            <p>A 10,000 sq. ft. office build-out designed for collaboration and future growth.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section">
+            <div class="container">
+                <h2 class="section-title">What Our Clients Say</h2>
+                <div class="grid grid-2">
+                    <div class="card testimonial-card">
+                        <p class="testimonial-text">"Clover Custom Construction turned our dream home into a reality. Their attention to detail and ability to listen to our needs was incredible. We couldn't be happier with the final result."</p>
+                        <p class="testimonial-author">- The Thompson Family</p>
+                    </div>
+                    <div class="card testimonial-card">
+                        <p class="testimonial-text">"As a business owner, a construction project can be daunting. The team at Clover made it seamless. They delivered our new retail space on time, on budget, and the quality is outstanding."</p>
+                        <p class="testimonial-author">- Sarah Chen, Owner of The Gilded Hanger</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="section" style="background-color: var(--surface);">
+            <div class="container">
+                <h2 class="section-title">Our Streamlined Process</h2>
+                <div class="grid grid-4">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <h3>Consult & Envision</h3>
+                        <p>We begin with an in-depth consultation to understand your vision, needs, and budget.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <h3>Design & Plan</h3>
+                        <p>Our team develops detailed architectural plans, material selections, and a transparent project timeline.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <h3>Build & Manage</h3>
+                        <p>Our expert craftsmen bring the design to life while your dedicated project manager provides regular updates.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">04</div>
+                        <h3>Deliver & Support</h3>
+                        <p>We conduct a final walkthrough to ensure perfection and hand over the keys to your new space.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background-color: var(--secondary); text-align: center;">
+            <div class="container">
+                <h2>Ready to Build Your Dream?</h2>
+                <p>Let's start the conversation. Contact us today for a no-obligation consultation.</p>
+                <a href="contact.html" class="btn">Get In Touch</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="custom-homes.html">Custom Homes</a>
+                <a href="remodels.html">Remodels</a>
+                <a href="commercial-projects.html">Commercial Projects</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">FB</a>
+                <a href="#" aria-label="Instagram">IG</a>
+                <a href="#" aria-label="LinkedIn">IN</a>
+            </div>
+            <p class="copyright">&copy; 2025 Clover Custom Construction. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
