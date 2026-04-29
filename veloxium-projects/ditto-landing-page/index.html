@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ditto - AI Fashion Discovery</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #5E60CE;
+            --secondary: #343A40;
+            --accent: #F72585;
+            --background: #F8F9FA;
+            --surface: #FFFFFF;
+            --text-primary: #212529;
+            --text-secondary: #6C757D;
+            --border-color: #dee2e6;
+        }
+
+        /* --- Base & Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background-color: var(--background);
+            color: var(--text-primary);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.75rem; }
+
+        section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from {
+                opacity: 1;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-on-load {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--surface);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            width: 100%;
+        }
+
+        .brand-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--surface);
+        }
+
+        .btn-primary:hover {
+            background-color: #4a4cc7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(94, 96, 206, 0.3);
+            color: var(--surface);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--surface);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #212529;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(52, 58, 64, 0.3);
+            color: var(--surface);
+        }
+
+
+        /* --- Hero Section --- */
+        #hero {
+            display: flex;
+            min-height: 90vh;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-content h1 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content .highlight {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* --- Generic Section Styles --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* --- How It Works Section --- */
+        #how-it-works .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            text-align: center;
+        }
+
+        .step-card {
+            background: var(--surface);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: var(--surface);
+            font-size: 1.8rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .step-card p {
+            font-size: 1rem;
+        }
+
+
+        /* --- Other Sections (Grid layouts, Cards etc) --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        #for-creators {
+            background-color: var(--surface);
+        }
+        
+        #category-creation .category-image {
+            background-color: #e9ecef;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            background-image: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--surface);
+        }
+        #category-creation .category-image h3 {
+            color: var(--surface);
+            font-size: 2.5rem;
+            max-width: 80%;
+            text-align: center;
+        }
+        
+        #category-creation .grid-container {
+            align-items: center;
+        }
+
+        /* --- Social Proof --- */
+        #social-proof .testimonial {
+            background-color: var(--surface);
+            padding: 2rem;
+            border-radius: 8px;
+            position: relative;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .testimonial blockquote {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .testimonial footer {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .testimonial footer span {
+            display: block;
+            font-weight: 400;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- Waitlist/Join Section --- */
+        #join {
+            background-color: #e9ecef;
+        }
+        
+        .join-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background-color: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        
+        .join-info {
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(94,96,206, 0.95), rgba(247,37,133, 0.95)), url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=60') center/cover no-repeat;
+            color: var(--surface);
+        }
+        
+        .join-info h2, .join-info p, .join-info h3 {
+            color: var(--surface);
+        }
+        
+        .waitlist-counter {
+            margin-top: 2rem;
+        }
+        
+        #waitlist-count {
+            display: block;
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+        
+        .join-forms {
+            padding: 3rem;
+        }
+        
+        .form-toggle {
+            display: flex;
+            margin-bottom: 1.5rem;
+            background-color: var(--background);
+            border-radius: 50px;
+            padding: 5px;
+        }
+        
+        .form-toggle button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .form-toggle button.active {
+            background: var(--primary);
+            color: var(--surface);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .form-content {
+            display: none;
+        }
+
+        .form-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(94, 96, 206, 0.2);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--secondary);
+            color: var(--background);
+            padding: 60px 5%;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-nav {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .footer-nav a {
+            color: #adb5bd;
+            font-weight: 500;
+        }
+        
+        .footer-nav a:hover {
+            color: var(--surface);
+        }
+        
+        .social-links {
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            color: var(--background);
+            font-size: 1.5rem;
+            margin: 0 0.75rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+            section { padding: 60px 5%; }
+            #category-creation .grid-container { grid-template-columns: 1fr; }
+            #category-creation .category-image { margin-bottom: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--surface);
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-out;
+            }
+            .nav-links.active {
+                max-height: 500px; /* Adjust as needed */
+            }
+            .nav-links li {
+                width: 100%;
+            }
+            .nav-links a {
+                display: block;
+                padding: 1rem 5%;
+                width: 100%;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            #hero { min-height: 70vh; }
+            .hero-actions { flex-direction: column; }
+            .join-container { grid-template-columns: 1fr; }
+            .join-info { order: 2; }
+            .join-forms { order: 1; }
+        }
+        
+        @media (max-width: 480px) {
+            body { font-size: 15px; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .btn { padding: 10px 20px; font-size: 0.9rem; }
+            .form-toggle { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="#hero" class="brand-logo">ditto</a>
+        <nav>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#what-is-ditto">What is Ditto?</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#for-creators">For Creators</a></li>
+                <li><a href="#join">Apply</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger" id="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container hero-content animate-on-load">
+                <h1>Your Style, <span class="highlight">Discovered.</span></h1>
+                <p>Ditto is the AI-powered fashion app that connects you to a universe of unique styles and the creators behind them. Find your next look, instantly.</p>
+                <div class="hero-actions">
+                    <a href="#join" class="btn btn-primary">Join Waitlist</a>
+                    <a href="#join" class="btn btn-secondary">Apply as a Creator</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- What is Ditto Section -->
+        <section id="what-is-ditto">
+            <div class="container section-header">
+                <h2>A New Way to See Fashion</h2>
+                <p>Tired of endless scrolling and generic recommendations? Ditto’s powerful AI understands the nuances of style, helping you discover unique pieces and inspiring creators that truly match your aesthetic. It's not just search; it's discovery.</p>
+            </div>
+        </section>
+
+        <!-- How it Works Section -->
+        <section id="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Simple, Smart, Seamless</h2>
+                    <p>Finding your next favorite outfit has never been easier. Our visual AI does the heavy lifting, so you can focus on expressing yourself.</p>
+                </div>
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Capture a Vibe</h3>
+                        <p>Snap a photo, upload a screenshot, or share a link of any style you love. A piece of clothing, a full outfit, or even a color palette.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>AI Analysis</h3>
+                        <p>Ditto’s visual AI instantly analyzes the image, understanding its cut, fabric, pattern, and overall aesthetic to find conceptually similar items.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Discover & Shop</h3>
+                        <p>Explore a personalized feed of shoppable items, creator-styled looks, and emerging brands that match the vibe you're looking for.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features Section -->
+        <section id="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Features Built For You</h2>
+                    <p>Ditto is packed with innovative tools to transform your fashion discovery experience.</p>
+                </div>
+                <div class="grid-container">
+                    <div class="card">
+                        <div class="card-icon">📸</div>
+                        <h3>Visual Search</h3>
+                        <p>"See it, snap it, find it." Our core technology lets you search for fashion using any image, bridging the gap between inspiration and reality.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🧬</div>
+                        <h3>Style DNA</h3>
+                        <p>As you use Ditto, our AI learns your unique taste, curating a personalized "For You" feed that gets smarter over time.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🛍️</div>
+                        <h3>Shop The Look</h3>
+                        <p>Discover complete outfits styled by our community of creators. Tap to shop individual items or the entire look from multiple retailers.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🌍</div>
+                        <h3>Ethical Finder</h3>
+                        <p>Filter your searches to prioritize sustainable materials, local artisans, and brands committed to ethical production.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Creator Economy Section -->
+        <section id="for-creators">
+            <div class="container">
+                <div class="section-header">
+                    <h2>The New Creator Economy</h2>
+                    <p>Stop fighting the algorithm. On Ditto, your unique style *is* the algorithm. We provide fashion creators with tools to build a brand, connect with an engaged audience, and monetize their passion.</p>
+                </div>
+                 <div class="grid-container">
+                    <div class="card">
+                        <div class="card-icon">💸</div>
+                        <h3>Direct Monetization</h3>
+                        <p>Earn commission when users shop your looks. Our platform integrates with affiliate networks to make monetization seamless.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📊</div>
+                        <h3>Audience Insights</h3>
+                        <p>Access an analytics dashboard to see which of your styles are trending, what items are being saved, and what your audience loves.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🤝</div>
+                        <h3>Brand Partnerships</h3>
+                        <p>Get discovered by brands looking for authentic creators. Your Ditto portfolio serves as a living lookbook for potential collaborations.</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#join" class="btn btn-primary">Become a Ditto Creator</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Creation Section -->
+        <section id="category-creation">
+            <div class="container grid-container">
+                <div class="category-text">
+                    <h2>Beyond 'T-Shirt', Think 'Cyberpunk Utility'</h2>
+                    <p>Traditional fashion categories are boring. Our AI doesn't just categorize; it helps create new aesthetic language.</p>
+                    <p>Discover niche styles like 'Minimalist Academia', 'Gorpcore Tech', or 'Coastal Grandma Chic' curated by our community and refined by AI. This is fashion discovery that understands culture and context.</p>
+                </div>
+                <div class="category-image">
+                    <h3>Gorpcore<br/>+<br/>Minimalism<br/>= ?</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section id="social-proof">
+            <div class="container">
+                 <div class="section-header">
+                    <h2>Loved by Tastemakers</h2>
+                    <p>Don't just take our word for it. Here's what our early adopters are saying.</p>
+                </div>
+                <div class="grid-container">
+                    <div class="testimonial">
+                        <blockquote>"Ditto has completely changed how I find fashion inspiration. It's like having a personal stylist who just *gets* me. I've discovered so many small, independent brands I would've never found otherwise."</blockquote>
+                        <footer>
+                            Alex Doe
+                            <span>Fashion Enthusiast</span>
+                        </footer>
+                    </div>
+                     <div class="testimonial">
+                        <blockquote>"As a creator, Ditto is a game-changer. Finally, a platform that values my creative input and helps me monetize it without feeling like I'm selling out. The analytics are incredibly insightful for my content."</blockquote>
+                        <footer>
+                            Jane Smith
+                            <span>Style Creator</span>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Join Waitlist / Creator Application Section -->
+        <section id="join">
+            <div class="container">
+                <div class="join-container">
+                    <div class="join-info">
+                        <h2>Join the Revolution</h2>
+                        <p>Be the first to experience the future of fashion discovery. Whether you're a style enthusiast or a trendsetting creator, there's a place for you at Ditto.</p>
+                        
+                        <div class="waitlist-counter">
+                            <h3>Current Waitlist</h3>
+                            <span id="waitlist-count">15,789</span>
+                            <p>Fashion forward users and counting!</p>
+                        </div>
+                    </div>
+                    <div class="join-forms">
+                        <div class="form-toggle">
+                            <button id="show-user-form" class="active">Join Waitlist</button>
+                            <button id="show-creator-form">Apply as Creator</button>
+                        </div>
+
+                        <!-- User Waitlist Form -->
+                        <div id="user-form" class="form-content active">
+                            <h3>Get Early Access</h3>
+                            <p>Sign up now to be first in line when Ditto launches.</p>
+                            <form id="waitlist-form">
+                                <div class="form-group">
+                                    <label for="user-email">Email Address</label>
+                                    <input type="email" id="user-email" name="email" placeholder="you@example.com" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="width:100%;">Join Now</button>
+                            </form>
+                        </div>
+
+                        <!-- Creator Application Form -->
+                        <div id="creator-form" class="form-content">
+                            <h3>Apply to be a Creator</h3>
+                            <p>Ready to monetize your style? Fill out the application below.</p>
+                            <form id="creator-apply-form">
+                                <div class="form-group">
+                                    <label for="creator-name">Full Name</label>
+                                    <input type="text" id="creator-name" name="name" placeholder="Jane Smith" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="creator-email">Email Address</label>
+                                    <input type="email" id="creator-email" name="email" placeholder="you@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="creator-social">Social Media Handle (Instagram/TikTok)</label>
+                                    <input type="text" id="creator-social" name="social" placeholder="@yourstyle" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="creator-why">Why do you want to be a Ditto creator?</label>
+                                    <textarea id="creator-why" name="why" placeholder="Tell us about your style and audience..."></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="width:100%;">Submit Application</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-nav">
+                <a href="#what-is-ditto">What is Ditto?</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#features">Features</a>
+                <a href="#for-creators">For Creators</a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">IG</a>
+                <a href="https://www.tiktok.com" target="_blank" aria-label="TikTok">TT</a>
+                <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">X</a>
+            </div>
+            <p class="copyright">&copy; 2025 Ditto. All rights reserved. This is a conceptual design, not a real company.</p>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- Mobile Menu Toggle ---
+    const hamburger = document.getElementById('hamburger-menu');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+
+    // --- Waitlist Counter ---
+    const waitlistCountEl = document.getElementById('waitlist-count');
+    if (waitlistCountEl) {
+        let count = 15789;
+        const initialCount = count;
+        
+        const updateCount = () => {
+             // Increment by a random small number to look more natural
+            const increment = Math.floor(Math.random() * 3) + 1;
+            count += increment;
+            waitlistCountEl.textContent = count.toLocaleString();
+        };
+        
+        setInterval(updateCount, Math.random() * (4000 - 2000) + 2000); // random interval between 2-4 seconds
+    }
+    
+    // --- Form Toggle Logic ---
+    const showUserBtn = document.getElementById('show-user-form');
+    const showCreatorBtn = document.getElementById('show-creator-form');
+    const userForm = document.getElementById('user-form');
+    const creatorForm = document.getElementById('creator-form');
+
+    showUserBtn.addEventListener('click', () => {
+        showUserBtn.classList.add('active');
+        showCreatorBtn.classList.remove('active');
+        userForm.classList.add('active');
+        creatorForm.classList.remove('active');
+    });
+
+    showCreatorBtn.addEventListener('click', () => {
+        showCreatorBtn.classList.add('active');
+        showUserBtn.classList.remove('active');
+        creatorForm.classList.add('active');
+        userForm.classList.remove('active');
+    });
+    
+    // --- Form Submission Simulation ---
+    const waitlistForm = document.getElementById('waitlist-form');
+    const creatorApplyForm = document.getElementById('creator-apply-form');
+
+    waitlistForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for joining the waitlist! We will notify you upon launch.');
+        waitlistForm.reset();
+    });
+
+    creatorApplyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your application! Our team will review your profile and be in touch soon.');
+        creatorApplyForm.reset();
+    });
+});
+</script>
+</body>
+</html>
